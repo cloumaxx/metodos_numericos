@@ -8,7 +8,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from interfazcalculadoras import ConversorEntreBases as cEb, Derivadas as der, IEEE as ieee, MetodoBiseccion as mBee, \
-    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli
+    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra
 
 
 class Ui_interfaz(object):
@@ -62,18 +62,35 @@ class Ui_interfaz(object):
         self.Integrantes.setGeometry(QtCore.QRect(380, 90, 311, 271))
         self.Integrantes.setStyleSheet("background-color: rgb(170, 170, 255);")
         self.Integrantes.setObjectName("Integrantes")
+
         self.botonIeee = QtWidgets.QPushButton(interfaz)
         self.botonIeee.setGeometry(QtCore.QRect(210, 90, 141, 71))
         self.botonIeee.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                      "font: 75 italic 12pt \"Arial Narrow\";")
         self.botonIeee.setObjectName("botonIeee")
         self.botonIeee.clicked.connect(self.cambioAiee)
+
         self.botonPolinomio = QtWidgets.QPushButton(interfaz)
         self.botonPolinomio.setGeometry(QtCore.QRect(210, 180, 141, 71))
         self.botonPolinomio.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                           "font: 75 italic 12pt \"Arial Narrow\";")
         self.botonPolinomio.setObjectName("botonPolinomio")
         self.botonPolinomio.clicked.connect(self.cambioPolinomio)
+
+        self.botonInterRec = QtWidgets.QPushButton(interfaz)
+        self.botonInterRec.setGeometry(QtCore.QRect(210, 450, 141, 71))
+        self.botonInterRec.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                     "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonInterRec.setObjectName("botonIeee")
+        self.botonInterRec.clicked.connect(self.cambioRectangulos)
+
+        self.botonInterTrape = QtWidgets.QPushButton(interfaz)
+        self.botonInterTrape.setGeometry(QtCore.QRect(50, 450, 141, 71))
+        self.botonInterTrape.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                         "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonInterTrape.setObjectName("botonIeee")
+        self.botonInterTrape.clicked.connect(self.cambioATrapecios)
+
         self.retranslateUi(interfaz)
         QtCore.QMetaObject.connectSlotsByName(interfaz)
 
@@ -82,7 +99,16 @@ class Ui_interfaz(object):
         self.ui = cEb.Ui_ConversorEntreBases()
         self.ui.setupUi(self.interfaz)
         self.interfaz.show()
-
+    def cambioRectangulos(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui = intRec.Ui_Form()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
+    def cambioATrapecios(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui = intTra.Ui_Form()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
 
     def cambioADerivadas(self):
         self.interfaz = QtWidgets.QWidget()
@@ -117,7 +143,7 @@ class Ui_interfaz(object):
 
     def cambioSecante(self):
         self.interfaz = QtWidgets.QWidget()
-        self.ui = metodoSecante.Ui_calculadora()
+        self.ui = metodoSecante.Ui_Form()
         self.ui.setupUi(self.interfaz)
         self.interfaz.show()
 
@@ -136,6 +162,8 @@ class Ui_interfaz(object):
         self.botonRegla.setText(_translate("interfaz", "Metodo Regla Falsa"))
         self.boronNewon.setText(_translate("interfaz", "Metodo Newton Raphson"))
         self.botonSecante.setText(_translate("interfaz", "Metodo de la Secante"))
+        self.botonInterRec.setText(_translate("interfaz", "Integracion por Rectangulos"))
+        self.botonInterTrape.setText(_translate("interfaz", "Integracion por Trapecios"))
         self.MenuPrin.setHtml(_translate("interfaz",
                                          "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                          "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -170,4 +198,4 @@ def control():
     interfaz.show()
     sys.exit(app.exec_())
 
-#control()"""
+#control()

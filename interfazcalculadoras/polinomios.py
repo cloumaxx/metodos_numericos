@@ -203,6 +203,7 @@ class Ui_Form(object):
                                          "background-color: rgb(0, 170, 127);")
         self.botonDivision.setObjectName("botonDivision")
         self.gridLayout_2.addWidget(self.botonDivision, 3, 1, 1, 1)
+
         self.botonMas_5 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_5.setStyleSheet("font: 12pt \"Arial\";\n"
                                       "background-color: rgb(0, 170, 127);")

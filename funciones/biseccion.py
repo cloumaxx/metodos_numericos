@@ -33,12 +33,10 @@ def funcionPrincipal(funcion, intervaloA, intervaloB):
 def graficaTotal(funcion,intervaloA,intervaloB ,error ):
     funcionPrincipal(funcion,intervaloA,intervaloB)
     raiz =calculoRaiz(funcion,intervaloA,intervaloB ,error )
-    plt.plot(raiz,0, marker="X", color="green", label="Raiz")
+    plt.plot(raiz,0, marker="X", color="green", label=("Raiz: "+str(raiz)))
     coordenada1 = eval(remplazoFuncion(funcion,intervaloA))
     coordenada2 = eval(remplazoFuncion(funcion,intervaloB))
     l = ejeTama2
-
-
     dimEje1 = 0
     dimEje2 = 0
     mayor = intervaloA
@@ -91,8 +89,61 @@ def creacionTabla():
     titulos.append("Raiz")
     arreglo.append(titulos)
     return arreglo
+
+def retornarTabla(funcion,intervaloA,intervaloB,E_t):
+    intervaloA=float(intervaloA)
+    intervaloB=float(intervaloB)
+    E_t=float(E_t)
+    tabla=list()
+    fila = []
+    salir = False
+    raiz = 0
+    a = intervaloA
+    b = intervaloB
+    iteracion = 1
+    ri_arreglo = []
+    ri_arreglo.append(0)
+    F_a = eval(remplazoFuncion(funcion, a))
+    F_b = eval(remplazoFuncion(funcion, b))
+
+    if (F_a * F_b) < 0:
+        while salir == False:
+            ri = (a + b) / 2
+            F_ri = eval(remplazoFuncion(funcion, ri))
+
+            if (F_ri * F_b) < 0:
+                a = ri
+            else:
+                b = ri
+            # error
+            ri_arreglo.append(ri)
+            E_r = abs((ri_arreglo[iteracion - 1] - ri_arreglo[iteracion]) / ri_arreglo[iteracion])
+
+            fila.append(iteracion)
+            fila.append(remplazoFuncion(funcion,'x'))
+            fila.append(a)
+            fila.append(b)
+            fila.append(F_ri)
+            fila.append(E_t)
+            fila.append(E_r)
+
+            if iteracion >= 50 or E_r < E_t:
+
+                raiz = ri
+                fila.append(raiz)
+                salir = True
+            else:
+                fila.append(' ')
+                iteracion += 1
+            tabla.append(fila)
+            fila = []
+    else:
+        print('no hay raices')
+    #print(tabulate(tabla))
+    return tabla
+
+
 def calculoRaiz(funcion,intervaloA,intervaloB,E_t):
-    tabla = creacionTabla()
     fila = []
 
     salir = False

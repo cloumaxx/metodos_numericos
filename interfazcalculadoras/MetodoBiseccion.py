@@ -10,6 +10,8 @@ from funciones import biseccion as bss
 from PyQt5 import QtCore, QtGui, QtWidgets
 from funciones import graficadora  as graficador
 from interfazcalculadoras.IEEE import Ui_Form
+from interfazcalculadoras import TablaBiseccion as tablaInter
+import tabulate
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -75,11 +77,7 @@ class Ui_Form(object):
         self.pushButton_10.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                          "font: 87 14pt \"Arial Black\";")
         self.pushButton_10.setObjectName("pushButton_10")
-        self.pushButton_11 = QtWidgets.QPushButton(Form)
-        self.pushButton_11.setGeometry(QtCore.QRect(480, 330, 91, 41))
-        self.pushButton_11.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                         "font: 87 14pt \"Arial Black\";")
-        self.pushButton_11.setObjectName("pushButton_11")
+        self.pushButton_10.clicked.connect(self.eventTabla)
 
         self.layoutWidget = QtWidgets.QWidget(Form)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 390, 565, 203))
@@ -342,11 +340,10 @@ class Ui_Form(object):
         self.botonCalcular.setObjectName("botonCalcular")
         self.botonCalcular.clicked.connect(self.eventCalcular)
 
-        self.label = QtWidgets.QLabel(Form)  # ingreso de funcion comotal
-        self.label.setGeometry(QtCore.QRect(0, 0, 700, 20))
+        self.label = QtWidgets.QLabel(Form)
         self.label.setText("")
+        self.label.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.label.setObjectName("label")
-        self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setText("")
@@ -372,7 +369,7 @@ class Ui_Form(object):
         self.TextLimIn = QtWidgets.QLineEdit(Form)
         self.TextLimIn.setGeometry(QtCore.QRect(160, 100, 281, 31))#limite1
         self.TextLimIn.setObjectName("TextLimIn")
-        
+
         self.TextLim = QtWidgets.QLineEdit(Form) # ingreso de datos por teclado
         self.TextLim.setGeometry(QtCore.QRect(160, 140, 281, 31))
         self.TextLim.setObjectName("TextLim")
@@ -397,14 +394,12 @@ class Ui_Form(object):
             #raiz = bss.calculoRaiz(self.funcion,self.limite1,self.limite2,self.errorTole)
             #print(raiz)
 
-            
+
 
         except:
             print('algun error en la grafica')
     def eventCalcular(self):
-        print('entro1')
         try:
-            print('entro2')
             #se inicializan los labels para poder cambiarlos
             self.entrada2 = self.label_2.text()
             self.entrada3 = self.label_3.text()
@@ -428,8 +423,21 @@ class Ui_Form(object):
             self.label_4.setText(self.entrada4)
         except:
             print('hubo algun error')
+    def eventTabla(self):
+        # se inicializan los labels para poder cambiarlos
+        self.entrada2 = self.label_2.text()
+        self.entrada3 = self.label_3.text()
+        self.entrada4 = self.label_4.text()
+        # se obtiene cada dato que se digito en la interfaz
+        self.funcion = self.label.text()
+        self.limite1 = self.TextLimIn.text()
+        self.limite2 = self.TextLim.text()
+        self.errorTole = self.TextErrorT.text()
+        # se hace los calculos respectivos con las variables anteriores
+        tabla=bss.retornarTabla(self.funcion,self.limite1,self.limite2,self.errorTole)
+        self.tablaInter.tableWidget
+        print('salio')
 
-        
     # creacion de botones
     def eventBoton0(self):
         self.entrada = self.label.text()
@@ -808,24 +816,26 @@ class Ui_Form(object):
 
 
     def eventoBorrar(self):
-        import numpy as np
-        #self.label.setText(self.entrada[:len(self.entrada)-1])
-        s = ""
-        s2= ""
-        elec1= Ui_Form.funcionLabel1
-        elec2= Ui_Form.funcionLabel2
-        elec1.pop(len(elec1)-1)
-        elec2.pop(len(elec2)-1)
-        tama1 = len(Ui_Form.funcionLabel1)
+        try:
+            import numpy as np
+            #self.label.setText(self.entrada[:len(self.entrada)-1])
+            s = ""
+            s2= ""
+            elec1= Ui_Form.funcionLabel1
+            elec2= Ui_Form.funcionLabel2
+            elec1.pop(len(elec1)-1)
+            elec2.pop(len(elec2)-1)
+            tama1 = len(Ui_Form.funcionLabel1)
 
-        tama2 = len(Ui_Form.funcionLabel2)
-        for i in range(0,tama1):
-            s +=elec1[i]
-        for j in range(0,tama2):
-            s2 += elec2[j]
-        self.label.setText(s)
-        self.label_5.setText(s2)
-
+            tama2 = len(Ui_Form.funcionLabel2)
+            for i in range(0,tama1):
+                s +=elec1[i]
+            for j in range(0,tama2):
+                s2 += elec2[j]
+            self.label.setText(s)
+            self.label_5.setText(s2)
+        except:
+            print('no se puede borrar mas')
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -880,7 +890,6 @@ class Ui_Form(object):
                                          "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">N° Iteraciones  #:</span></p></body></html>"))
         self.botonGrafica.setText(_translate("Form", "Grafica"))
         self.pushButton_10.setText(_translate("Form", "Tabla"))
-        self.pushButton_11.setText(_translate("Form", "Salir"))
         self.botonUno.setText(_translate("Form", "1"))
         self.botonUno.setShortcut(_translate("Form", "1"))
         self.botonDos.setText(_translate("Form", "2"))
@@ -924,7 +933,6 @@ class Ui_Form(object):
         self.botonSeno.setText(_translate("Form", "sin"))
         self.botonCsc.setText(_translate("Form", "csc"))
         self.botonDivision.setText(_translate("Form", "÷"))
-        self.botonDivision.setShortcut(_translate("Form", "/"))
         self.botonLogNatural.setText(_translate("Form", "ln"))
         self.botonCoseno.setText(_translate("Form", "cos"))
         self.botonCot.setText(_translate("Form", "cot"))
@@ -934,6 +942,7 @@ class Ui_Form(object):
         self.BotonBorrar.setText(_translate("Form", "<-"))
         self.botonAC.setText(_translate("Form", "AC"))
         self.botonCalcular.setText(_translate("Form", "Calcular"))
+        self.label.setText(_translate("Form", ""))
         self.label_2.setText(_translate("Form", "0"))  # Ráiz
         self.label_3.setText(_translate("Form", "0"))  # Error Er
         self.label_4.setText(_translate("Form", "0"))  # Numero iteracion

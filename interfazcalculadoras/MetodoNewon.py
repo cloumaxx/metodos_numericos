@@ -7,8 +7,10 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from funciones import newthon as nw
 class Ui_Form(object):
+    funcionLabel1 = []
+    funcionLabel2 = []
     def setupUi(self, MetodonewtonRaphson):
         MetodonewtonRaphson.setObjectName("MetodonewtonRaphson")
         MetodonewtonRaphson.resize(641, 526)
@@ -19,11 +21,7 @@ class Ui_Form(object):
         self.BotonFun.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonFun.setObjectName("BotonFun")
-        self.pushButton_11 = QtWidgets.QPushButton(MetodonewtonRaphson)
-        self.pushButton_11.setGeometry(QtCore.QRect(510, 220, 91, 41))
-        self.pushButton_11.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-"font: 87 12pt \"Arial Black\";")
-        self.pushButton_11.setObjectName("pushButton_11")
+
         self.BotonErro_2 = QtWidgets.QTextEdit(MetodonewtonRaphson)
         self.BotonErro_2.setGeometry(QtCore.QRect(20, 230, 91, 31))
         self.BotonErro_2.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -34,21 +32,27 @@ class Ui_Form(object):
         self.BotonRaiz.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonRaiz.setObjectName("BotonRaiz")
+
         self.BotonErro = QtWidgets.QTextEdit(MetodonewtonRaphson)
         self.BotonErro.setGeometry(QtCore.QRect(20, 140, 181, 31))
         self.BotonErro.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonErro.setObjectName("BotonErro")
+        #tabla
         self.pushButton_10 = QtWidgets.QPushButton(MetodonewtonRaphson)
         self.pushButton_10.setGeometry(QtCore.QRect(510, 160, 91, 41))
         self.pushButton_10.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
         self.pushButton_10.setObjectName("pushButton_10")
+        #grafica
         self.pushButton_8 = QtWidgets.QPushButton(MetodonewtonRaphson)
         self.pushButton_8.setGeometry(QtCore.QRect(510, 100, 91, 41))
         self.pushButton_8.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
         self.pushButton_8.setObjectName("pushButton_8")
+        self.pushButton_8.clicked.connect(self.eventGrafica)
+
+        #punto ini
         self.BotonPun = QtWidgets.QTextEdit(MetodonewtonRaphson)
         self.BotonPun.setGeometry(QtCore.QRect(20, 100, 131, 31))
         self.BotonPun.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -62,197 +66,278 @@ class Ui_Form(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
+
         self.botonUno = QtWidgets.QPushButton(self.layoutWidget)
         self.botonUno.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonUno.setObjectName("botonUno")
         self.gridLayout.addWidget(self.botonUno, 0, 0, 1, 1)
+        self.botonUno.clicked.connect(self.eventBoton1)
+
         self.botonDos = QtWidgets.QPushButton(self.layoutWidget)
         self.botonDos.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonDos.setObjectName("botonDos")
         self.gridLayout.addWidget(self.botonDos, 0, 1, 1, 1)
+        self.botonDos.clicked.connect(self.eventBoton2)
+
         self.botonTres = QtWidgets.QPushButton(self.layoutWidget)
         self.botonTres.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonTres.setObjectName("botonTres")
         self.gridLayout.addWidget(self.botonTres, 0, 2, 1, 1)
+        self.botonTres.clicked.connect(self.eventBoton3)
+
         self.botonCuatro = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCuatro.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonCuatro.setObjectName("botonCuatro")
         self.gridLayout.addWidget(self.botonCuatro, 1, 0, 1, 1)
+        self.botonCuatro.clicked.connect(self.eventBoton4)
+
         self.botonCinco = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCinco.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonCinco.setObjectName("botonCinco")
         self.gridLayout.addWidget(self.botonCinco, 1, 1, 1, 1)
+        self.botonCinco.clicked.connect(self.eventBoton5)
+
         self.botonSeis = QtWidgets.QPushButton(self.layoutWidget)
         self.botonSeis.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonSeis.setObjectName("botonSeis")
         self.gridLayout.addWidget(self.botonSeis, 1, 2, 1, 1)
+        self.botonSeis.clicked.connect(self.eventBoton6)
+
         self.botonSiete = QtWidgets.QPushButton(self.layoutWidget)
         self.botonSiete.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonSiete.setObjectName("botonSiete")
         self.gridLayout.addWidget(self.botonSiete, 2, 0, 1, 1)
+        self.botonSiete.clicked.connect(self.eventBoton7)
+
         self.botonOcho = QtWidgets.QPushButton(self.layoutWidget)
         self.botonOcho.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonOcho.setObjectName("botonOcho")
         self.gridLayout.addWidget(self.botonOcho, 2, 1, 1, 1)
+        self.botonOcho.clicked.connect(self.eventBoton8)
+
         self.botonNueve = QtWidgets.QPushButton(self.layoutWidget)
         self.botonNueve.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonNueve.setObjectName("botonNueve")
         self.gridLayout.addWidget(self.botonNueve, 2, 2, 1, 1)
+        self.botonNueve.clicked.connect(self.eventBoton9)
+
         self.botonCabierto = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCabierto.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonCabierto.setObjectName("botonCabierto")
         self.gridLayout.addWidget(self.botonCabierto, 3, 0, 1, 1)
+        self.botonCabierto.clicked.connect(self.eventBotonParentesis)
+
         self.botonCero = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCero.setStyleSheet("background-color: rgb(0, 170, 255);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonCero.setObjectName("botonCero")
         self.gridLayout.addWidget(self.botonCero, 3, 1, 1, 1)
+        self.botonCero.clicked.connect(self.eventBoton0)
+
         self.botonCerrado = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCerrado.setStyleSheet("background-color: rgb(0, 170, 127);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonCerrado.setObjectName("botonCerrado")
         self.gridLayout.addWidget(self.botonCerrado, 3, 2, 1, 1)
+        self.botonCerrado.clicked.connect(self.eventBotonParentesis2)
+
         self.botonCabierto_2 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCabierto_2.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonCabierto_2.setObjectName("botonCabierto_2")
         self.gridLayout.addWidget(self.botonCabierto_2, 4, 0, 1, 1)
+        self.botonCabierto_2.clicked.connect(self.eventBotonCorchete)
+
         self.botonPunto = QtWidgets.QPushButton(self.layoutWidget)
         self.botonPunto.setStyleSheet("background-color: rgb(0, 170, 127);\n"
 "font: 87 14pt \"Arial Black\";")
         self.botonPunto.setObjectName("botonPunto")
         self.gridLayout.addWidget(self.botonPunto, 4, 1, 1, 1)
+        self.botonPunto.clicked.connect(self.eventBotonPunto)
+
         self.botonCabierto_3 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCabierto_3.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonCabierto_3.setObjectName("botonCabierto_3")
         self.gridLayout.addWidget(self.botonCabierto_3, 4, 2, 1, 1)
+        self.botonCabierto_3.clicked.connect(self.eventBotonCorchete2)
+
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 5, 1)
         self.botonMas = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas.setObjectName("botonMas")
+        self.botonMas.clicked.connect(self.eventBotonSumar)
+
         self.gridLayout_2.addWidget(self.botonMas, 0, 1, 1, 1)
         self.botonMas_2 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_2.setStyleSheet("font: 75 14pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_2.setObjectName("botonMas_2")
         self.gridLayout_2.addWidget(self.botonMas_2, 0, 2, 1, 1)
+        self.botonMas_2.clicked.connect(self.eventRaiz)
+
+
         self.botonMas_3 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_3.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_3.setObjectName("botonMas_3")
         self.gridLayout_2.addWidget(self.botonMas_3, 0, 3, 1, 1)
+        self.botonMas_3.clicked.connect(self.eventBotonExp)
+
         self.botonMas_11 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_11.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_11.setObjectName("botonMas_11")
         self.gridLayout_2.addWidget(self.botonMas_11, 0, 4, 1, 1)
+        self.botonMas_11.clicked.connect(self.eventBotonTan)
+
         self.botonMenos = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMenos.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMenos.setObjectName("botonMenos")
         self.gridLayout_2.addWidget(self.botonMenos, 1, 1, 1, 1)
+        self.botonMenos.clicked.connect(self.eventBotonMenos)
+
         self.botonMas_4 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_4.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_4.setObjectName("botonMas_4")
         self.gridLayout_2.addWidget(self.botonMas_4, 1, 2, 1, 1)
+        self.botonMas_4.clicked.connect(self.eventoExponente)
+
         self.botonMas_8 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_8.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_8.setObjectName("botonMas_8")
         self.gridLayout_2.addWidget(self.botonMas_8, 1, 3, 1, 1)
+        self.botonMas_8.clicked.connect(self.eventBotonLog)
+
         self.botonMas_12 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_12.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_12.setObjectName("botonMas_12")
         self.gridLayout_2.addWidget(self.botonMas_12, 1, 4, 1, 1)
+        self.botonMas_12.clicked.connect(self.eventBotonSec)
+
         self.BotonMulti = QtWidgets.QPushButton(self.layoutWidget)
         self.BotonMulti.setStyleSheet("background-color: rgb(0, 170, 127);\n"
 "font: 87 14pt \"Arial Black\";")
         self.BotonMulti.setObjectName("BotonMulti")
         self.gridLayout_2.addWidget(self.BotonMulti, 2, 1, 1, 1)
+        self.BotonMulti.clicked.connect(self.eventBotonMultiplicar)
+
         self.botonMas_7 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_7.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_7.setObjectName("botonMas_7")
         self.gridLayout_2.addWidget(self.botonMas_7, 2, 2, 1, 1)
+        self.botonMas_7.clicked.connect(self.eventPi)
+
         self.botonMas_9 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_9.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_9.setObjectName("botonMas_9")
         self.gridLayout_2.addWidget(self.botonMas_9, 2, 3, 1, 1)
+        self.botonMas_9.clicked.connect(self.eventBotonSin)
+
         self.botonMas_13 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_13.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_13.setObjectName("botonMas_13")
         self.gridLayout_2.addWidget(self.botonMas_13, 2, 4, 1, 1)
+        self.botonMas_13.clicked.connect(self.eventBotonCsc)
+
         self.botonDivision = QtWidgets.QPushButton(self.layoutWidget)
         self.botonDivision.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonDivision.setObjectName("botonDivision")
         self.gridLayout_2.addWidget(self.botonDivision, 3, 1, 1, 1)
+        self.botonDivision.clicked.connect(self.eventDiv)
+
         self.botonMas_5 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_5.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_5.setObjectName("botonMas_5")
         self.gridLayout_2.addWidget(self.botonMas_5, 3, 2, 1, 1)
+        self.botonMas_5.clicked.connect(self.eventBotonln)
+
         self.botonMas_10 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_10.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_10.setObjectName("botonMas_10")
         self.gridLayout_2.addWidget(self.botonMas_10, 3, 3, 1, 1)
+        self.botonMas_10.clicked.connect(self.eventBotonCos)
+
         self.botonMas_14 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_14.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_14.setObjectName("botonMas_14")
         self.gridLayout_2.addWidget(self.botonMas_14, 3, 4, 1, 1)
+        self.botonMas_14.clicked.connect(self.eventBotonCot)
+
         self.botonPorcentaje = QtWidgets.QPushButton(self.layoutWidget)
         self.botonPorcentaje.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonPorcentaje.setObjectName("botonPorcentaje")
         self.gridLayout_2.addWidget(self.botonPorcentaje, 4, 1, 1, 1)
+        self.botonPorcentaje.clicked.connect(self.eventBotonPorcentaje)
+
         self.botonMas_6 = QtWidgets.QPushButton(self.layoutWidget)
         self.botonMas_6.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonMas_6.setObjectName("botonMas_6")
         self.gridLayout_2.addWidget(self.botonMas_6, 4, 2, 1, 1)
+        self.botonMas_6.clicked.connect(self.eventBotonIgual)
+
         self.BotonBorrar = QtWidgets.QPushButton(self.layoutWidget)
         self.BotonBorrar.setStyleSheet("background-color: rgb(0, 170, 127);\n"
 "font: 87 14pt \"Arial Black\";")
         self.BotonBorrar.setObjectName("BotonBorrar")
         self.gridLayout_2.addWidget(self.BotonBorrar, 4, 3, 1, 1)
+        self.BotonBorrar.clicked.connect(self.eventoBorrar)
+
         self.botonAC = QtWidgets.QPushButton(self.layoutWidget)
         self.botonAC.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
 "background-color: rgb(0, 170, 127);")
         self.botonAC.setObjectName("botonAC")
         self.gridLayout_2.addWidget(self.botonAC, 4, 4, 1, 1)
+        self.botonAC.clicked.connect(self.eventBorrarTodo)
+
         self.pushButton_9 = QtWidgets.QPushButton(MetodonewtonRaphson)
         self.pushButton_9.setGeometry(QtCore.QRect(510, 40, 91, 41))
         self.pushButton_9.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
         self.pushButton_9.setObjectName("pushButton_9")
-        self.BotonError = QtWidgets.QTextEdit(MetodonewtonRaphson)
+        self.pushButton_9.clicked.connect(self.eventCalcular)
+
+        self.BotonError = QtWidgets.QLineEdit(MetodonewtonRaphson)
         self.BotonError.setGeometry(QtCore.QRect(220, 140, 201, 31))
         self.BotonError.setObjectName("BotonError")
-        self.TextPun = QtWidgets.QTextEdit(MetodonewtonRaphson)
+
+        self.TextPun = QtWidgets.QLineEdit(MetodonewtonRaphson)
         self.TextPun.setGeometry(QtCore.QRect(180, 100, 221, 31))
         self.TextPun.setObjectName("TextPun")
+
         self.label = QtWidgets.QLabel(MetodonewtonRaphson)
-        self.label.setGeometry(QtCore.QRect(160, 20, 221, 31))
+        self.label.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.label.setObjectName("label")
         self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
+
+        self.label_5 = QtWidgets.QLabel(MetodonewtonRaphson)
+        self.label_5.setGeometry(QtCore.QRect(160, 20, 221, 31))
+        self.label_5.setObjectName("label")
+        self.label_5.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
         self.label_2 = QtWidgets.QLabel(MetodonewtonRaphson)
         self.label_2.setGeometry(QtCore.QRect(170, 190, 221, 31))
@@ -265,7 +350,37 @@ class Ui_Form(object):
         self.label_3.setStyleSheet("border-radius: 25px;border: 1px solid black;")
         self.retranslateUi(MetodonewtonRaphson)
         QtCore.QMetaObject.connectSlotsByName(MetodonewtonRaphson)
-     # creacion de botones
+    def eventCalcular(self):
+        try:
+            # se inicializan los labels para poder cambiarlos
+            self.entrada2 = self.label_2.text() #raiz
+            self.entrada3 = self.label_3.text() #error
+            # se obtiene cada dato que se digito en la interfaz
+            self.funcion = self.label.text()
+            self.limite = self.TextPun.text()
+            self.errorTole = self.BotonError.text()
+            # se hace los calculos respectivos con las variables anteriores
+            raiz = nw.calculoRaiz(self.funcion, self.limite, self.errorTole)
+            salida = nw.calculoError(self.funcion, self.limite, self.errorTole)
+            # se actualizan los label de los resultados, osea ya muestran los resultados
+            self.entrada2 = str(raiz)
+            self.entrada3 = str(salida)
+            print(self.entrada2)
+            self.label_2.setText(self.entrada2)
+            self.label_3.setText(self.entrada3)
+        except:
+            print('hubo algun error')
+
+    def eventGrafica(self):
+           try:
+                #
+                self.funcion = self.label.text()
+                self.limite = self.TextPun.text()
+                self.errorTole = self.BotonError.text()
+                nw.graficaTotal(self.funcion, self.limite   ,  self.errorTole)
+           except:
+                print('algun error en la grafica')
+    # creacion de botones
     def eventBoton0(self):
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
@@ -544,11 +659,11 @@ class Ui_Form(object):
 
     def eventBotonSin(self):
         print('math.sin')
-        Ui_Form.funcionLabel1.append('math.sin(')
+        Ui_Form.funcionLabel1.append('sin(')
         Ui_Form.funcionLabel2.append('sin(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.sin('
+        self.entrada += 'sin('
         self.entrada2 += 'sin('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
@@ -662,8 +777,14 @@ class Ui_Form(object):
         except:
             print('no se puede borrar mas')
 
-
-
+    def eventBorrarTodo(self):
+        try:
+            s = ""
+            s2 = ""
+            self.label.setText(s)
+            self.label_5.setText(s2)
+        except:
+            print('no se puede borrar mas')
 
     def retranslateUi(self, MetodonewtonRaphson):
         _translate = QtCore.QCoreApplication.translate
@@ -673,7 +794,6 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; color:#000000;\">Función </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#000000;\">F(x):</span></p></body></html>"))
-        self.pushButton_11.setText(_translate("MetodonewtonRaphson", "Salir"))
         self.BotonErro_2.setHtml(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -742,7 +862,7 @@ class Ui_Form(object):
         self.botonMas_8.setShortcut(_translate("MetodonewtonRaphson", "+"))
         self.botonMas_12.setText(_translate("MetodonewtonRaphson", "sec"))
         self.botonMas_12.setShortcut(_translate("MetodonewtonRaphson", "+"))
-        self.BotonMulti.setText(_translate("MetodonewtonRaphson", "x"))
+        self.BotonMulti.setText(_translate("MetodonewtonRaphson", "*"))
         self.BotonMulti.setShortcut(_translate("MetodonewtonRaphson", "*"))
         self.botonMas_7.setText(_translate("MetodonewtonRaphson", "π"))
         self.botonMas_7.setShortcut(_translate("MetodonewtonRaphson", "+"))
@@ -760,16 +880,16 @@ class Ui_Form(object):
         self.botonMas_14.setShortcut(_translate("MetodonewtonRaphson", "+"))
         self.botonPorcentaje.setText(_translate("MetodonewtonRaphson", "%"))
         self.botonPorcentaje.setShortcut(_translate("MetodonewtonRaphson", "%"))
-        self.botonMas_6.setText(_translate("MetodonewtonRaphson", "="))
+        self.botonMas_6.setText(_translate("MetodonewtonRaphson", "x"))
         self.botonMas_6.setShortcut(_translate("MetodonewtonRaphson", "+"))
         self.BotonBorrar.setText(_translate("MetodonewtonRaphson", "C"))
         self.BotonBorrar.setShortcut(_translate("MetodonewtonRaphson", "Esc"))
         self.botonAC.setText(_translate("MetodonewtonRaphson", "AC"))
         self.pushButton_9.setText(_translate("MetodonewtonRaphson", "Calcular"))
-        self.label.setText(_translate("MetodonewtonRaphson", ""))
-        self.label_2.setText(_translate("MetodonewtonRaphson", ""))
-        self.label_3.setText(_translate("MetodonewtonRaphson", ""))
-
+        self.label.setText(_translate("MetodonewtonRaphson", "")) # funcion usar
+        self.label_2.setText(_translate("MetodonewtonRaphson", "")) #raiz
+        self.label_3.setText(_translate("MetodonewtonRaphson", "")) # error
+        self.label_5.setText(_translate("MetodonewtonRaphson", ""))# funcion usuario
 
 if __name__ == "__main__":
     import sys

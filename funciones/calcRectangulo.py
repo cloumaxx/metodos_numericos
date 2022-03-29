@@ -28,3 +28,4 @@ print(ARect)
 IntegralNum = np.sum(ARect)
 print('La aproximacion a la integral es: ', IntegralNum)
 
+# https://es.planetcalc.com/5494/

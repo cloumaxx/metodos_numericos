@@ -70,12 +70,6 @@ class Ui_Form(object):
                 self.pushButton_10.setGeometry(QtCore.QRect(480, 260, 91, 41))
                 self.pushButton_10.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                                  "font: 87 14pt \"Arial Black\";")
-                self.pushButton_10.setObjectName("pushButton_10")
-                self.pushButton_11 = QtWidgets.QPushButton(Form)
-                self.pushButton_11.setGeometry(QtCore.QRect(480, 330, 91, 41))
-                self.pushButton_11.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                                 "font: 87 14pt \"Arial Black\";")
-                self.pushButton_11.setObjectName("pushButton_11")
 
                 self.layoutWidget = QtWidgets.QWidget(Form)
                 self.layoutWidget.setGeometry(QtCore.QRect(10, 390, 565, 203))
@@ -338,11 +332,9 @@ class Ui_Form(object):
                 self.botonCalcular.setObjectName("botonCalcular")
                 self.botonCalcular.clicked.connect(self.eventCalcular)
 
-                self.label = QtWidgets.QLabel(Form)  # ingreso de funcion comotal
-                self.label.setGeometry(QtCore.QRect(0, 0, 700, 20))
+                self.label = QtWidgets.QLabel(Form)
                 self.label.setText("")
-                self.label.setObjectName("label")
-                self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
+                self.label.setGeometry(QtCore.QRect(0, 0, 0, 0))
 
                 self.label_2 = QtWidgets.QLabel(Form)
                 self.label_2.setText("")
@@ -873,7 +865,6 @@ class Ui_Form(object):
                                                  "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">N° Iteraciones  #:</span></p></body></html>"))
                 self.botonGrafica.setText(_translate("Form", "Grafica"))
                 self.pushButton_10.setText(_translate("Form", "Tabla"))
-                self.pushButton_11.setText(_translate("Form", "Salir"))
                 self.botonUno.setText(_translate("Form", "1"))
                 self.botonUno.setShortcut(_translate("Form", "1"))
                 self.botonDos.setText(_translate("Form", "2"))
