@@ -39,3 +39,4 @@ def control():
     for i in range(0, n, 1):
         print(tabla[i])
     print('raiz en: ', raiz)
+    return raiz

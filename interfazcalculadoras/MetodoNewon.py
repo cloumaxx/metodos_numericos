@@ -549,11 +549,11 @@ class Ui_Form(object):
 
     def eventRaiz(self):
         print('√')
-        Ui_Form.funcionLabel1.append('math.isqrt(')
+        Ui_Form.funcionLabel1.append('isqrt(')
         Ui_Form.funcionLabel2.append('√')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.isqrt('
+        self.entrada += 'isqrt('
         self.entrada2 += "√"
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
@@ -604,11 +604,11 @@ class Ui_Form(object):
 
     def eventPi(self):
         print('π')
-        Ui_Form.funcionLabel1.append('math.pi')
+        Ui_Form.funcionLabel1.append('pi')
         Ui_Form.funcionLabel2.append('π')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += "math.pi"
+        self.entrada += "pi"
         self.entrada2 += 'π'
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
@@ -658,7 +658,7 @@ class Ui_Form(object):
         self.label_5.setText(self.entrada2)
 
     def eventBotonSin(self):
-        print('math.sin')
+        print('sin')
         Ui_Form.funcionLabel1.append('sin(')
         Ui_Form.funcionLabel2.append('sin(')
         self.entrada = self.label.text()
@@ -669,108 +669,108 @@ class Ui_Form(object):
         self.label_5.setText(self.entrada2)
 
     def eventBotonCos(self):
-        print('math.cos')
-        Ui_Form.funcionLabel1.append('math.cos(')
+        print('cos')
+        Ui_Form.funcionLabel1.append('cos(')
         Ui_Form.funcionLabel2.append('cos(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.cos('
+        self.entrada += 'cos('
         self.entrada2 += 'cos('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonTan(self):
-        print('math.tan')
-        Ui_Form.funcionLabel1.append('math.tan(')
+        print('tan')
+        Ui_Form.funcionLabel1.append('tan(')
         Ui_Form.funcionLabel2.append('tan(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.tan('
+        self.entrada += 'tan('
         self.entrada2 += 'tan('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonSec(self):
-        print('math.asin')
-        Ui_Form.funcionLabel1.append('math.asin(')
+        print('asin')
+        Ui_Form.funcionLabel1.append('asin(')
         Ui_Form.funcionLabel2.append('sec(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.asin('
+        self.entrada += 'asin('
         self.entrada2 += 'sec('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonCsc(self):
-        print('math.acos')
-        Ui_Form.funcionLabel1.append('math.csc(')
+        print('acos')
+        Ui_Form.funcionLabel1.append('csc(')
         Ui_Form.funcionLabel2.append('csc(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.csc('
+        self.entrada += 'csc('
         self.entrada2 += 'csc('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonCot(self):
-        print('math.atan')
-        Ui_Form.funcionLabel1.append('math.atan(')
+        print('atan')
+        Ui_Form.funcionLabel1.append('atan(')
         Ui_Form.funcionLabel2.append('tan(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.atan('
+        self.entrada += 'atan('
         self.entrada2 += 'cot('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonLog(self):
-        print('math.log')
-        Ui_Form.funcionLabel1.append('math.log(')
+        print('log')
+        Ui_Form.funcionLabel1.append('log(')
         Ui_Form.funcionLabel2.append('log(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.log('
+        self.entrada += 'log('
         self.entrada2 += 'log('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonExp(self):
-        print('math.exp')
-        Ui_Form.funcionLabel1.append('math.exp(')
+        print('exp')
+        Ui_Form.funcionLabel1.append('exp(')
         Ui_Form.funcionLabel2.append('e(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.exp('
+        self.entrada += 'exp('
         self.entrada2 += 'e('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonln(self):
-        print('math.log(')
-        Ui_Form.funcionLabel1.append('math.log(')
+        print('log(')
+        Ui_Form.funcionLabel1.append('log(')
         Ui_Form.funcionLabel2.append('ln(')
         self.entrada = self.label.text()
-        self.entrada += 'math.log('
+        self.entrada += 'log('
         self.entrada2 += 'ln('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventoBorrar(self):
-        import numpy as np
-        # self.label.setText(self.entrada[:len(self.entrada)-1])
         try:
+            import numpy as np
+            #self.label.setText(self.entrada[:len(self.entrada)-1])
             s = ""
-            s2 = ""
-            elec1 = Ui_Form.funcionLabel1
-            elec2 = Ui_Form.funcionLabel2
-            elec1.pop(len(elec1) - 1)
-            elec2.pop(len(elec2) - 1)
+            s2= ""
+            elec1= Ui_Form.funcionLabel1
+            elec2= Ui_Form.funcionLabel2
+            elec1.pop(len(elec1)-1)
+            elec2.pop(len(elec2)-1)
             tama1 = len(Ui_Form.funcionLabel1)
 
             tama2 = len(Ui_Form.funcionLabel2)
-            for i in range(0, tama1):
-                s += elec1[i]
-            for j in range(0, tama2):
+            for i in range(0,tama1):
+                s +=elec1[i]
+            for j in range(0,tama2):
                 s2 += elec2[j]
             self.label.setText(s)
             self.label_5.setText(s2)

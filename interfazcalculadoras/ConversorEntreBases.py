@@ -198,6 +198,13 @@ class Ui_ConversorEntreBases(object):
                                        "font: 75 10pt \"Arial\";")
         self.BotonBorrar.setObjectName("BotonBorrar")
         self.BotonBorrar.clicked.connect(self.eventoBorrar)
+
+        self.BotonPunto = QtWidgets.QPushButton(ConversorEntreBases)
+        self.BotonPunto.setGeometry(QtCore.QRect(100, 610, 75, 35))
+        self.BotonPunto.setStyleSheet("background-color: rgb(85, 170, 127);\n"
+                                       "font: 90 10pt \"Arial\";")
+        self.BotonPunto.setObjectName("BotonPunto")
+        self.BotonPunto.clicked.connect(self.eventoPunto)
         ##################################################################
         self.label = QtWidgets.QLabel(ConversorEntreBases)
         self.label.setGeometry(QtCore.QRect(250, 90, 230, 31))
@@ -243,7 +250,11 @@ class Ui_ConversorEntreBases(object):
     def eventoBorrar(self):
         self.entrada = self.label.text()
         self.label.setText(self.entrada[:len(self.entrada)-1])
-
+    def eventoPunto(self):
+        print('.')
+        self.entrada = self.label.text()
+        self.entrada += "."
+        self.label.setText(self.entrada)
     def eventBoton0(self):
         print('0')
         self.entrada = self.label.text()
@@ -444,6 +455,7 @@ class Ui_ConversorEntreBases(object):
         self.botonB.setText(_translate("ConversorEntreBases", "B"))
         self.botonF.setText(_translate("ConversorEntreBases", "F"))
         self.BotonBorrar.setText(_translate("ConversorEntreBases", "<-"))
+        self.BotonPunto.setText(_translate("ConversorEntreBases", "."))
         self.label.setText(_translate("ConversorEntreBases", ""))
         self.label_3.setText(_translate("ConversorEntreBases", ""))  # binario
         self.label_4.setText(_translate("ConversorEntreBases", ""))  # octal

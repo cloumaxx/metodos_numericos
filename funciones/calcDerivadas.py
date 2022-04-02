@@ -64,6 +64,6 @@ def algoritmoDerivada(funcion,variable1):
     solucion2=0#eval(remplazoFuncion(imprimir2,ingreeo))
     print("F''(x)=", imprimir2,' = ',solucion2)
 
-algoritmoDerivada('(x-3/4)*exp(-1/4*x**2)+cos(x)',10)
+#algoritmoDerivada('(x-3/4)*exp(-1/4*x**2)+cos(x)',10)
 #x = sp.Symbol('x')
 

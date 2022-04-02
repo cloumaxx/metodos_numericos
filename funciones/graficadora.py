@@ -43,11 +43,11 @@ def graficaTriangulo(rectangles,a,b,fx ):
 def graficarFuncion(ecuacionUsar):
     msj = str(remplazoFuncion(ecuacionUsar,'x'))
     # Graficar positivamente
-    xPositivo = np.arange(0, 200, 0.1)
+    xPositivo = np.arange(-200, 200, 0.1)
     plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo],label=msj,color="blue")
     # Graficar negativo
-    xNegativo = np.arange(0, -200, -0.1)
-    plt.plot(xNegativo, [ecuacion(ecuacionUsar, j) for j in xPositivo],color="blue")
+    #xNegativo = np.arange(0, -200, -0.1)
+    #plt.plot(xNegativo, [ecuacion(ecuacionUsar, j) for j in xPositivo],color="blue")
     return plt
 def graficadoraRecta(ecuacionUsar):
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))

@@ -118,10 +118,10 @@ class Ui_interfaz(object):
 
 
     def cambioAiee(self):
-        self.interfaz = QtWidgets.QWidget()
-        self.ui = ieee.Ui_Form()
-        self.ui.setupUi(self.interfaz)
-        self.interfaz.show()
+            self.interfaz = QtWidgets.QWidget()
+            self.ui = ieee.Ui_Form()
+            self.ui.setupUi(self.interfaz)
+            self.interfaz.show()
 
     def cambioABiseccion(self):
         self.interfaz = QtWidgets.QWidget()
