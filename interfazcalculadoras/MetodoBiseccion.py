@@ -6,6 +6,9 @@
 #
 # WARNING! All changes made in this file will be lost!
 import math
+
+from PyQt5.QtWidgets import QMessageBox
+
 from funciones import biseccion as bss
 from PyQt5 import QtCore, QtGui, QtWidgets
 from funciones import graficadora  as graficador
@@ -425,6 +428,14 @@ class Ui_Form(object):
             self.label_4.setText(self.entrada4)
         except:
             print('hubo algun error')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+
+            msg.setText("Hubo Algun error, revisa los datos registrados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+
+            retval = msg.exec_()
     def eventTabla(self):
         # se inicializan los labels para poder cambiarlos
         self.entrada2 = self.label_2.text()
@@ -839,7 +850,17 @@ class Ui_Form(object):
             self.label.setText(s)
             self.label_5.setText(s2)
         except:
-            print('no se puede borrar mas')
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+
+            msg.setText("No hay mas datos que borrar")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+
+            retval = msg.exec_()
+
+
 
     def eventBorrarTodo(self):
             try:
@@ -849,6 +870,14 @@ class Ui_Form(object):
                 self.label_5.setText(s2)
             except:
                 print('no se puede borrar mas')
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+
+                msg.setText("No hay mas datos que borrar")
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+
+                retval = msg.exec_()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate

@@ -1,4 +1,28 @@
 def ieee(numero):
+    def retornarExponente(bits):
+        exponente = ""
+        if bits == 32:
+            for i in range(1, 9):
+                exponente += arreglo32[i]
+        else:
+            for i in range(1, 12):
+                exponente += arreglo64[i]
+
+        return exponente
+
+    def retornarMantisa(bits):
+
+        if bits == 32:
+            mantisa = ""
+            for i in range(9, len(arreglo32)):
+                mantisa += arreglo32[i]
+        else:
+            for i in range(12, len(arreglo64)):
+                mantisa += arreglo64[i]
+        return mantisa
+
+    def retornarSigno():
+        return arreglo32[0]
 
     def convertirFraccionario(parteDecimal):
         msj = ""
@@ -15,22 +39,10 @@ def ieee(numero):
     arreglo64 = [64]  # 2 espacios extras para el espacio
     aux32 = 0
     aux64 = 0
-
     numero = float(numero)
 
-    parteEntera, parteDecimal = str(numero).split(".")
-    binEntero = bin(int(parteEntera)).replace("0b", "")
-    binDecimal = convertirFraccionario(float("0." + parteDecimal))
-    binCompleto = binEntero + "." + binDecimal
-
-    auxExponente = len(binEntero) - 1
-    binExponente32 = str(bin(auxExponente + 127).replace("0b", ""))
-    binExponente64 = str(bin(auxExponente + 1023).replace("0b", ""))
-    binMantisa = (binCompleto.replace(".", ""))[1:]
-
-    # Reglas Ieee
-
     if numero < 0:
+        numero = numero * -1
         arreglo32[aux32] = 1;
         arreglo64[aux64] = 1;
         aux32 += 1
@@ -40,6 +52,22 @@ def ieee(numero):
         arreglo64[aux64] = 0;
         aux32 += 1
         aux64 += 1
+
+    parteEntera, parteDecimal = str(numero).split(".")
+    binEntero = bin(int(parteEntera)).replace("0b", "")
+    # print(binEntero)
+
+    binDecimal = convertirFraccionario(float("0." + parteDecimal))
+    binCompleto = binEntero + "." + binDecimal
+    # print(binCompleto)
+    if (numero < 0):
+        binCompleto.replace("-", "")
+    auxExponente = len(binEntero) - 1
+    binExponente32 = str(bin(auxExponente + 127).replace("0b", ""))
+    binExponente64 = str(bin(auxExponente + 1023).replace("0b", ""))
+    binMantisa = (binCompleto.replace(".", ""))[1:]
+
+    # Reglas Ieee
 
     for a in binExponente32:
         arreglo32.append(a)
@@ -86,10 +114,12 @@ def ieee(numero):
         elif i == 12:
             asd2 += " "
         asd2 += str(arreglo64[i])
-
-    print("Ieee 32 bits: " + asd)
-    print("Ieee 64 bits: " + asd2)
-
+    arreglo=[]
+    arreglo.append(asd)
+    arreglo.append(retornarSigno())
+    arreglo.append(retornarExponente())
+    arreglo.append(retornarMantisa())
+    arreglo.append(asd2)
 
 def ieeeInverso(numero):
     numeroDec = ' '
@@ -131,10 +161,8 @@ def ieeeInverso(numero):
         for j in range(aux, aux + auxExpo + 1):
             entero += str(numero[j])
         aux += auxExpo + 1
-        print(aux)
 
         for k in range(aux, len(numero)):
-            print(k)
             fraccion += str(numero[k])
         entero = binarioDecimal(entero)
         fraccion = binarioFraccionario(fraccion)
@@ -168,7 +196,9 @@ def ieeeInverso(numero):
         fraccion = binarioFraccionario(fraccion)
 
         numeroDec = float(numeroDec + str(float(entero) + float(fraccion)))
+    return numeroDec
+    #print("El numero decimal es: " + str(numeroDec))
 
-    print("El numero decimal es: " + str(numeroDec))
 
-
+#ieeeInverso('01000000111100110010111000110100111011110011010011010110101000010')
+#ieee(78563.3084)

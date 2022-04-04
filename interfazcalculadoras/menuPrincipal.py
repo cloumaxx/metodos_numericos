@@ -8,13 +8,13 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from interfazcalculadoras import ConversorEntreBases as cEb, Derivadas as der, IEEE as ieee, MetodoBiseccion as mBee, \
-    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra
+    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra,  Simpson1_3 as simp13,Simpson3_8 as simp38
 
 
 class Ui_interfaz(object):
     def setupUi(self, interfaz):
         interfaz.setObjectName("interfaz")
-        interfaz.resize(733, 575)
+        interfaz.resize(733, 700)
         interfaz.setStyleSheet("background-color: rgb(250, 250, 250);")
         self.pushButton = QtWidgets.QPushButton(interfaz)
         self.pushButton.setGeometry(QtCore.QRect(50, 90, 141, 71))
@@ -88,8 +88,29 @@ class Ui_interfaz(object):
         self.botonInterTrape.setGeometry(QtCore.QRect(50, 450, 141, 71))
         self.botonInterTrape.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                          "font: 75 italic 12pt \"Arial Narrow\";")
-        self.botonInterTrape.setObjectName("botonIeee")
+        self.botonInterTrape.setObjectName("botonTrapecio")
         self.botonInterTrape.clicked.connect(self.cambioATrapecios)
+
+        self.botonInterSimson13 = QtWidgets.QPushButton(interfaz)
+        self.botonInterSimson13.setGeometry(QtCore.QRect(50, 540, 141, 71))
+        self.botonInterSimson13.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                           "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonInterSimson13.setObjectName("botonSimpson13")
+        self.botonInterSimson13.clicked.connect(self.cambioSimpson13)
+
+        self.botonInterSimson38 = QtWidgets.QPushButton(interfaz)
+        self.botonInterSimson38.setGeometry(QtCore.QRect(210, 540, 141, 71))
+        self.botonInterSimson38.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                              "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonInterSimson38.setObjectName("botonSimpson38")
+        self.botonInterSimson38.clicked.connect(self.cambioSimpson38)
+
+        self.botonGraficadora = QtWidgets.QPushButton(interfaz)
+        self.botonGraficadora.setGeometry(QtCore.QRect(380, 380, 141, 71))
+        self.botonGraficadora.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                           "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonGraficadora.setObjectName("botonGraficadora")
+        self.botonGraficadora.clicked.connect(self.cambioATrapecios)
 
         self.retranslateUi(interfaz)
         QtCore.QMetaObject.connectSlotsByName(interfaz)
@@ -97,6 +118,16 @@ class Ui_interfaz(object):
     def cambioAbases(self):
         self.interfaz = QtWidgets.QWidget()
         self.ui = cEb.Ui_ConversorEntreBases()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
+    def cambioSimpson13(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui = simp13.Ui_Form()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
+    def cambioSimpson38(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui = simp38.Ui_Form()
         self.ui.setupUi(self.interfaz)
         self.interfaz.show()
     def cambioRectangulos(self):
@@ -164,6 +195,9 @@ class Ui_interfaz(object):
         self.botonSecante.setText(_translate("interfaz", "Metodo de la Secante"))
         self.botonInterRec.setText(_translate("interfaz", "Integracion por Rectangulos"))
         self.botonInterTrape.setText(_translate("interfaz", "Integracion por Trapecios"))
+        self.botonGraficadora.setText(_translate("interfaz", "Graficador"))
+        self.botonInterSimson13.setText(_translate("interfaz", "Simpson 1/3"))
+        self.botonInterSimson38.setText(_translate("interfaz", "Simpson 3/8"))
         self.MenuPrin.setHtml(_translate("interfaz",
                                          "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                          "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
