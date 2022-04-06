@@ -5,9 +5,9 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-
+import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from funciones import calcIEEE as iee
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -29,16 +29,21 @@ class Ui_Form(object):
         self.Borrar_2.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                     "font: 75 10pt \"Arial\";")
         self.Borrar_2.setObjectName("Borrar_2")
+        self.Borrar_2.clicked.connect(self.eventDecimalAotras)
+
         self.Borrar_3 = QtWidgets.QPushButton(Form)
         self.Borrar_3.setGeometry(QtCore.QRect(190, 130, 101, 41))
         self.Borrar_3.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                     "font: 75 10pt \"Arial\";")
         self.Borrar_3.setObjectName("Borrar_3")
+        self.Borrar_3.clicked.connect(self.event32Aotras)
+
         self.Borrar_4 = QtWidgets.QPushButton(Form)
         self.Borrar_4.setGeometry(QtCore.QRect(310, 130, 101, 41))
         self.Borrar_4.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                     "font: 75 10pt \"Arial\";")
         self.Borrar_4.setObjectName("Borrar_4")
+        self.Borrar_4.clicked.connect(self.event64Aotras)
         self.BotonNum_2 = QtWidgets.QTextEdit(Form)
         self.BotonNum_2.setGeometry(QtCore.QRect(30, 240, 101, 31))
         self.BotonNum_2.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -341,7 +346,74 @@ class Ui_Form(object):
         self.entrada += "9"
         self.label.setText(self.entrada)
 
-
+    def  eventDecimalAotras(self):
+        try:
+            self.entrada=self.label.text()
+            arreglo= iee.ieee(float(self.entrada))
+            arreglo32=arreglo[0]
+            numero="".join(arreglo32)
+            ele = numero.split(' ')
+            self.label_5.setText(self.entrada)
+            self.label_6.setText(ele[0])
+            self.label_7.setText(ele[1])
+            self.label_8.setText(ele[2])
+            self.label_9.setText(numero)
+            arreglo64=arreglo[1]
+            num2="".join(arreglo64)
+            elem = num2.split(' ')
+            self.label_10.setText(self.entrada)
+            self.label_11.setText(elem[0])
+            self.label_12.setText(elem[1])
+            self.label_13.setText(elem[2])
+            self.label_14.setText(numero)
+        except:
+            print('salio un error')
+    def event32Aotras(self):
+        try:
+                self.entrada = self.label.text()
+                usar=iee.ieeeInverso(self.entrada)
+                arreglo = iee.ieee(float(usar))
+                arreglo32 = arreglo[0]
+                numero = "".join(arreglo32)
+                ele = numero.split(' ')
+                self.label_5.setText(str(usar))
+                self.label_6.setText(ele[0])
+                self.label_7.setText(ele[1])
+                self.label_8.setText(ele[2])
+                self.label_9.setText(numero)
+                arreglo64 = arreglo[1]
+                num2 = "".join(arreglo64)
+                elem = num2.split(' ')
+                self.label_10.setText(str(usar))
+                self.label_11.setText(elem[0])
+                self.label_12.setText(elem[1])
+                self.label_13.setText(elem[2])
+                self.label_14.setText(numero)
+        except:
+            print('algo salio mal')
+    def event64Aotras(self):
+        try:
+                self.entrada = self.label.text()
+                usar=iee.ieeeInverso(self.entrada)
+                arreglo = iee.ieee(float(usar))
+                arreglo32 = arreglo[0]
+                numero = "".join(arreglo32)
+                ele = numero.split(' ')
+                self.label_5.setText(str(usar))
+                self.label_6.setText(ele[0])
+                self.label_7.setText(ele[1])
+                self.label_8.setText(ele[2])
+                self.label_9.setText(numero)
+                arreglo64 = arreglo[1]
+                num2 = "".join(arreglo64)
+                elem = num2.split(' ')
+                self.label_10.setText(str(usar))
+                self.label_11.setText(elem[0])
+                self.label_12.setText(elem[1])
+                self.label_13.setText(elem[2])
+                self.label_14.setText(numero)
+        except:
+            print('algo salio mal')
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "CalculadoraIEEE"))
@@ -434,16 +506,16 @@ class Ui_Form(object):
         self.Salir.setText(_translate("Form", "Salir"))
         self.Salir_2.setText(_translate("Form", "Grafica"))
         self.label.setText(_translate("Form", ""))
-        self.label_5.setText(_translate("Form", "2"))
-        self.label_6.setText(_translate("Form", "3"))
-        self.label_7.setText(_translate("Form", "4"))
-        self.label_8.setText(_translate("Form", "5"))
-        self.label_9.setText(_translate("Form", "6"))
-        self.label_10.setText(_translate("Form", "7"))
-        self.label_11.setText(_translate("Form", "8"))
-        self.label_12.setText(_translate("Form", "9"))
-        self.label_13.setText(_translate("Form", "10"))
-        self.label_14.setText(_translate("Form", "11"))
+        self.label_5.setText(_translate("Form", ""))
+        self.label_6.setText(_translate("Form", ""))
+        self.label_7.setText(_translate("Form", ""))
+        self.label_8.setText(_translate("Form", ""))
+        self.label_9.setText(_translate("Form", ""))
+        self.label_10.setText(_translate("Form", ""))
+        self.label_11.setText(_translate("Form", ""))
+        self.label_12.setText(_translate("Form", ""))
+        self.label_13.setText(_translate("Form", ""))
+        self.label_14.setText(_translate("Form", ""))
 
 
 if __name__ == "__main__":

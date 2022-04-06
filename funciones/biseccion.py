@@ -139,7 +139,7 @@ def retornarTabla(funcion,intervaloA,intervaloB,E_t):
             fila = []
     else:
         print('no hay raices')
-    #print(tabulate(tabla))
+    print(tabulate(tabla))
     return tabla
 
 

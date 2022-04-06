@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 import math
+import numpy as np
 
 from PyQt5.QtWidgets import QMessageBox
 
@@ -448,8 +449,9 @@ class Ui_Form(object):
         self.errorTole = self.TextErrorT.text()
         # se hace los calculos respectivos con las variables anteriores
         tabla=bss.retornarTabla(self.funcion,self.limite1,self.limite2,self.errorTole)
-        self.tablaInter.tableWidget
-        print('salio')
+        #self.tablaInter.tableWidget
+        aux="".split(tabla[1])
+        print('-->',tabla[1],'\n',aux)
 
     # creacion de botones
     def eventBoton0(self):

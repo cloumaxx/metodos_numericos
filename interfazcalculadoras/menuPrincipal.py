@@ -8,7 +8,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from interfazcalculadoras import ConversorEntreBases as cEb, Derivadas as der, IEEE as ieee, MetodoBiseccion as mBee, \
-    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra,  Simpson1_3 as simp13,Simpson3_8 as simp38
+    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra,  Simpson1_3 as simp13,Simpson3_8 as simp38, Grafica  as grafica
 
 
 class Ui_interfaz(object):
@@ -110,8 +110,7 @@ class Ui_interfaz(object):
         self.botonGraficadora.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                            "font: 75 italic 12pt \"Arial Narrow\";")
         self.botonGraficadora.setObjectName("botonGraficadora")
-        self.botonGraficadora.clicked.connect(self.cambioATrapecios)
-
+        self.botonGraficadora.clicked.connect(self.cambioAGrafica)
         self.retranslateUi(interfaz)
         QtCore.QMetaObject.connectSlotsByName(interfaz)
 
@@ -128,6 +127,11 @@ class Ui_interfaz(object):
     def cambioSimpson38(self):
         self.interfaz = QtWidgets.QWidget()
         self.ui = simp38.Ui_Form()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
+    def cambioAGrafica(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui = grafica.Ui_Form()
         self.ui.setupUi(self.interfaz)
         self.interfaz.show()
     def cambioRectangulos(self):

@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import math
+import numpy as np
+
 def ieee(numero):
     def retornarExponente(bits):
         exponente = ""
@@ -11,14 +15,14 @@ def ieee(numero):
         return exponente
 
     def retornarMantisa(bits):
-
+        mantisa = ""
         if bits == 32:
             mantisa = ""
             for i in range(9, len(arreglo32)):
-                mantisa += arreglo32[i]
+                mantisa += str(arreglo32[i])
         else:
             for i in range(12, len(arreglo64)):
-                mantisa += arreglo64[i]
+                mantisa += str(arreglo64[i])
         return mantisa
 
     def retornarSigno():
@@ -114,13 +118,15 @@ def ieee(numero):
         elif i == 12:
             asd2 += " "
         asd2 += str(arreglo64[i])
-    arreglo=[]
-    arreglo.append(asd)
-    arreglo.append(retornarSigno())
-    arreglo.append(retornarExponente())
-    arreglo.append(retornarMantisa())
-    arreglo.append(asd2)
+    arregloSal=[]
+    # valor 32 bits
+    # signo
+    # eXponente
+    # valor 64
+    arregloSal.append(asd)
 
+    arregloSal.append(asd2)
+    return arregloSal
 def ieeeInverso(numero):
     numeroDec = ' '
 
@@ -150,7 +156,7 @@ def ieeeInverso(numero):
             aux += 1
 
         for i in range(aux, 9):
-            auxExpo += numero[i]
+            auxExpo += str(numero[i])
 
         aux += 8
         auxExpo = binarioDecimal(auxExpo)
@@ -162,7 +168,7 @@ def ieeeInverso(numero):
             entero += str(numero[j])
         aux += auxExpo + 1
 
-        for k in range(aux, len(numero)):
+        for k in range(0, len(numero)):
             fraccion += str(numero[k])
         entero = binarioDecimal(entero)
         fraccion = binarioFraccionario(fraccion)
@@ -196,9 +202,10 @@ def ieeeInverso(numero):
         fraccion = binarioFraccionario(fraccion)
 
         numeroDec = float(numeroDec + str(float(entero) + float(fraccion)))
-    return numeroDec
     #print("El numero decimal es: " + str(numeroDec))
 
+    return numeroDec
 
-#ieeeInverso('01000000111100110010111000110100111011110011010011010110101000010')
+
+#print(ieeeInverso('000010101'))
 #ieee(78563.3084)

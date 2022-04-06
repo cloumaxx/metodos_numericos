@@ -55,5 +55,12 @@ def graficadoraRecta(ecuacionUsar):
     plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj,color="purple")
 
     return plt
+def graficaParaGraficador(ecuacionUsar,color):
+    msj = str(remplazoFuncion(ecuacionUsar, 'x'))
+    # Graficar positivamente
+    xPositivo = np.arange(-200, 200, 0.1)
+    plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj, color=color)
+
+    return plt
 
 #graficarFuncion('x**2')
