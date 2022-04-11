@@ -59,11 +59,9 @@ def ieee(numero):
 
     parteEntera, parteDecimal = str(numero).split(".")
     binEntero = bin(int(parteEntera)).replace("0b", "")
-    # print(binEntero)
 
     binDecimal = convertirFraccionario(float("0." + parteDecimal))
     binCompleto = binEntero + "." + binDecimal
-    # print(binCompleto)
     if (numero < 0):
         binCompleto.replace("-", "")
     auxExponente = len(binEntero) - 1
@@ -202,7 +200,6 @@ def ieeeInverso(numero):
         fraccion = binarioFraccionario(fraccion)
 
         numeroDec = float(numeroDec + str(float(entero) + float(fraccion)))
-    #print("El numero decimal es: " + str(numeroDec))
 
     return numeroDec
 

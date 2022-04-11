@@ -97,5 +97,5 @@ def retornaError():
     return 0#error
 
 
-print('-->',reglaTrapecio(funcion, intervaloa, intervalob, tramos))
+#print('-->',reglaTrapecio(funcion, intervaloa, intervalob, tramos))
 #print(retornaError())

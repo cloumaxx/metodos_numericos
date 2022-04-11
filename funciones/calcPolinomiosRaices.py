@@ -9,32 +9,9 @@ def calcularRaiz():
     arreglo.append(float(input(('Ingresa el valor independiente:  '))))
     aux = np.roots(arreglo)
 
-"""    print(aux,type(aux))
-    try:
-        print('-->', aux[0])
-    except:
-        print()
-
-    try:
-        print('-->', aux[1])
-    except:
-        print()
-
-
-    try:
-        print('-->', aux[2])
-    except:
-        print()
-
-        try:
-            print('-->', aux[3])
-        except:
-            print()
-"""
 
 #calcularRaiz()
 def returnRaices(x3,x2,x1,i):
-    print('entro')
 
     arreglo = []
     arreglo.append(float(x3))
@@ -44,5 +21,4 @@ def returnRaices(x3,x2,x1,i):
     print(arreglo)
 
     aux = np.roots(arreglo)
-    print(aux)
     return aux

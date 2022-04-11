@@ -11,7 +11,8 @@ def remplazoFuncion(funcion, ele):
 
 
 def ecuacion(funcion, x):
-    return eval(remplazoFuncion(funcion, x))
+    usar= funcion.replace('f',str(x))
+    return eval(usar)
 
 def graficaTriangulo(rectangles,a,b,fx ):
     # GRAFICA
@@ -41,26 +42,59 @@ def graficaTriangulo(rectangles,a,b,fx ):
     plt.show()
 #graficaTriangulo(15,-5,10,lambda x: x**2-2*x+3)
 def graficarFuncion(ecuacionUsar):
-    msj = str(remplazoFuncion(ecuacionUsar,'x'))
+    msj = str(remplazoFuncion(ecuacionUsar, 'x'))
+    msj = msj.replace('math.', '')
+    msj = msj.replace('pi', 'π')
+    lugar = ecuacionUsar.find('acos')
+    lugar2 = ecuacionUsar.find('asin')
     # Graficar positivamente
-    xPositivo = np.arange(-200, 200, 0.1)
-    plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo],label=msj,color="blue")
+    if lugar != -1 or lugar2 != -1:
+        xPositivo = np.arange(-1, 1, 0.01)
+    else:
+        xPositivo = np.arange(-200, 200, 0.01)
+
+    plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj)
+
+
 
     plt.show()
     return plt
 def graficadoraRecta(ecuacionUsar):
-    msj = str(remplazoFuncion(ecuacionUsar, 'x'))
     # Graficar positivamente
-    xPositivo = np.arange(-200, 200, 0.1)
+    msj = str(remplazoFuncion(ecuacionUsar, 'x'))
+    msj = msj.replace('math.', '')
+    msj = msj.replace('pi', 'π')
+
+    lugar = ecuacionUsar.find('acos')
+    lugar2 = ecuacionUsar.find('asin')
+    # Graficar positivamente
+    if lugar != -1 or lugar2 != -1:
+        xPositivo = np.arange(-1, 1, 0.01)
+    else:
+        xPositivo = np.arange(-200, 200, 0.01)
     plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj,color="purple")
 
     return plt
+def graficarPunto(puntoX,puntoY,color):
+    msj="("+str(puntoX)+" , "+str(puntoY)+")"
+    plt.plot(puntoX,puntoY,marker="o", label=msj, color=color)
+
+    return plt
+
+
 def graficaParaGraficador(ecuacionUsar,color):
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))
+    msj= msj.replace('math.','')
+    msj = msj.replace('pi', 'π')
+    lugar=ecuacionUsar.find('acos')
+    lugar2=ecuacionUsar.find('asin')
     # Graficar positivamente
-    xPositivo = np.arange(-200, 200, 0.1)
-    plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj, color=color)
+    if lugar!=-1 or lugar2!=-1:
+        xPositivo = np.arange(-1, 1, 0.01)
+    else:
+        xPositivo = np.arange(-200, 200, 0.01)
 
+    plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj, color=color)
     return plt
 
 #graficarFuncion('x**2')

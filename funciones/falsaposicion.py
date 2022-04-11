@@ -274,7 +274,6 @@ def controlBisec():
     l = ejeTama2
 
     plt.legend()
-    print(tabulate(tabla))
 
     dimEje1 = 0
     dimEje2 = 0

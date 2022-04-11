@@ -5,13 +5,17 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QScrollArea, QWidget, QVBoxLayout
 from funciones import graficadora as gf
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+from interfazcalculadoras import ScrollLabel
 
 
 class Ui_Form(object):
@@ -23,13 +27,28 @@ class Ui_Form(object):
     plt.plot(0,0)
     def setupUi(self, Grafica):
         Grafica.setObjectName("Grafica")
-        Grafica.resize(800, 419)
+        Grafica.resize(1150, 600)
         Grafica.setStyleSheet("background-color: rgb(250, 250, 250);")
         self.funcion = QtWidgets.QTextEdit(Grafica)
         self.funcion.setGeometry(QtCore.QRect(20, 20, 111, 31))
         self.funcion.setStyleSheet("font: 12pt \"Arial\";\n"
                                    "background-color: rgb(170, 170, 255);")
         self.funcion.setObjectName("funcion")
+
+        self.labelTituloList = QtWidgets.QLabel(Grafica)
+        self.labelTituloList.setGeometry(QtCore.QRect(600, 20, 530, 31))
+        self.labelTituloList.setStyleSheet("background-color: rgb(170, 170, 255);")
+        self.labelTituloList.setText("Listado a graficar")
+        self.labelTituloList.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelTituloList.setObjectName("labelTituloList")
+
+        self.use = ScrollLabel.ScrollLabel(Grafica)
+        self.use.setGeometry(QtCore.QRect(600, 51, 530, 500))
+        self.use.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.use.setAlignment(QtCore.Qt.AlignCenter)
+        self.use.setObjectName("labelListado")
+        #self.labelListado.
+
         self.label_5 = QtWidgets.QLabel(Grafica)
         self.label_5.setGeometry(QtCore.QRect(140, 20, 251, 31))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -340,33 +359,62 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Grafica)
 
         # creacion de botones
+    def objetosAgraficar(self):
+        msj=""
+        contador=1
+        for i in range(0,len(self.listadoFunciones)):
+            elem=str(self.listadoFunciones[i])
+            elem=elem.replace('math.','')
+            elem = elem.replace('sqrt', '√')
+            elem = elem.replace('exp.', 'e')
+            elem = elem.replace('f', 'x')
+            msj+=str(contador)+") "+elem+"\n"
+            contador+=1
+        for j in range(0,len(self.listadoPuntosX)):
+            msj+=str(contador)+") ("+str(self.listadoPuntosX[j])+" , "+str(self.listadoPuntosY[j])+")\n"
+            contador+=1
+
+        return msj
     def agregarFuncion(self):
         self.entrada = self.label.text()
         self.listadoFunciones.append(self.entrada)
-        print('funcion: ',self.entrada)
+        msj=self.objetosAgraficar()
+        self.use.setText(msj)
+        print(msj)
     def agregarPunto(self):
         self.entrada= self.textinput.text()
         self.entrada2 = self.textinput2.text()
-        self.listadoPuntosX.append(float(self.entrada))
-        self.listadoPuntosY.append(float(self.entrada2))
+        coordenadaX=float(self.entrada)
+        coordenadaY = float(self.entrada2)
+        self.listadoPuntosX.append(coordenadaX)
+        self.listadoPuntosY.append(coordenadaY)
         print(self.entrada,',',self.entrada2)
+        msj = self.objetosAgraficar()
+        self.use.setText(msj)
+
     def colorAleatorio(self):
         import random
         color = ["#" + ''.join([random.choice('0123456789ABCDEF') for j in range(6)])]
         return color # fuente: https://www.delftstack.com/es/howto/python/generate-random-colors-python/
     def graficar(self):
         print('grafico')
-        fig,ax = plt.subplots()
         print(self.listadoPuntosX)
         print(self.listadoPuntosY)
-        ax.scatter(x=self.listadoPuntosX,y=self.listadoPuntosY)
+        #ax.scatter(x=self.listadoPuntosX,y=self.listadoPuntosY)
         for i in range(0,len(self.listadoFunciones)):
             print(self.listadoFunciones[i])
             color =self.colorAleatorio()[0]
             print(color,type(self.colorAleatorio()))
             gf.graficaParaGraficador(self.listadoFunciones[i],color)
+        for i in range(0,len(self.listadoPuntosX)):
+            color = self.colorAleatorio()[0]
+            gf.graficarPunto(self.listadoPuntosX[i],self.listadoPuntosY[i],color)
         plt.legend()
+        plt.xlim(-50,50)
+        plt.ylim(-50,50)
 
+        #plt.xticks(range(0,100))
+        #plt.yticks(range(0,100))
         #print(self.listadoFunciones)
         plt.show()
     def eventBoton0(self):
@@ -539,13 +587,13 @@ class Ui_Form(object):
             self.label_5.setText(self.entrada2)
 
     def eventRaiz(self):
-            print('√')
-            Ui_Form.funcionLabel1.append('isqrt(')
+            print('√(')
+            Ui_Form.funcionLabel1.append('math.sqrt(')
             Ui_Form.funcionLabel2.append('√')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'isqrt('
-            self.entrada2 += "√"
+            self.entrada += 'math.sqrt('
+            self.entrada2 += "√("
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
@@ -595,11 +643,11 @@ class Ui_Form(object):
 
     def eventPi(self):
             print('π')
-            Ui_Form.funcionLabel1.append('pi')
+            Ui_Form.funcionLabel1.append('math.pi')
             Ui_Form.funcionLabel2.append('π')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += "pi"
+            self.entrada += "math.pi"
             self.entrada2 += 'π'
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
@@ -650,98 +698,99 @@ class Ui_Form(object):
 
     def eventBotonSin(self):
             print('sin')
-            Ui_Form.funcionLabel1.append('sin(')
+            Ui_Form.funcionLabel1.append('math.sin(')
             Ui_Form.funcionLabel2.append('sin(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'sin('
+            self.entrada += 'math.sin('
             self.entrada2 += 'sin('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonCos(self):
             print('cos')
-            Ui_Form.funcionLabel1.append('cos(')
+            Ui_Form.funcionLabel1.append('math.cos(')
             Ui_Form.funcionLabel2.append('cos(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'cos('
+            self.entrada += 'math.cos('
             self.entrada2 += 'cos('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonTan(self):
             print('tan')
-            Ui_Form.funcionLabel1.append('tan(')
+            Ui_Form.funcionLabel1.append('math.tan(')
             Ui_Form.funcionLabel2.append('tan(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'tan('
+            self.entrada += 'math.tan('
             self.entrada2 += 'tan('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonSec(self):
             print('asin')
-            Ui_Form.funcionLabel1.append('asin(')
+            Ui_Form.funcionLabel1.append('math.asin(')
             Ui_Form.funcionLabel2.append('sec(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'asin('
+            self.entrada += 'math.asin('
             self.entrada2 += 'sec('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
+
     def eventBotonCsc(self):
             print('acos')
-            Ui_Form.funcionLabel1.append('csc(')
+            Ui_Form.funcionLabel1.append('math.acos(')
             Ui_Form.funcionLabel2.append('csc(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'csc('
+            self.entrada += 'math.acos('
             self.entrada2 += 'csc('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonCot(self):
             print('atan')
-            Ui_Form.funcionLabel1.append('atan(')
+            Ui_Form.funcionLabel1.append('math.atan(')
             Ui_Form.funcionLabel2.append('tan(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'atan('
+            self.entrada += 'math.atan('
             self.entrada2 += 'cot('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonLog(self):
             print('log')
-            Ui_Form.funcionLabel1.append('log(')
+            Ui_Form.funcionLabel1.append('math.log(')
             Ui_Form.funcionLabel2.append('log(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'log('
+            self.entrada += 'math.log('
             self.entrada2 += 'log('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonExp(self):
             print('exp')
-            Ui_Form.funcionLabel1.append('exp(')
+            Ui_Form.funcionLabel1.append('math.exp(')
             Ui_Form.funcionLabel2.append('e(')
             self.entrada = self.label.text()
             self.entrada2 = self.label_5.text()
-            self.entrada += 'exp('
+            self.entrada += 'math.exp('
             self.entrada2 += 'e('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
 
     def eventBotonln(self):
             print('log(')
-            Ui_Form.funcionLabel1.append('log(')
+            Ui_Form.funcionLabel1.append('math.log(')
             Ui_Form.funcionLabel2.append('ln(')
             self.entrada = self.label.text()
-            self.entrada += 'log('
+            self.entrada += 'math.log('
             self.entrada2 += 'ln('
             self.label.setText(self.entrada)
             self.label_5.setText(self.entrada2)
@@ -893,7 +942,6 @@ class Ui_Form(object):
         self.BotonBorrar.setText(_translate("Grafica", "C"))
         self.BotonBorrar.setShortcut(_translate("Grafica", "Esc"))
         self.botonAC.setText(_translate("Grafica", "AC"))
-
 
 if __name__ == "__main__":
     import sys

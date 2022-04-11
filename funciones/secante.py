@@ -21,7 +21,6 @@ def secante(fx, xa, tolera):
 
     tabla = np.array(tabla)
     return (tabla)
-
 def control():
     tolera = input('Diga el rango maximo de tolerancia:  ')  # Se ingresa el rango de tolerancia
     x = sp.symbols('x')  # Crea variable x
@@ -39,4 +38,3 @@ def control():
     for i in range(0, n, 1):
         print(tabla[i])
     print('raiz en: ', raiz)
-    return raiz

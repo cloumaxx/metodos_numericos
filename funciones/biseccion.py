@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from tabulate import tabulate
+
 import numpy as np
 import scipy.optimize as rs
 import math
@@ -139,7 +139,6 @@ def retornarTabla(funcion,intervaloA,intervaloB,E_t):
             fila = []
     else:
         print('no hay raices')
-    print(tabulate(tabla))
     return tabla
 
 
@@ -155,7 +154,6 @@ def calculoRaiz(funcion,intervaloA,intervaloB,E_t):
     ri_arreglo.append(0)
     F_a = eval(remplazoFuncion(funcion, a))
     F_b = eval(remplazoFuncion(funcion, b))
-    print(F_a, F_b, (F_a*F_b))
     if (F_a * F_b) < 0:
         while salir == False:
             ri = (a + b) / 2
@@ -169,7 +167,6 @@ def calculoRaiz(funcion,intervaloA,intervaloB,E_t):
             ri_arreglo.append(ri)
             E_r = abs((ri_arreglo[iteracion - 1] - ri_arreglo[iteracion]) / ri_arreglo[iteracion])
             if iteracion >= 50 or E_r < float(E_t):
-                print('valido')
                 raiz = ri
                 salir = True
                 return raiz
@@ -325,7 +322,6 @@ def controlBisec():
     l = ejeTama2
 
     plt.legend()
-    print(tabulate(tabla))
 
     dimEje1 = 0
     dimEje2 = 0

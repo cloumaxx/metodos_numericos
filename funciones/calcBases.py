@@ -81,10 +81,10 @@ def algoritmoAbase(numero, base):
     msj=traduccionPartEntera()+traduccionParteDecimal()
 
     if parteDecimal != '0.0' or parteDecimal != "0.0":
-        print('--->',str(traduccionPartEntera())+'.'+str( traduccionParteDecimal()))
+        #print('--->',str(traduccionPartEntera())+'.'+str( traduccionParteDecimal()))
         return str(traduccionPartEntera())+'.'+str( traduccionParteDecimal())
     else:
-        print('--->',str(traduccionPartEntera()))
+        #print('--->',str(traduccionPartEntera()))
         return str(traduccionPartEntera())
 
 
@@ -141,11 +141,11 @@ def algoritmoAdecimal(numero, base):
 
     if parteDecimal != '0.0':
         devolucion = str(traduccionEntero(partEntera)) + '.' + str(traduccionDecimal(parteDecimal))
-        print('El numero ', numero, ' en base 10  es : ', devolucion)
+        #print('El numero ', numero, ' en base 10  es : ', devolucion)
         return devolucion
     else:
         devolucion = str(traduccionEntero(partEntera))
-        print('El numero ', numero, ' en base 10 es : ', devolucion)
+        #print('El numero ', numero, ' en base 10 es : ', devolucion)
         return devolucion
 
 

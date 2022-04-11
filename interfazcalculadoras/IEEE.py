@@ -8,6 +8,7 @@
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from funciones import calcIEEE as iee
+from interfazcalculadoras import ScrollLabel
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -18,11 +19,7 @@ class Ui_Form(object):
         self.BotonNum.setStyleSheet("font: 12pt \"Arial\";\n"
                                     "background-color: rgb(170, 170, 255);")
         self.BotonNum.setObjectName("BotonNum")
-        self.label_1 = QtWidgets.QLabel(Form)
-        self.label_1.setGeometry(QtCore.QRect(140, 70, 231, 51))
-        self.label_1.setStyleSheet("font: 75 italic 12pt \"Arial\";")
-        self.label_1.setObjectName("label_1")
-        self.label_1.setStyleSheet("border-radius: 25px;border: 1px solid black;")
+
 
         self.Borrar_2 = QtWidgets.QPushButton(Form)
         self.Borrar_2.setGeometry(QtCore.QRect(70, 130, 101, 41))
@@ -31,19 +28,9 @@ class Ui_Form(object):
         self.Borrar_2.setObjectName("Borrar_2")
         self.Borrar_2.clicked.connect(self.eventDecimalAotras)
 
-        self.Borrar_3 = QtWidgets.QPushButton(Form)
-        self.Borrar_3.setGeometry(QtCore.QRect(190, 130, 101, 41))
-        self.Borrar_3.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                    "font: 75 10pt \"Arial\";")
-        self.Borrar_3.setObjectName("Borrar_3")
-        self.Borrar_3.clicked.connect(self.event32Aotras)
 
-        self.Borrar_4 = QtWidgets.QPushButton(Form)
-        self.Borrar_4.setGeometry(QtCore.QRect(310, 130, 101, 41))
-        self.Borrar_4.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                    "font: 75 10pt \"Arial\";")
-        self.Borrar_4.setObjectName("Borrar_4")
-        self.Borrar_4.clicked.connect(self.event64Aotras)
+
+
         self.BotonNum_2 = QtWidgets.QTextEdit(Form)
         self.BotonNum_2.setGeometry(QtCore.QRect(30, 240, 101, 31))
         self.BotonNum_2.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -74,11 +61,13 @@ class Ui_Form(object):
         self.BotonNum2.setStyleSheet("font: 12pt \"Arial\";\n"
                                      "background-color: rgb(170, 170, 255);")
         self.BotonNum2.setObjectName("BotonNum2")
+
         self.BotonSigni2 = QtWidgets.QTextEdit(Form)
         self.BotonSigni2.setGeometry(QtCore.QRect(390, 390, 101, 31))
         self.BotonSigni2.setStyleSheet("font: 12pt \"Arial\";\n"
                                        "background-color: rgb(170, 170, 255);")
         self.BotonSigni2.setObjectName("BotonSigni2")
+
         self.BotonExpon = QtWidgets.QTextEdit(Form)
         self.BotonExpon.setGeometry(QtCore.QRect(390, 340, 101, 31))
         self.BotonExpon.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -189,18 +178,29 @@ class Ui_Form(object):
         self.gridLayout.addWidget(self.botonCero_2, 3, 0, 1, 1)
         self.botonCero_2.clicked.connect(self.eventBoton0)
 
+        self.botonPunto = QtWidgets.QPushButton(Form)
+        self.botonPunto.setGeometry(QtCore.QRect(100, 650, 75, 35))
+        self.botonPunto.setStyleSheet("background-color: rgb(0, 170, 255);\n"
+                                      "font: 100 30pt \"Arial\";")
+        self.botonPunto.setObjectName("botonPunto")
+        self.botonPunto.setText("..")
+        self.botonPunto.clicked.connect(self.eventoPunto)
+
         self.botonCero = QtWidgets.QPushButton(self.layoutWidget)
         self.botonCero.setStyleSheet("background-color: rgb(0, 170, 255);\n"
                                      "font: 87 14pt \"Arial Black\";")
         self.botonCero.setObjectName("botonCero")
         self.botonCero.clicked.connect(self.eventoBorrar)
 
+
         self.gridLayout.addWidget(self.botonCero, 3, 1, 1, 1)
         self.Borrar = QtWidgets.QPushButton(Form)
-        self.Borrar.setGeometry(QtCore.QRect(200, 730, 91, 41))
+        self.Borrar.setGeometry(QtCore.QRect(0, 730, 91, 41))
         self.Borrar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                   "font: 87 12pt \"Arial Black\";")
         self.Borrar.setObjectName("Borrar")
+
+
         self.Salir = QtWidgets.QPushButton(Form)
         self.Salir.setGeometry(QtCore.QRect(330, 730, 91, 41))
         self.Salir.setStyleSheet("background-color: rgb(225, 225, 225);\n"
@@ -211,60 +211,51 @@ class Ui_Form(object):
         self.Salir_2.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                    "font: 87 12pt \"Arial Black\";")
         self.Salir_2.setObjectName("Salir_2")
+
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(210, 30, 241, 31))
         self.label.setObjectName("label")
         self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_5 = QtWidgets.QLabel(Form)
+        self.label_5 = ScrollLabel.ScrollLabel(Form)
         self.label_5.setGeometry(QtCore.QRect(150, 240, 201, 31))
         self.label_5.setObjectName("label_5")
-        self.label_5.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_6 = QtWidgets.QLabel(Form)
+        self.label_6 = ScrollLabel.ScrollLabel(Form)
         self.label_6.setGeometry(QtCore.QRect(150, 290, 201, 31))
         self.label_6.setObjectName("label_6")
-        self.label_6.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_7 = QtWidgets.QLabel(Form)
+        self.label_7 = ScrollLabel.ScrollLabel(Form)
         self.label_7.setGeometry(QtCore.QRect(150, 340, 201, 31))
         self.label_7.setObjectName("label_7")
-        self.label_7.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_8 = QtWidgets.QLabel(Form)
+        self.label_8 = ScrollLabel.ScrollLabel(Form)
         self.label_8.setGeometry(QtCore.QRect(160, 390, 201, 31))
         self.label_8.setObjectName("label_8")
-        self.label_8.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_9 = QtWidgets.QLabel(Form)
+        self.label_9 = ScrollLabel.ScrollLabel(Form)
         self.label_9.setGeometry(QtCore.QRect(170, 440, 201, 31))
         self.label_9.setObjectName("label_9")
-        self.label_9.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_10 = QtWidgets.QLabel(Form)
+        self.label_10 = ScrollLabel.ScrollLabel(Form)
         self.label_10.setGeometry(QtCore.QRect(510, 240, 201, 31))
         self.label_10.setObjectName("label_10")
-        self.label_10.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_11 = QtWidgets.QLabel(Form)
+        self.label_11 = ScrollLabel.ScrollLabel(Form)
         self.label_11.setGeometry(QtCore.QRect(510, 290, 201, 31))
         self.label_11.setObjectName("label_11")
-        self.label_11.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_12 = QtWidgets.QLabel(Form)
+        self.label_12 = ScrollLabel.ScrollLabel(Form)
         self.label_12.setGeometry(QtCore.QRect(510, 340, 201, 31))
         self.label_12.setObjectName("label_12")
-        self.label_12.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_13 = QtWidgets.QLabel(Form)
+        self.label_13 = ScrollLabel.ScrollLabel(Form)
         self.label_13.setGeometry(QtCore.QRect(510, 390, 201, 31))
         self.label_13.setObjectName("label_13")
-        self.label_13.setStyleSheet("border-radius: 25px;border: 1px solid black;")
-        5
-        self.label_14 = QtWidgets.QLabel(Form)
+
+        self.label_14 = ScrollLabel.ScrollLabel(Form)
         self.label_14.setGeometry(QtCore.QRect(530, 440, 201, 31))
         self.label_14.setObjectName("label_14")
-        self.label_14.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -422,10 +413,9 @@ class Ui_Form(object):
                                                  "p, li { white-space: pre-wrap; }\n"
                                                  "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                  "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">Numero a Convertir:</span></p></body></html>"))
-        self.label_1.setText(_translate("Form", "¿En que formato se encuentra?"))
         self.Borrar_2.setText(_translate("Form", "Decimal"))
-        self.Borrar_3.setText(_translate("Form", "32 bits "))
-        self.Borrar_4.setText(_translate("Form", "64 bits"))
+        """ self.Borrar_3.setText(_translate("Form", "32 bits "))
+        self.Borrar_4.setText(_translate("Form", "64 bits"))"""
         self.BotonNum_2.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                    "p, li { white-space: pre-wrap; }\n"
@@ -500,6 +490,7 @@ class Ui_Form(object):
         self.botonCinco.setShortcut(_translate("Form", "5"))
         self.botonCero_2.setText(_translate("Form", "0"))
         self.botonCero_2.setShortcut(_translate("Form", "0"))
+        self.botonPunto.setShortcut(_translate("Form", "."))
         self.botonCero.setText(_translate("Form", "<--"))
         self.botonCero.setShortcut(_translate("Form", "0"))
         self.Borrar.setText(_translate("Form", "Borrar"))

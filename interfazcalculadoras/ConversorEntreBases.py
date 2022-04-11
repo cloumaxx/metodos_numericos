@@ -8,11 +8,13 @@
 from funciones import calcBases
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+from PyQt5.QtWidgets import *
 
 from interfazcalculadoras import menuPrincipal
 
 
 class Ui_ConversorEntreBases(object):
+    estadoNum="Decimal"
     def setupUi(self, ConversorEntreBases):
         ConversorEntreBases.setObjectName("ConversorEntreBases")
         ConversorEntreBases.resize(800, 800)
@@ -34,27 +36,34 @@ class Ui_ConversorEntreBases(object):
         self.BotonNum.setStyleSheet("font: 12pt \"Arial\";\nbackground-color: rgb(0, 170, 255);")
         self.BotonNum.setObjectName("BotonNum")
 
-        self.Binario = QtWidgets.QPushButton(ConversorEntreBases)
+        self.Binario = QtWidgets.QRadioButton(ConversorEntreBases)
         self.Binario.setGeometry(QtCore.QRect(40, 180, 81, 41))
         self.Binario.setStyleSheet("font: 75 12pt \"Arial\";\nbackground-color: rgb(101, 255, 175);")
         self.Binario.setObjectName("Binario")
-        self.Binario.clicked.connect(self.eventBotonBinario)
+        self.Binario.clicked.connect(self.estadoBinario)
 
-        self.Octal = QtWidgets.QPushButton(ConversorEntreBases)
+        self.Octal = QtWidgets.QRadioButton(ConversorEntreBases)
         self.Octal.setGeometry(QtCore.QRect(160, 180, 81, 41))
         self.Octal.setStyleSheet("font: 75 12pt \"Arial\";\nbackground-color: rgb(101, 255, 175);")
         self.Octal.setObjectName("Octal")
-        self.Octal.clicked.connect(self.eventBotonOctagonal)
-        self.Decimal = QtWidgets.QPushButton(ConversorEntreBases)
+        self.Octal.clicked.connect(self.estadoOctal)
+        self.Decimal = QtWidgets.QRadioButton(ConversorEntreBases)
         self.Decimal.setGeometry(QtCore.QRect(280, 180, 81, 41))
         self.Decimal.setStyleSheet("font: 75 12pt \"Arial\";\nbackground-color: rgb(101, 255, 175);")
         self.Decimal.setObjectName("Decimal")
-        self.Decimal.clicked.connect(self.eventBotonDecimal)
-        self.Hexadecimal = QtWidgets.QPushButton(ConversorEntreBases)
+        self.Decimal.clicked.connect(self.estadoDecimal)
+        self.Hexadecimal = QtWidgets.QRadioButton(ConversorEntreBases)
         self.Hexadecimal.setGeometry(QtCore.QRect(400, 180, 120, 41))
         self.Hexadecimal.setStyleSheet("font: 75 12pt \"Arial\";\nbackground-color: rgb(101, 255, 175);")
         self.Hexadecimal.setObjectName("Hexadecimal")
-        self.Hexadecimal.clicked.connect(self.eventBotonHexagecimal)
+        self.Hexadecimal.clicked.connect(self.estadoHexadecimal)
+
+        self.botonCalcular = QtWidgets.QPushButton(ConversorEntreBases)
+        self.botonCalcular.setGeometry(QtCore.QRect(550, 180, 120, 41))
+        self.botonCalcular.setStyleSheet("font: 75 12pt \"Arial\";\nbackground-color: rgb(101, 255, 175);")
+        self.botonCalcular.setObjectName("botonCalcular")
+        self.botonCalcular.setText('Calcular')
+        self.botonCalcular.clicked.connect(self.eventCalcular)
 
         self.BotonBin = QtWidgets.QLabel(ConversorEntreBases)
         self.BotonBin.setGeometry(QtCore.QRect(20, 240, 130, 31))
@@ -237,8 +246,14 @@ class Ui_ConversorEntreBases(object):
         QtCore.QMetaObject.connectSlotsByName(ConversorEntreBases)
 
     # Creacion Botones Teclado
-
-
+    def estadoDecimal(self,b):
+        self.estadoNum = "Binario"
+    def estadoBinario(self):
+        self.estadoNum="Binario"
+    def estadoOctal(self):
+        self.estadoNum="Octal"
+    def estadoHexadecimal(self):
+        self.estadoNum="Hexadecimal"
 
     def eventoBorrarTotal(self):
         try:
@@ -351,6 +366,27 @@ class Ui_ConversorEntreBases(object):
         self.entrada += "F"
         self.label.setText(self.entrada)
 
+    def eventCalcular(self):
+        estado=self.validarNumero()
+        print('-->>',estado)
+        if estado==True:
+            if self.estadoNum=="Decimal":
+                self.eventBotonDecimal()
+            elif self.estadoNum=="Binario":
+                self.eventBotonBinario()
+            elif self.estadoNum == "Octal":
+                self.eventBotonOctagonal()
+            elif self.estadoNum == "Hexadecimal":
+                self.eventBotonHexagecimal()
+            print('entro')
+        else:
+            print('salio')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Hubo Algun error, revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
     def eventBotonDecimal(self):
         self.entrada = self.label.text()
         try:
@@ -366,7 +402,63 @@ class Ui_ConversorEntreBases(object):
             self.label_6.setText(str(mostrarHexal))
         except:
             self.label.setText("Error")
+    def validarNumero(self):
+        numero = self.label.text()
+        valido = True
+        if self.estadoNum=="Decimal":
+            try:
+                numero = numero.replace('.', '')
+                for i in range(0, len(numero)):
+                    num = float(numero[i])
+                print('sallio')
+            except:
+               valido = False
+        elif self.estadoNum=="Binario":
+            try:
+                numero = numero.replace('.', '')
+                i=0
+                while i <len(numero) and valido==True:
+                    num = float(numero[i])
+                    if num < 0 or num > 1:
 
+                        valido = False
+                    i+=1
+            except:
+                valido = False
+        elif self.estadoNum == "Octal":
+            try:
+                numero = numero.replace('.', '')
+                print(numero)
+                for i in range(0, len(numero)):
+                    num = float(numero[i])
+                    if num < 0 or num > 8:
+                        valido = False
+            except:
+                valido = False
+        elif self.estadoNum == "Hexadecimal":
+            try:
+                numero = numero.replace('.', '')
+                numero = numero.replace('A', '')
+                numero = numero.replace('a', '')
+                numero = numero.replace('B', '')
+                numero = numero.replace('b', '')
+                numero = numero.replace('c', '')
+                numero = numero.replace('C', '')
+                numero = numero.replace('D', '')
+                numero = numero.replace('d', '')
+                numero = numero.replace('E', '')
+                numero = numero.replace('e', '')
+                numero = numero.replace('F', '')
+                numero = numero.replace('f', '')
+                print(numero)
+                for i in range(0, len(numero)):
+                    num = float(numero[i])
+                    if num < 0 :
+                        valido = False
+            except:
+                valido = False
+
+        return valido
     def eventBotonBinario(self):
         self.entrada = self.label.text()
         try:

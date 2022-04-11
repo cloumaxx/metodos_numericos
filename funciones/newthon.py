@@ -20,7 +20,6 @@ def NewtonRaphson():
     df = sp.diff(f)  # Sacamos la derivada de la funcion
     f = sp.lambdify(x, f)  # Creamos simbolicamente a f
     df = sp.lambdify(x, df)  # Creamos simbolicamente a df
-    print(df(x0),' ***')
     for i in range(n):
         x1 = x0 - f(x0) / df(x0)
         if (abs(x1 - x0) < tol):  # If para parar finalizar el programa cuando encontremos una buen rango
@@ -28,7 +27,7 @@ def NewtonRaphson():
             return
         x0 = x1
         print('x', i + 1, ' = ', x1)
-    print('-->',x1)
+    #print('-->',x1)
 
 def calculoRaiz(funcion,x_0,Error_t):
     raiz=0
@@ -92,8 +91,8 @@ def remplazoFuncion(funcion, ele):
     accion = elemeto.replace('x', usar)
     return accion
 def graficaTotal(funcion,intervaloA ,error ):
+    funcion=funcion.replace('exp','math.exp')
     raiz = 0
-
     x = sp.symbols('x')  # Crea variable x
     df = sp.diff(funcion)  # Sacamos la derivada de la funcion
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
@@ -103,7 +102,7 @@ def graficaTotal(funcion,intervaloA ,error ):
     j=str(df(intervaloA))
     f=str(eval(remplazoFuncion(funcion,intervaloA)))
     y = "(("+j+")*(x-("+intervaloA+")))+("+f+")"
-    graficadora.graficadoraRecta(y)
+    #graficadora.graficadoraRecta(y)
     raiz =calculoRaiz(funcion,intervaloA,error )
     plt.plot(raiz,0, marker="X", color="green", label=("Raiz: "+str(raiz)))
 
