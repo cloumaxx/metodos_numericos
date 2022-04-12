@@ -884,21 +884,25 @@
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\__init__.py',
    'PYMODULE'),
-  ('packaging.version',
+  ('packaging.specifiers',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\version.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\specifiers.py',
    'PYMODULE'),
   ('packaging.__about__',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\__about__.py',
    'PYMODULE'),
+  ('packaging.utils',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\utils.py',
+   'PYMODULE'),
+  ('packaging',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\__init__.py',
+   'PYMODULE'),
   ('packaging._structures',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\_structures.py',
-   'PYMODULE'),
-  ('packaging.tags',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\tags.py',
    'PYMODULE'),
   ('packaging._manylinux',
    'C:\\Users\\Carlos '
@@ -908,17 +912,13 @@
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\_musllinux.py',
    'PYMODULE'),
-  ('packaging',
+  ('packaging.version',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\__init__.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\version.py',
    'PYMODULE'),
-  ('packaging.utils',
+  ('packaging.tags',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\utils.py',
-   'PYMODULE'),
-  ('packaging.specifiers',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\specifiers.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\tags.py',
    'PYMODULE'),
   ('packaging.markers',
    'C:\\Users\\Carlos '
@@ -972,6 +972,10 @@
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\packaging\\requirements.py',
    'PYMODULE'),
+  ('pkg_resources._vendor.packaging.__about__',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
   ('pkg_resources._vendor.packaging._musllinux',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_musllinux.py',
@@ -980,37 +984,13 @@
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_manylinux.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.specifiers',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.version',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.requirements',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.appdirs',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
-   'PYMODULE'),
   ('pkg_resources._vendor.packaging.tags',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\tags.py',
    'PYMODULE'),
-  ('pkg_resources._vendor',
+  ('pkg_resources._vendor.appdirs',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
    'PYMODULE'),
   ('pkg_resources._vendor.pyparsing',
    'C:\\Users\\Carlos '
@@ -1020,17 +1000,37 @@
    'C:\\Users\\Carlos '
    'Eduardo\\AppData\\Local\\Programs\\Python\\Python310\\lib\\uuid.py',
    'PYMODULE'),
+  ('pkg_resources._vendor.packaging.version',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
   ('pkg_resources._vendor.packaging.utils',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.specifiers',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.markers',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
+  ('pkg_resources._vendor.packaging.requirements',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
    'PYMODULE'),
   ('pkg_resources.extern',
    'C:\\Users\\Carlos '
@@ -1040,10 +1040,6 @@
    'C:\\Users\\Carlos '
    'Eduardo\\AppData\\Local\\Programs\\Python\\Python310\\lib\\imp.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'C:\\Users\\Carlos '
-   'Eduardo\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('stringprep',
    'C:\\Users\\Carlos '
    'Eduardo\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
@@ -1051,6 +1047,10 @@
   ('_py_abc',
    'C:\\Users\\Carlos '
    'Eduardo\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\Carlos '
+   'Eduardo\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
    'PYMODULE'),
   ('interfazcalculadoras.menuPrincipal',
    'C:\\Users\\Carlos '
@@ -1080,6 +1080,10 @@
   ('funciones.calcTrapecio',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\funciones\\calcTrapecio.py',
+   'PYMODULE'),
+  ('funciones.calcRectangulo',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\funciones\\calcRectangulo.py',
    'PYMODULE'),
   ('interfazcalculadoras.Simpson3_8',
    'C:\\Users\\Carlos '
@@ -3567,149 +3571,49 @@
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\Image.py',
    'PYMODULE'),
-  ('PIL.MpoImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.ImageFile',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImageFile.py',
-   'PYMODULE'),
-  ('PIL.PixarImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.MspImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\MspImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.TgaImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.ImtImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.IcoImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XpmImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.ImImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImImagePlugin.py',
-   'PYMODULE'),
   ('PIL.MicImagePlugin',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\MicImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.McIdasImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.EpsImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
    'PYMODULE'),
   ('PIL.SunImagePlugin',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\SunImagePlugin.py',
    'PYMODULE'),
-  ('PIL.SgiImagePlugin',
+  ('PIL.ImageFile',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImageFile.py',
    'PYMODULE'),
-  ('PIL.PdfImagePlugin',
+  ('PIL.ImImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PdfImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImImagePlugin.py',
    'PYMODULE'),
-  ('PIL.PdfParser',
+  ('PIL.EpsImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PdfParser.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
    'PYMODULE'),
-  ('PIL.ImageSequence',
+  ('PIL.MspImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImageSequence.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\MspImagePlugin.py',
    'PYMODULE'),
-  ('PIL.IptcImagePlugin',
+  ('PIL.ImtImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
    'PYMODULE'),
-  ('PIL.DdsImagePlugin',
+  ('PIL.IcnsImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\IcnsImagePlugin.py',
    'PYMODULE'),
-  ('PIL.Hdf5StubImagePlugin',
+  ('PIL.features',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\features.py',
    'PYMODULE'),
-  ('PIL.CurImagePlugin',
+  ('PIL.FitsStubImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\CurImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.WebPImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.GribStubImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
    'PYMODULE'),
   ('PIL.FtexImagePlugin',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.WmfImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.BlpImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FpxImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PsdImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.BufrStubImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XbmImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XVThumbImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PcdImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.DcxImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FliImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FliImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PcxImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.GbrImagePlugin',
-   'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
    'PYMODULE'),
   ('PIL.SpiderImagePlugin',
    'C:\\Users\\Carlos '
@@ -3723,25 +3627,125 @@
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PalmImagePlugin.py',
    'PYMODULE'),
-  ('PIL.Jpeg2KImagePlugin',
+  ('PIL.DdsImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
    'PYMODULE'),
-  ('PIL.IcnsImagePlugin',
+  ('PIL.IptcImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\IcnsImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
    'PYMODULE'),
-  ('PIL.features',
+  ('PIL.IcoImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\features.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WebPImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TgaImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GbrImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.CurImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\CurImagePlugin.py',
    'PYMODULE'),
   ('PIL.MpegImagePlugin',
    'C:\\Users\\Carlos '
    'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
    'PYMODULE'),
-  ('PIL.FitsStubImagePlugin',
+  ('PIL.BlpImagePlugin',
    'C:\\Users\\Carlos '
-   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SgiImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.McIdasImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XpmImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FliImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XVThumbImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpoImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PsdImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Jpeg2KImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BufrStubImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XbmImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FpxImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DcxImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Hdf5StubImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WmfImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcdImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GribStubImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PixarImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PdfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfParser',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PdfParser.py',
+   'PYMODULE'),
+  ('PIL.ImageSequence',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\ImageSequence.py',
+   'PYMODULE'),
+  ('PIL.PcxImagePlugin',
+   'C:\\Users\\Carlos '
+   'Eduardo\\Desktop\\MetodosNumericos\\Calculadora\\venv\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
    'PYMODULE'),
   ('PIL.TiffImagePlugin',
    'C:\\Users\\Carlos '
