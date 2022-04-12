@@ -368,7 +368,7 @@ class Ui_Form(object):
             print('algun error en la grafica')
 
     def eventCalcular(self):
-        #try:
+        try:
             self.entrada2 = self.label_2.text()
             self.limite1 = self.TextLimIn.text()
             self.limite2 = self.TextLim.text()
@@ -378,13 +378,14 @@ class Ui_Form(object):
 
             #self.errorTole = self.TextErrorT.text()
             # se hace los calculos respectivos con las variables anteriores
-            raiz = sc.returnRaiz(self.funcion, self.limite1, self.limite2, self.errorTole)
-            self.entrada2 = str(raiz)
+            #raiz = sc.returnRaiz(self.funcion, self.limite1, self.limite2, self.errorTole)
+            self.entrada2 = str('juan debe arreglarlo')
+
 
             print(self.entrada2)
             self.label_2.setText(self.entrada2)
-        #except:
-         #   print('hubo algun error')
+        except:
+            print('hubo algun error')
 
     # creacion de botones
     def eventBoton0(self):

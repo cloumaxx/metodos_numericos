@@ -8,7 +8,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-
+from funciones import  calcRectangulo as calcRec
+from funciones import graficadora as gf
 
 class Ui_Form(object):
     funcionLabel1 = []
@@ -29,6 +30,7 @@ class Ui_Form(object):
         self.Funcion.setWordWrap(False)
         self.Funcion.setOpenExternalLinks(True)
         self.Funcion.setObjectName("Funcion")
+
         self.labelIngreso = QtWidgets.QLabel(Form)
         self.labelIngreso.setGeometry(QtCore.QRect(20, 10, 111, 31))
         self.labelIngreso.setAcceptDrops(True)
@@ -41,6 +43,7 @@ class Ui_Form(object):
         self.labelIngreso.setWordWrap(False)
         self.labelIngreso.setOpenExternalLinks(True)
         self.labelIngreso.setObjectName("labelIngreso")
+
         self.labelIntervalo = QtWidgets.QLabel(Form)
         self.labelIntervalo.setGeometry(QtCore.QRect(20, 110, 111, 31))
         self.labelIntervalo.setAcceptDrops(True)
@@ -118,12 +121,14 @@ class Ui_Form(object):
         self.botonCalcular.setGeometry(QtCore.QRect(30, 320, 91, 41))
         self.botonCalcular.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial\";")
+        self.botonCalcular.clicked.connect(self.eventCalcular)
 
         self.botongrafica = QtWidgets.QPushButton(Form)
         self.botongrafica.setGeometry(QtCore.QRect(270, 320, 91, 41))
         self.botongrafica.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial\";")
         self.botongrafica.setObjectName("botongrafica")
+        self.botongrafica.clicked.connect(self.mostrarGrafica)
 
         self.labelsalida = QtWidgets.QLabel(Form)
         self.labelsalida.setGeometry(QtCore.QRect(20, 380, 111, 31))
@@ -153,53 +158,41 @@ class Ui_Form(object):
         self.labelintegral.setOpenExternalLinks(True)
         self.labelintegral.setObjectName("labelintegral")
 
-        self.labelpuntoizq = QtWidgets.QLabel(Form)
-        self.labelpuntoizq.setGeometry(QtCore.QRect(20, 480, 111, 31))
-        self.labelpuntoizq.setAcceptDrops(True)
-        self.labelpuntoizq.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.labelpuntoizq.setAutoFillBackground(False)
-        self.labelpuntoizq.setStyleSheet("background-color: rgb(170, 170, 255);")
-        self.labelpuntoizq.setAlignment(QtCore.Qt.AlignCenter)
-        self.labelpuntoizq.setWordWrap(False)
-        self.labelpuntoizq.setOpenExternalLinks(True)
-        self.labelpuntoizq.setObjectName("labelpuntoizq")
-        self.labelpuntoextremoizq = QtWidgets.QLabel(Form)
-        self.labelpuntoextremoizq.setGeometry(QtCore.QRect(140, 480, 251, 31))
-        self.labelpuntoextremoizq.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.labelpuntoextremoizq.setText("")
-        self.labelpuntoextremoizq.setObjectName("labelpuntoextremoizq")
-        self.labelpuntoderecho = QtWidgets.QLabel(Form) #
-        self.labelpuntoderecho.setGeometry(QtCore.QRect(20, 530, 111, 31))
-        self.labelpuntoderecho.setAcceptDrops(True)
-        self.labelpuntoderecho.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.labelpuntoderecho.setAutoFillBackground(False)
-        self.labelpuntoderecho.setStyleSheet("background-color: rgb(170, 170, 255);")
-        self.labelpuntoderecho.setAlignment(QtCore.Qt.AlignCenter)
-        self.labelpuntoderecho.setWordWrap(False)
-        self.labelpuntoderecho.setOpenExternalLinks(True)
-        self.labelpuntoderecho.setObjectName("labelpuntoderecho")
+        self.labelResultado = QtWidgets.QLabel(Form)# mensaje raiz
+        self.labelResultado.setGeometry(QtCore.QRect(20, 480, 111, 31))
+        self.labelResultado.setAcceptDrops(True)
+        self.labelResultado.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.labelResultado.setAutoFillBackground(False)
+        self.labelResultado.setStyleSheet("background-color: rgb(170, 170, 255);")
+        self.labelResultado.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelResultado.setWordWrap(False)
+        self.labelResultado.setOpenExternalLinks(True)
+        self.labelResultado.setObjectName("labelResultado")
 
-        self.labelpuntoderecho2 = QtWidgets.QLabel(Form) # @mensaje label que muestra el extremo derecho
-        self.labelpuntoderecho2.setGeometry(QtCore.QRect(140, 530, 251, 31))
-        self.labelpuntoderecho2.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.labelpuntoderecho2.setText("")
-        self.labelpuntoderecho2.setObjectName("labelpuntoderecho2")
-        self.labelpuntoderecho_2 = QtWidgets.QLabel(Form)
-        self.labelpuntoderecho_2.setGeometry(QtCore.QRect(20, 580, 111, 31))
-        self.labelpuntoderecho_2.setAcceptDrops(True)
-        self.labelpuntoderecho_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.labelpuntoderecho_2.setAutoFillBackground(False)
-        self.labelpuntoderecho_2.setStyleSheet("background-color: rgb(170, 170, 255);")
-        self.labelpuntoderecho_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.labelpuntoderecho_2.setWordWrap(False)
-        self.labelpuntoderecho_2.setOpenExternalLinks(True)
-        self.labelpuntoderecho_2.setObjectName("labelpuntoderecho_2")
+        self.labelResultadoIntegral = QtWidgets.QLabel(Form) # raiz
+        self.labelResultadoIntegral.setGeometry(QtCore.QRect(140, 480, 251, 31))
+        self.labelResultadoIntegral.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.labelResultadoIntegral.setText("")
+        self.labelResultadoIntegral.setObjectName("labelResultadoIntegral")
 
-        self.labelmedio = QtWidgets.QLabel(Form) # @mensaje muestra el punto medio
-        self.labelmedio.setGeometry(QtCore.QRect(140, 580, 251, 31))
-        self.labelmedio.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.labelmedio.setText("")
-        self.labelmedio.setObjectName("labelmedio")
+        self.labeleMensajeError = QtWidgets.QLabel(Form) #
+        self.labeleMensajeError.setGeometry(QtCore.QRect(20, 530, 111, 31))
+        self.labeleMensajeError.setAcceptDrops(True)
+        self.labeleMensajeError.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.labeleMensajeError.setAutoFillBackground(False)
+        self.labeleMensajeError.setStyleSheet("background-color: rgb(170, 170, 255);")
+        self.labeleMensajeError.setAlignment(QtCore.Qt.AlignCenter)
+        self.labeleMensajeError.setWordWrap(False)
+        self.labeleMensajeError.setOpenExternalLinks(True)
+        self.labeleMensajeError.setObjectName("labeleMensajeError")
+
+        self.labelError = QtWidgets.QLabel(Form) # @Error
+        self.labelError.setGeometry(QtCore.QRect(140, 530, 251, 31))
+        self.labelError.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.labelError.setText("")
+        self.labelError.setObjectName("labelError")
+
+
 
         self.labelintegral_2 = QtWidgets.QLabel(Form)
         self.labelintegral_2.setGeometry(QtCore.QRect(170, 430, 251, 31))
@@ -465,47 +458,35 @@ class Ui_Form(object):
 
     def mostrarGrafica(self):
 
-        try:
+        #try:
             #
-            self.funcion = self.label.text()  # esta variable toma el valor de lo que este escrito en este label
-            self.limite1 = float(self.TextLimIn.text())
-            self.limite2 = float(self.TextLim.text())
-            self.errorTole = float(self.TextErrorT.text())
-
+            self.entrada = self.label.text()
+            self.entrada2 = self.labelestremoizq.text()
+            self.entrada3 = self.labelextremodere.text()
+            self.entrada4 = self.labelParticiones.text()
+            calcRec.mostrarGrafica(self.entrada4,float(self.entrada2),float(self.entrada3),int(self.entrada4))
             #bss.graficaTotal(self.funcion, self.limite1, self.limite2, self.errorTole)
             # raiz = bss.calculoRaiz(self.funcion,self.limite1,self.limite2,self.errorTole)
             # print(raiz)
 
 
 
-        except:
-            print('algun error en la grafica')
+        #except:
+          #  print('algun error en la grafica')
 
     def eventCalcular(self):
         try:
             # se inicializan los labels para poder cambiarlos
-            self.entrada2 = self.label_2.text()
+            self.entrada = self.label.text()
+            self.entrada2 = self.labelestremoizq.text()
+            self.entrada3 = self.labelextremodere.text()
+            self.entrada4 = self.labelParticiones.text()
+            raiz = calcRec.returnRaiz(self.entrada,float(self.entrada2),float(self.entrada3),int(self.entrada4))
 
-            # se actualizan los label de los resultados, osea ya muestran los resultados
-
-            print(self.entrada2)
+            self.labelResultadoIntegral.setText(str(raiz))
         except:
             print('hubo algun error')
 
-    def eventTabla(self):
-        # se inicializan los labels para poder cambiarlos
-        self.entrada2 = self.label_2.text()
-        self.entrada3 = self.label_3.text()
-        self.entrada4 = self.label_4.text()
-        # se obtiene cada dato que se digito en la interfaz
-        self.funcion = self.label.text()
-        self.limite1 = self.TextLimIn.text()
-        self.limite2 = self.TextLim.text()
-        self.errorTole = self.TextErrorT.text()
-        # se hace los calculos respectivos con las variables anteriores
-        print('salio')
-
-        # creacion de botones
 
     def eventBoton0(self):
         print('0')
@@ -944,9 +925,8 @@ class Ui_Form(object):
         self.botongrafica.setText(_translate("Form", "Grafica"))
         self.labelsalida.setText(_translate("Form", "Salida:"))
         self.labelintegral.setText(_translate("Form", "Integral :  "))
-        self.labelpuntoizq.setText(_translate("Form", "Punto Extremo Izq ="))
-        self.labelpuntoderecho.setText(_translate("Form", "Punto Extremo Der ="))
-        self.labelpuntoderecho_2.setText(_translate("Form", "Punto Medio ="))
+        self.labelResultado.setText(_translate("Form", "Valor de la integral"))
+        self.labeleMensajeError.setText(_translate("Form", "Error: "))
         self.labelintegral_2.setText(_translate("Form", "∫_a^b▒f(x)dx"))
         self.botonUno_2.setText(_translate("Form", "1"))
         self.botonUno_2.setShortcut(_translate("Form", "1"))

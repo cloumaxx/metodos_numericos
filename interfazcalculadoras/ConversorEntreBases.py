@@ -246,8 +246,8 @@ class Ui_ConversorEntreBases(object):
         QtCore.QMetaObject.connectSlotsByName(ConversorEntreBases)
 
     # Creacion Botones Teclado
-    def estadoDecimal(self,b):
-        self.estadoNum = "Binario"
+    def estadoDecimal(self):
+        self.estadoNum = "Decimal"
     def estadoBinario(self):
         self.estadoNum="Binario"
     def estadoOctal(self):
@@ -368,7 +368,6 @@ class Ui_ConversorEntreBases(object):
 
     def eventCalcular(self):
         estado=self.validarNumero()
-        print('-->>',estado)
         if estado==True:
             if self.estadoNum=="Decimal":
                 self.eventBotonDecimal()
@@ -409,8 +408,7 @@ class Ui_ConversorEntreBases(object):
             try:
                 numero = numero.replace('.', '')
                 for i in range(0, len(numero)):
-                    num = float(numero[i])
-                print('sallio')
+                    print(type(numero[i]))
             except:
                valido = False
         elif self.estadoNum=="Binario":
@@ -420,7 +418,6 @@ class Ui_ConversorEntreBases(object):
                 while i <len(numero) and valido==True:
                     num = float(numero[i])
                     if num < 0 or num > 1:
-
                         valido = False
                     i+=1
             except:
@@ -555,9 +552,13 @@ class Ui_ConversorEntreBases(object):
         self.label_6.setText(_translate("ConversorEntreBases", ""))  # hexagecimal
 
 
+
 if __name__ == "__main__":
     import sys
-    ConversorEntreBases = QtWidgets.QWidget()
+    app = QtWidgets.QApplication(sys.argv)
+    Bases = QtWidgets.QWidget()
     ui = Ui_ConversorEntreBases()
-    ui.setupUi(ConversorEntreBases)
-    ConversorEntreBases.show()
+    ui.setupUi(Bases)
+    Bases.show()
+    sys.exit(app.exec_())
+

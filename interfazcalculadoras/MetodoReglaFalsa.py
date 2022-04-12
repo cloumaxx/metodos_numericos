@@ -669,11 +669,11 @@ class Ui_Form(object):
 
         def eventBotonIgual(self):
                 print('x')
-                Ui_Form.funcionLabel1.append('x')
+                Ui_Form.funcionLabel1.append('f')
                 Ui_Form.funcionLabel2.append('x')
                 self.entrada = self.label.text()
                 self.entrada2 = self.label_5.text()
-                self.entrada += "x"
+                self.entrada += "f"
                 self.entrada2 += 'x'
                 self.label.setText(self.entrada)
                 self.label_5.setText(self.entrada2)

@@ -18,7 +18,8 @@ def returnRaices(x3,x2,x1,i):
     arreglo.append(float(x2))
     arreglo.append(float(x1))
     arreglo.append(float(i))
-    print(arreglo)
+
 
     aux = np.roots(arreglo)
+    print(aux)
     return aux

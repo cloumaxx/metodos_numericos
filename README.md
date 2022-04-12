@@ -1,1 +1,0 @@
-# metodos_numericos

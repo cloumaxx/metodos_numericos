@@ -1,6 +1,0 @@
-PyQt5           | pip install pyqt5
-PyQt5-tools     | pip install pyqt5-tools
-PyInstaller     | pip install pyinstaller
-convertir a .py | pyuic5 -x ventana.ui -o ventana_ui.py
-pyinstaller     | pip install pyinstaller
-convertir a exe | pyinstaller --windowed --onefile main.py

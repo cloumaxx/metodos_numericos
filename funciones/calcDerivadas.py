@@ -9,7 +9,10 @@ def remplazoFuncion(funcion, ele):
 
 def primerDerivada(funcion1):
         variable1 = 'x'
+        funcion1=funcion1.replace('f','x')
         imprimir1 = sp.diff(funcion1, variable1)
+
+        print(imprimir1,'----')
         return imprimir1
 def solucionPrimeraDerivada(funcion1,variable1):
         derivada1 = primerDerivada(funcion1)
@@ -17,6 +20,8 @@ def solucionPrimeraDerivada(funcion1,variable1):
         return solucion1
 def segundaDerivada(funcion1):
         variable1 = 'x'
+        funcion1=funcion1.replace('f','x')
+
         imprimir1 = sp.diff(funcion1, variable1)
         imprimir2 = sp.diff(imprimir1,variable1)
         return imprimir2
@@ -26,6 +31,8 @@ def solucionSegundaDerivada(funcion1,variable1):
         return solucion1
 def terceraDerivada(funcion1):
     variable1 = 'x'
+    funcion1 = funcion1.replace('f', 'x')
+
     imprimir1 = sp.diff(funcion1, variable1)
     imprimir2 = sp.diff(imprimir1, variable1)
     imprimir3 =sp.diff(imprimir2, variable1)
@@ -36,6 +43,8 @@ def solucionTerceraDerivada(funcion1,variable1):
     return solucion1
 def cuartaDerivada(funcion1):
     variable1 = 'x'
+    funcion1 = funcion1.replace('f', 'x')
+
     imprimir1 = sp.diff(funcion1, variable1)
     imprimir2 = sp.diff(imprimir1, variable1)
     imprimir3 = sp.diff(imprimir2, variable1)
@@ -44,6 +53,8 @@ def cuartaDerivada(funcion1):
 
 def solucionCuartaDerivada(funcion1,variable1):
     derivada1 = cuartaDerivada(funcion1)
+    funcion1 = funcion1.replace('f', 'x')
+
     solucion1 = eval(remplazoFuncion(derivada1, variable1))
     return solucion1
 

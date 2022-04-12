@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from funciones import calcPolinomiosRaices as calP
+from interfazcalculadoras import ScrollLabel
 
 
 class Ui_Form(object):
@@ -277,28 +278,33 @@ class Ui_Form(object):
         self.label_4.setObjectName("label_4")
         self.label_4.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_5 = QtWidgets.QLineEdit(Form)
-        self.label_5.setGeometry(QtCore.QRect(220, 450, 251, 31))
+        self.label_5 = ScrollLabel.ScrollLabel(Form)
+        self.label_5.setGeometry(QtCore.QRect(220, 450, 400, 100))
         self.label_5.setObjectName("label_5")
-        self.label_5.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
     def eventoCalcular(self):
-        try:
-            self.entrada = self.label_5.text()
-
+        #try:
             self.valorAlCubo = self.label.text()
             self.valorAlCuadrado = self.label_2.text()
             self.valorLineal = self.label_3.text()
             self.valorIdependitente = self.label_4.text()
-            print('->',self.valorIdependitente)
             raiz = calP.returnRaices(self.valorAlCubo,self.valorAlCuadrado,self.valorLineal,self.valorIdependitente )
-            self.entrada=str(raiz)
-            self.label_5.setText(self.entrada)
+            #entrada=str(raiz)
+            #raices = " ".join(raiz)
+            msj=""
+            print('...>>>',msj)
+            for i in range(0,len(raiz)):
+                usar = str(raiz[i])
+                usar = usar.replace('j','i')
+                usar = usar.replace('(','')
+                usar = usar.replace(')', '')
+                msj+=str(i+1)+") "+str(usar)+"\n"
+            self.label_5.setText(msj)
 
-        except:
-            print('ocurrio algun error')
+        #except:
+        #    print('ocurrio algun error')
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "polinomios"))

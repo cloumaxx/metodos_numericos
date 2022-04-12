@@ -405,7 +405,7 @@ class Ui_Form(object):
         except:
             print('algun error en la grafica')
     def eventCalcular(self):
-        try:
+        #try:
             #se inicializan los labels para poder cambiarlos
             self.entrada2 = self.label_2.text()
             self.entrada3 = self.label_3.text()
@@ -427,7 +427,7 @@ class Ui_Form(object):
             self.label_2.setText(self.entrada2)
             self.label_3.setText(self.entrada3)
             self.label_4.setText(self.entrada4)
-        except:
+            """except:
             print('hubo algun error')
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
@@ -437,6 +437,7 @@ class Ui_Form(object):
             msg.setStandardButtons(QMessageBox.Ok)
 
             retval = msg.exec_()
+            """
     def eventTabla(self):
         # se inicializan los labels para poder cambiarlos
         self.entrada2 = self.label_2.text()
@@ -702,11 +703,11 @@ class Ui_Form(object):
 
     def eventBotonIgual(self):
         print('x')
-        Ui_Form.funcionLabel1.append('x')
+        Ui_Form.funcionLabel1.append('f')
         Ui_Form.funcionLabel2.append('x')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += "x"
+        self.entrada += "f"
         self.entrada2 += 'x'
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)

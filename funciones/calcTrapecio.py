@@ -28,7 +28,7 @@ def mostrarGrafica(fx,a,b,tramos):
 
     plt.fill_between(xi, 0, fi, color='g')
     for i in range(0, muestras, 1):
-        plt.axvline(xi[i], color='w')
+        plt.axvline(xi[i], color='blue')
     plt.show()
 
 

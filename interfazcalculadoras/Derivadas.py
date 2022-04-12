@@ -406,7 +406,8 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Derivadas)
 
     def eventCalcular(self):
-        #try:
+        print('entro')
+        try:
             self.funcion = self.label.text()
             self.variable =  self.textEdit_12.text()
             derivada1 = calD.primerDerivada(self.funcion)
@@ -427,7 +428,7 @@ class Ui_Form(object):
             solucion3 = calD.solucionTerceraDerivada(self.funcion, self.variable)
             solucion4 = calD.solucionCuartaDerivada(self.funcion, self.variable)
 
-            #self.entrada5 = str(self.textEdit_12.text)
+            self.entrada5 = str(self.textEdit_12.text)
             self.entrada6=str(solucion1)
             self.entrada7 = str(solucion2)
             self.entrada8 = str(solucion3)
@@ -437,8 +438,8 @@ class Ui_Form(object):
             self.label_7.setText(self.entrada7)
             self.label_8.setText(self.entrada8)
             self.label_9.setText(self.entrada9)
-        #except:
-         #   print('algo salio mal')
+        except:
+            print('algo salio mal')
 
         # creacion de botones
     def eventBoton0(self):
