@@ -399,13 +399,19 @@ class Ui_Form(object):
             bss.graficaTotal(self.funcion,self.limite1,self.limite2,self.errorTole)
             #raiz = bss.calculoRaiz(self.funcion,self.limite1,self.limite2,self.errorTole)
             #print(raiz)
-
-
-
         except:
+            salida = str(self.label.text())
+            salida = salida.replace('f', 'x')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Hay algun error\nfuncion: " + str(salida))
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+
             print('algun error en la grafica')
     def eventCalcular(self):
-        #try:
+        try:
             #se inicializan los labels para poder cambiarlos
             self.entrada2 = self.label_2.text()
             self.entrada3 = self.label_3.text()
@@ -427,17 +433,16 @@ class Ui_Form(object):
             self.label_2.setText(self.entrada2)
             self.label_3.setText(self.entrada3)
             self.label_4.setText(self.entrada4)
-            """except:
-            print('hubo algun error')
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
+        except:
+                salida = str(self.label.text())
+                salida = salida.replace('f', 'x')
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Hay algun error\nfuncion: " + str(salida))
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
 
-            msg.setText("Hubo Algun error, revisa los datos registrados")
-            msg.setWindowTitle("Error")
-            msg.setStandardButtons(QMessageBox.Ok)
-
-            retval = msg.exec_()
-            """
     def eventTabla(self):
         # se inicializan los labels para poder cambiarlos
         self.entrada2 = self.label_2.text()

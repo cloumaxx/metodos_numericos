@@ -14,6 +14,12 @@ def primerDerivada(funcion1):
 
         print(imprimir1,'----')
         return imprimir1
+def primeraDerivadaNewton(funcion1):
+        variable1 = 'x'
+        imprimir1 = sp.diff(funcion1, variable1)
+        print(imprimir1, '----')
+        return imprimir1
+#primerDerivada('exp(0)')
 def solucionPrimeraDerivada(funcion1,variable1):
         derivada1 = primerDerivada(funcion1)
         solucion1 = eval(remplazoFuncion(derivada1,variable1))

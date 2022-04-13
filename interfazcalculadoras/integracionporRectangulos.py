@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from funciones import  calcRectangulo as calcRec
+
 from funciones import graficadora as gf
 
 class Ui_Form(object):
@@ -457,22 +458,29 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def mostrarGrafica(self):
-
-        #try:
+        try:
             #
+
             self.entrada = self.label.text()
             self.entrada2 = self.labelestremoizq.text()
             self.entrada3 = self.labelextremodere.text()
             self.entrada4 = self.labelParticiones.text()
-            calcRec.mostrarGrafica(self.entrada4,float(self.entrada2),float(self.entrada3),int(self.entrada4))
+            calcRec.mostrarGrafica(self.entrada,float(self.entrada2),float(self.entrada3),int(self.entrada4))
+            #gf.graficaTriangulo(int(self.entrada4),float(self.entrada2),float(self.entrada3),self.entrada)
+
             #bss.graficaTotal(self.funcion, self.limite1, self.limite2, self.errorTole)
             # raiz = bss.calculoRaiz(self.funcion,self.limite1,self.limite2,self.errorTole)
-            # print(raiz)
+            # print(raiz
 
-
-
-        #except:
-          #  print('algun error en la grafica')
+        except:
+            salida = str(self.label.text())
+            salida = salida.replace('f', 'x')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Hay algun error\nfuncion: " + str(salida))
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
     def eventCalcular(self):
         try:
@@ -485,8 +493,15 @@ class Ui_Form(object):
 
             self.labelResultadoIntegral.setText(str(raiz))
         except:
-            print('hubo algun error')
-
+                print('hubo algun error')
+                salida = str(self.label.text())
+                salida = salida.replace('f', 'x')
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Hay algun error\nfuncion: " + str(salida))
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
 
     def eventBoton0(self):
         print('0')
@@ -736,11 +751,11 @@ class Ui_Form(object):
 
     def eventBotonIgual(self):
         print('x')
-        Ui_Form.funcionLabel1.append('x')
+        Ui_Form.funcionLabel1.append('f')
         Ui_Form.funcionLabel2.append('x')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += "x"
+        self.entrada += "f"
         self.entrada2 += 'x'
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
@@ -993,7 +1008,6 @@ class Ui_Form(object):
         self.botonPorcentaje_2.setText(_translate("Form", "%"))
         self.botonPorcentaje_2.setShortcut(_translate("Form", "%"))
         self.botonintegral.setText(_translate("Form", "x"))
-        self.botonintegral.setShortcut(_translate("Form", "+"))
         self.botonAC_2.setText(_translate("Form", "AC"))
         self.BotonBorrar_2.setText(_translate("Form", "<-"))
         self.BotonBorrar_2.setShortcut(_translate("Form", "Esc"))

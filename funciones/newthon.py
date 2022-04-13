@@ -1,6 +1,7 @@
 import sympy as sp
-from math import *
-from funciones import graficadora
+
+import math
+from funciones import graficadora,calcDerivadas as calD
 import matplotlib.pyplot as plt
 
 
@@ -34,7 +35,10 @@ def calculoRaiz(funcion,x_0,Error_t):
     x0 = float(x_0)
     tol = float(Error_t)
     x = sp.symbols('x')  # Crea variable x
-    df = sp.diff(funcion)  # Sacamos la derivada de la funcion
+    print('funcion: ',funcion)
+    funcion=funcion.replace('math.exp','exp')
+    print('funcion: ', funcion)
+    df = calD.primeraDerivadaNewton(funcion)#sp.diff(funcion)  # Sacamos la derivada de la funcion
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
     df = sp.lambdify(x, df)  # Creamos simbolicamente a df
     contador=1

@@ -392,7 +392,14 @@ class Ui_Form(object):
 
 
                 except:
-                        print('algun error en la grafica')
+                        salida = str(self.label.text())
+                        salida = salida.replace('f', 'x')
+                        msg = QMessageBox()
+                        msg.setIcon(QMessageBox.Critical)
+                        msg.setText("Hay algun error\nfuncion: " + str(salida))
+                        msg.setWindowTitle("Error")
+                        msg.setStandardButtons(QMessageBox.Ok)
+                        retval = msg.exec_()
 
         def eventCalcular(self):
                 # label_2 raiz
@@ -418,8 +425,16 @@ class Ui_Form(object):
                         self.label_3.setText(self.entrada2)
                         self.label_4.setText(self.entrada3)
                 except:
-                        print('hubo algun error')
+                        salida=str(self.label.text())
+                        salida = salida.replace('f','x')
+                        msg = QMessageBox()
+                        msg.setIcon(QMessageBox.Critical)
 
+                        msg.setText("Hay algun error\nfuncion: "+str(salida))
+                        msg.setWindowTitle("Error")
+                        msg.setStandardButtons(QMessageBox.Ok)
+
+                        retval = msg.exec_()
         # creacion de botones
         def eventBoton0(self):
                 print('0')

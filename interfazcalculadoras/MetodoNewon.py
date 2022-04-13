@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-
+import math
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
@@ -353,7 +353,7 @@ class Ui_Form(object):
         self.retranslateUi(MetodonewtonRaphson)
         QtCore.QMetaObject.connectSlotsByName(MetodonewtonRaphson)
     def eventCalcular(self):
-        try:
+        #try:
             # se inicializan los labels para poder cambiarlos
             self.entrada2 = self.label_2.text() #raiz
             self.entrada3 = self.label_3.text() #error
@@ -370,8 +370,8 @@ class Ui_Form(object):
             print(self.entrada2)
             self.label_2.setText(self.entrada2)
             self.label_3.setText(self.entrada3)
-        except:
-            print('hubo algun error')
+        #except:
+            #print('hubo algun error')
 
     def eventGrafica(self):
            #try:

@@ -447,12 +447,16 @@ class Ui_Form(object):
             self.entrada4 = float(self.labelextremodere.text())
             # se actualizan los label de los resultados, osea ya muestran los resultados
             integral = cTr.mostrarGrafica(self.entrada, self.entrada3, self.entrada4, self.entrada2)
-
-
-
-
         except:
             print('algun error en la grafica')
+            salida = str(self.label.text())
+            salida = salida.replace('f', 'x')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Hay algun error\nfuncion: " + str(salida))
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
     def eventCalcular(self):
         try:
