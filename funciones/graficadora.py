@@ -46,10 +46,10 @@ def graficaTriangulo(rectangles,a,b,fx ):
     plt.fill_between(xi, 0, fi, color='g')
     for i in range(0, muestras, 1):
         plt.axvline(xi[i], color='w')
-    xPositivo = np.arange(-200, 200, 0.01)
+    xeje = np.arange(-200, 200, 0.01)
     ecuacionEje = 'x*0'
-    plt.plot(xPositivo, [ecuacion(ecuacionEje, i) for i in xPositivo], color='black', label='eje x')
-    plt.plot([ecuacion(ecuacionEje, i) for i in xPositivo], xPositivo, color='black', label='eje y')
+    plt.plot(xeje, [ecuacion(ecuacionEje, i) for i in xeje], color='black', label='eje x')
+    plt.plot([ecuacion(ecuacionEje, i) for i in xeje], xeje, color='black', label='eje y')
     plt.show()
 #graficaTriangulo(15,-5,10,lambda x: x**2-2*x+3)
 def graficarFuncion(ecuacionUsar):
@@ -69,9 +69,6 @@ def graficarFuncion(ecuacionUsar):
     plt.plot([ecuacion(ecuacionEje, i) for i in xPositivo], xPositivo, color='black', label='eje y')
     plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj)
 
-
-
-    plt.show()
     return plt
 def graficadoraRecta(ecuacionUsar):
     # Graficar positivamente

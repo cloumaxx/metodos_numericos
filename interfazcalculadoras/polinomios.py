@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
 from funciones import calcPolinomiosRaices as calP
 from interfazcalculadoras import ScrollLabel
@@ -285,7 +286,7 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
     def eventoCalcular(self):
-        #try:
+        try:
             self.valorAlCubo = self.label.text()
             self.valorAlCuadrado = self.label_2.text()
             self.valorLineal = self.label_3.text()
@@ -303,8 +304,15 @@ class Ui_Form(object):
                 msj+=str(i+1)+") "+str(usar)+"\n"
             self.label_5.setText(msj)
 
-        #except:
-        #    print('ocurrio algun error')
+        except:
+
+            print('ocurrio un error')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "polinomios"))

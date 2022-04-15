@@ -261,7 +261,15 @@ class Ui_ConversorEntreBases(object):
             tamaño = len(self.entrada)
             self.label.setText(self.entrada[:tamaño - tamaño])
         except:
-            print('no hay mas que borrar')
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+
+            msg.setText("No hay mas datos que borrar")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+
+            retval = msg.exec_()
     def eventoBorrar(self):
         self.entrada = self.label.text()
         self.label.setText(self.entrada[:len(self.entrada)-1])
@@ -400,7 +408,13 @@ class Ui_ConversorEntreBases(object):
             self.label_5.setText(str(respuesta))
             self.label_6.setText(str(mostrarHexal))
         except:
-            self.label.setText("Error")
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
     def validarNumero(self):
         numero = self.label.text()
         valido = True
@@ -485,7 +499,13 @@ class Ui_ConversorEntreBases(object):
             self.label_5.setText(str(decimal))  # decimal
             self.label_6.setText(str(mostrarHexal))  # hexagecimal
         except:
-            self.label.setText("Error")
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
     def eventBotonHexagecimal(self):
         self.entrada = self.label.text()
@@ -500,7 +520,13 @@ class Ui_ConversorEntreBases(object):
             self.label_5.setText(str(decimal))  # decimal
             self.label_6.setText(str(respuesta))  # hexagecimal
         except:
-            self.label.setText("Error")
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
     def retranslateUi(self, ConversorEntreBases):
         _translate = QtCore.QCoreApplication.translate

@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
 from funciones import calcIEEE as iee
 from interfazcalculadoras import ScrollLabel
 class Ui_Form(object):
@@ -266,7 +268,13 @@ class Ui_Form(object):
                 tamaño = len(self.entrada)
                 self.label.setText(self.entrada[:tamaño - tamaño])
             except:
-                print('no hay mas que borrar')
+                print('--no se puede borrar mas')
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Revisa los datos ingresados")
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
 
     def eventoBorrar(self):
             self.entrada = self.label.text()
@@ -358,7 +366,13 @@ class Ui_Form(object):
             self.label_13.setText(elem[2])
             self.label_14.setText(numero)
         except:
-            print('salio un error')
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
     def event32Aotras(self):
         try:
                 self.entrada = self.label.text()
@@ -381,7 +395,13 @@ class Ui_Form(object):
                 self.label_13.setText(elem[2])
                 self.label_14.setText(numero)
         except:
-            print('algo salio mal')
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
     def event64Aotras(self):
         try:
                 self.entrada = self.label.text()
@@ -404,7 +424,13 @@ class Ui_Form(object):
                 self.label_13.setText(elem[2])
                 self.label_14.setText(numero)
         except:
-            print('algo salio mal')
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "CalculadoraIEEE"))

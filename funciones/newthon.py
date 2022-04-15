@@ -35,11 +35,22 @@ def calculoRaiz(funcion,x_0,Error_t):
     x0 = float(x_0)
     tol = float(Error_t)
     x = sp.symbols('x')  # Crea variable x
-    print('funcion: ',funcion)
-    funcion=funcion.replace('math.exp','exp')
-    print('funcion: ', funcion)
-    df = calD.primeraDerivadaNewton(funcion)#sp.diff(funcion)  # Sacamos la derivada de la funcion
+    df = calD.primerDerivada(funcion)
+    df = str(df).replace('atan','math.atan')
+    df = str(df).replace('pi','math.pi')
+    df = str(df).replace('atan', 'math.atan')
+    df = str(df).replace('acos', 'math.acos')
+    df = str(df).replace('asin', 'math.asin')
+    df = str(df).replace('sqrt', 'math.sqrt')
+    funcion = str(funcion).replace('atan', 'math.atan')
+    funcion = str(funcion).replace('asin', 'math.asin')
+    funcion = str(funcion).replace('acos', 'math.acos')
+    funcion = str(funcion).replace('sqrt', 'math.sqrt')
+    funcion = str(funcion).replace('pi', 'math.pi')
+    #sp.diff(funcion)  # Sacamos la derivada de la funcion
+
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
+
     df = sp.lambdify(x, df)  # Creamos simbolicamente a df
     contador=1
     i=1
@@ -65,7 +76,18 @@ def calculoError(funcion,x_0,Error_t):
     x0 = float(x_0)
     tol = float(Error_t)
     x = sp.symbols('x')  # Crea variable x
-    df = sp.diff(funcion)  # Sacamos la derivada de la funcion
+    df = calD.primerDerivada(funcion)
+    df = str(df).replace('atan', 'math.atan')
+    df = str(df).replace('acos', 'math.acos')
+    df = str(df).replace('asin', 'math.asin')
+    df = str(df).replace('sqrt', 'math.sqrt')
+    df = str(df).replace('pi','math.pi')
+    funcion = str(funcion).replace('atan', 'math.atan')
+    funcion = str(funcion).replace('asin', 'math.asin')
+    funcion = str(funcion).replace('acos', 'math.acos')
+    funcion = str(funcion).replace('sqrt', 'math.sqrt')
+    funcion = str(funcion).replace('pi', 'math.pi')
+
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
     df = sp.lambdify(x, df)  # Creamos simbolicamente a df
     i = 1
@@ -92,38 +114,40 @@ ejeTama2 = -500
 def remplazoFuncion(funcion, ele):
     usar = '' + str(ele)
     elemeto = str(funcion)
-    accion = elemeto.replace('x', usar)
+    accion = elemeto.replace('f', usar)
     return accion
 def graficaTotal(funcion,intervaloA ,error ):
-    funcion=funcion.replace('exp','math.exp')
-    raiz = 0
-    x = sp.symbols('x')  # Crea variable x
-    df = sp.diff(funcion)  # Sacamos la derivada de la funcion
-    f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
-    df = sp.lambdify(x, df)  # Creamos simbolicamente a df
-    i = 1
-    funcionPrincipal(funcion,intervaloA)
-    j=str(df(intervaloA))
+    raiz = calculoRaiz(funcion,intervaloA ,error )
+
+    funcion = str(funcion).replace('exp', ':><:')
+    funcion = str(funcion).replace('x', 'f')
+    funcion = str(funcion).replace(':><:', 'math.exp')
+    df = calD.primerDerivada(funcion)
+    df = str(df).replace('atan', 'math.atan')
+    df = str(df).replace('acos', 'math.acos')
+    df = str(df).replace('asin', 'math.asin')
+    df = str(df).replace('tan', 'math.tan')
+    df = str(df).replace('cos', 'math.cos')
+    df = str(df).replace('sin', 'math.sin')
+    df = str(df).replace('pi', 'math.pi')
+    funcion = str(funcion).replace('tan', 'math.tan')
+    funcion = str(funcion).replace('sin', 'math.sin')
+    funcion = str(funcion).replace('cos', 'math.cos')
+    funcion = str(funcion).replace('atan', 'math.atan')
+    funcion = str(funcion).replace('asin', 'math.asin')
+    funcion = str(funcion).replace('acos', 'math.acos')
+    funcion = str(funcion).replace('sqrt', 'math.sqrt')
+    funcion = str(funcion).replace('pi', 'math.pi')
+    print(funcion)
+    funcionPrincipal(funcion, intervaloA)
     f=str(eval(remplazoFuncion(funcion,intervaloA)))
-    y = "(("+j+")*(x-("+intervaloA+")))+("+f+")"
+    y = "(("+''+")*(x-("+str(intervaloA)+")))+("+f+")"
     #graficadora.graficadoraRecta(y)
-    raiz =calculoRaiz(funcion,intervaloA,error )
     plt.plot(raiz,0, marker="X", color="green", label=("Raiz: "+str(raiz)))
+    plt.ylim(-200,200)
+    plt.xlim(-200,200)
 
-    if raiz<=0:
-        dimEjeY1= raiz-20
-        dimEjeY2= raiz+20
-        dimEjeX1= raiz-20
-        dimEjeX2= raiz+20
-    else:
-        dimEjeY1 = raiz + 20
-        dimEjeY2 = raiz - 20
-        dimEjeX1 = raiz + 20
-        dimEjeX2 = raiz - 20
-    plt.xlim(dimEjeX1, dimEjeX2)
-    plt.ylim(dimEjeY1 ,dimEjeY2)
     plt.legend()
-
     plt.show()
 def funcionPrincipal(funcion, intervaloA):
     intervaloA=int(intervaloA)

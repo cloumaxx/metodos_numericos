@@ -453,7 +453,13 @@ class Ui_Form(object):
             self.labelerror.setText(self.salida2)
             print('-->',self.entrada2,'  ', self.entrada4)
         except:
-            print('hubo algun error')
+            print('ocurrio un error')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
 
     def eventBoton0(self):

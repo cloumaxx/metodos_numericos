@@ -470,7 +470,13 @@ class Ui_Form(object):
             self.salida=str(integral)
             self.labelvalorintegral.setText(self.salida)
         except:
-            print('hubo algun error')
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
     def eventTabla(self):
         # se inicializan los labels para poder cambiarlos

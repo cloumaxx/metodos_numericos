@@ -353,7 +353,7 @@ class Ui_Form(object):
         self.retranslateUi(MetodonewtonRaphson)
         QtCore.QMetaObject.connectSlotsByName(MetodonewtonRaphson)
     def eventCalcular(self):
-        #try:
+        try:
             # se inicializan los labels para poder cambiarlos
             self.entrada2 = self.label_2.text() #raiz
             self.entrada3 = self.label_3.text() #error
@@ -370,19 +370,40 @@ class Ui_Form(object):
             print(self.entrada2)
             self.label_2.setText(self.entrada2)
             self.label_3.setText(self.entrada3)
-        #except:
-            #print('hubo algun error')
+        except:
+            print('hubo algun error')
+            salida = str(self.label.text())
+            salida = salida.replace('f', 'x')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+
+            msg.setText("Hay algun error\nfuncion: " + str(salida))
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+
+            retval = msg.exec_()
 
     def eventGrafica(self):
-           #try:
+           try:
                 #
                 self.funcion = self.label.text()
                 self.limite = self.TextPun.text()
                 self.errorTole = self.BotonError.text()
                 nw.graficaTotal(self.funcion, self.limite   ,  self.errorTole)
-           #except:
-            #    print('algun error en la grafica')
-    # creacion de botones
+           except:
+               print('hubo algun error')
+
+               salida = str(self.label.text())
+               salida = salida.replace('f', 'x')
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+
+               msg.setText("Hay algun error\nfuncion: " + str(salida))
+               msg.setWindowTitle("Error")
+               msg.setStandardButtons(QMessageBox.Ok)
+
+               retval = msg.exec_()
+                    # creacion de botones
     # creacion de botones
     def eventBoton0(self):
         print('0')
@@ -555,11 +576,11 @@ class Ui_Form(object):
 
     def eventRaiz(self):
         print('√(')
-        Ui_Form.funcionLabel1.append('math.sqrt(')
-        Ui_Form.funcionLabel2.append('√')
+        Ui_Form.funcionLabel1.append('sqrt(')
+        Ui_Form.funcionLabel2.append('√(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.sqrt('
+        self.entrada += 'sqrt('
         self.entrada2 += "√("
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
@@ -610,11 +631,11 @@ class Ui_Form(object):
 
     def eventPi(self):
         print('π')
-        Ui_Form.funcionLabel1.append('math.pi')
+        Ui_Form.funcionLabel1.append('pi')
         Ui_Form.funcionLabel2.append('π')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += "math.pi"
+        self.entrada += "pi"
         self.entrada2 += 'π'
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
@@ -665,98 +686,98 @@ class Ui_Form(object):
 
     def eventBotonSin(self):
         print('sin')
-        Ui_Form.funcionLabel1.append('math.sin(')
+        Ui_Form.funcionLabel1.append('sin(')
         Ui_Form.funcionLabel2.append('sin(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.sin('
+        self.entrada += 'sin('
         self.entrada2 += 'sin('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonCos(self):
         print('cos')
-        Ui_Form.funcionLabel1.append('math.cos(')
+        Ui_Form.funcionLabel1.append('cos(')
         Ui_Form.funcionLabel2.append('cos(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.cos('
+        self.entrada += 'cos('
         self.entrada2 += 'cos('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonTan(self):
         print('tan')
-        Ui_Form.funcionLabel1.append('math.tan(')
+        Ui_Form.funcionLabel1.append('tan(')
         Ui_Form.funcionLabel2.append('tan(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.tan('
+        self.entrada += 'tan('
         self.entrada2 += 'tan('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonSec(self):
         print('asin')
-        Ui_Form.funcionLabel1.append('math.asin(')
+        Ui_Form.funcionLabel1.append('asin(')
         Ui_Form.funcionLabel2.append('sec(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.asin('
+        self.entrada += 'asin('
         self.entrada2 += 'sec('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonCsc(self):
         print('acos')
-        Ui_Form.funcionLabel1.append('math.acos(')
+        Ui_Form.funcionLabel1.append('acos(')
         Ui_Form.funcionLabel2.append('csc(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.acos('
+        self.entrada += 'acos('
         self.entrada2 += 'csc('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonCot(self):
-        print('atan')
-        Ui_Form.funcionLabel1.append('math.atan(')
+        print('cot')
+        Ui_Form.funcionLabel1.append('atan(')
         Ui_Form.funcionLabel2.append('tan(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.atan('
+        self.entrada += 'atan('
         self.entrada2 += 'cot('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonLog(self):
         print('log')
-        Ui_Form.funcionLabel1.append('math.log(')
+        Ui_Form.funcionLabel1.append('log(')
         Ui_Form.funcionLabel2.append('log(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.log('
+        self.entrada += 'log('
         self.entrada2 += 'log('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonExp(self):
         print('exp')
-        Ui_Form.funcionLabel1.append('math.exp(')
+        Ui_Form.funcionLabel1.append('exp(')
         Ui_Form.funcionLabel2.append('e(')
         self.entrada = self.label.text()
         self.entrada2 = self.label_5.text()
-        self.entrada += 'math.exp('
+        self.entrada += 'exp('
         self.entrada2 += 'e('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)
 
     def eventBotonln(self):
         print('log(')
-        Ui_Form.funcionLabel1.append('math.log(')
+        Ui_Form.funcionLabel1.append('log(')
         Ui_Form.funcionLabel2.append('ln(')
         self.entrada = self.label.text()
-        self.entrada += 'math.log('
+        self.entrada += 'log('
         self.entrada2 += 'ln('
         self.label.setText(self.entrada)
         self.label_5.setText(self.entrada2)

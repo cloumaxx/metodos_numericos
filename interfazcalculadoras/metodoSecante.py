@@ -362,10 +362,14 @@ class Ui_Form(object):
         try:
             print('')
 
-
-
         except:
-            print('algun error en la grafica')
+                print('--no se puede borrar mas')
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Revisa los datos ingresados")
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
 
     def eventCalcular(self):
         try:
@@ -385,7 +389,13 @@ class Ui_Form(object):
             print(self.entrada2)
             self.label_2.setText(self.entrada2)
         except:
-            print('hubo algun error')
+                print('--no se puede borrar mas')
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Revisa los datos ingresados")
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
 
     # creacion de botones
     def eventBoton0(self):
