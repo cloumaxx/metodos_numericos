@@ -1,8 +1,17 @@
 import numpy as np
 import sympy as sp
 from math import *
+def remplazoFuncion(funcion, ele):
+    usar = '' + str(ele)
+    elemeto = str(funcion)
+    accion = elemeto.replace('f', usar)
+    return accion
 
 
+def  secante(funcion,intervaloA,intervalob,error):
+    print('')
+    return 0
+"""
 def secante(fx, xa, tolera):
 
     dx = 4 * tolera
@@ -38,3 +47,4 @@ def control():
     for i in range(0, n, 1):
         print(tabla[i])
     print('raiz en: ', raiz)
+"""

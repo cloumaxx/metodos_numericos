@@ -14,7 +14,7 @@ from interfazcalculadoras import ConversorEntreBases as cEb, Derivadas as der, I
 class Ui_interfaz(object):
     def setupUi(self, interfaz):
         interfaz.setObjectName("interfaz")
-        interfaz.resize(733, 700)
+        interfaz.resize(1350, 680)
         interfaz.setStyleSheet("background-color: rgb(250, 250, 250);")
         self.pushButton = QtWidgets.QPushButton(interfaz)
         self.pushButton.setGeometry(QtCore.QRect(50, 90, 141, 71))

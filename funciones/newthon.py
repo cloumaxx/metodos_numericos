@@ -116,38 +116,54 @@ def remplazoFuncion(funcion, ele):
     elemeto = str(funcion)
     accion = elemeto.replace('f', usar)
     return accion
-def graficaTotal(funcion,intervaloA ,error ):
-    raiz = calculoRaiz(funcion,intervaloA ,error )
-
-    funcion = str(funcion).replace('exp', ':><:')
-    funcion = str(funcion).replace('x', 'f')
-    funcion = str(funcion).replace(':><:', 'math.exp')
+def graficaTotal(funcion,x_0 ,Error_t):
+    raiz = 0
+    x0 = float(x_0)
+    tol = float(Error_t)
+    x = sp.symbols('x')  # Crea variable x
     df = calD.primerDerivada(funcion)
+    df = str(df).replace('atan', 'math.atan')
+    df = str(df).replace('pi', 'math.pi')
     df = str(df).replace('atan', 'math.atan')
     df = str(df).replace('acos', 'math.acos')
     df = str(df).replace('asin', 'math.asin')
-    df = str(df).replace('tan', 'math.tan')
-    df = str(df).replace('cos', 'math.cos')
-    df = str(df).replace('sin', 'math.sin')
-    df = str(df).replace('pi', 'math.pi')
-    funcion = str(funcion).replace('tan', 'math.tan')
-    funcion = str(funcion).replace('sin', 'math.sin')
-    funcion = str(funcion).replace('cos', 'math.cos')
+    df = str(df).replace('sqrt', 'math.sqrt')
+    df = str(df).replace('log','math.log')
+    funcion = str(funcion).replace('log','math.log')
     funcion = str(funcion).replace('atan', 'math.atan')
     funcion = str(funcion).replace('asin', 'math.asin')
     funcion = str(funcion).replace('acos', 'math.acos')
     funcion = str(funcion).replace('sqrt', 'math.sqrt')
     funcion = str(funcion).replace('pi', 'math.pi')
-    print(funcion)
-    funcionPrincipal(funcion, intervaloA)
-    f=str(eval(remplazoFuncion(funcion,intervaloA)))
-    y = "(("+''+")*(x-("+str(intervaloA)+")))+("+f+")"
+    # sp.diff(funcion)  # Sacamos la derivada de la funcion
+
+    f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
+
+    df = sp.lambdify(x, df)  # Creamos simbolicamente a df
+    contador = 1
+    i = 1
+    ri_arreglo = []
+    ri_arreglo.append(0)
+
+    salir = False
+    while salir == False:
+        xr = x0 - (f(x0) / df(x0))
+        ri_arreglo.append(xr)
+        E_r = abs((ri_arreglo[i - 1] - ri_arreglo[i]) / ri_arreglo[i])
+        if i >= 50 or E_r < float(Error_t):
+            raiz = xr
+            salir = True
+        else:
+            x0 = xr
+            i += 1
+    f=str(eval(remplazoFuncion(funcion,x_0)))
+    y = "(("+''+")*(x-("+")))+("+f+")"
     #graficadora.graficadoraRecta(y)
-    plt.plot(raiz,0, marker="X", color="green", label=("Raiz: "+str(raiz)))
+    #plt.plot(raiz,0, marker="X", color="green", label=("Raiz: "+str(raiz)))
     plt.ylim(-200,200)
     plt.xlim(-200,200)
 
-    plt.legend()
+    #plt.legend()
     plt.show()
 def funcionPrincipal(funcion, intervaloA):
     intervaloA=int(intervaloA)

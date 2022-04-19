@@ -384,25 +384,25 @@ class Ui_Form(object):
             retval = msg.exec_()
 
     def eventGrafica(self):
-           try:
+           #try:
                 #
                 self.funcion = self.label.text()
                 self.limite = self.TextPun.text()
                 self.errorTole = self.BotonError.text()
                 nw.graficaTotal(self.funcion, self.limite   ,  self.errorTole)
-           except:
-               print('hubo algun error')
+           #except:
+           #    print('hubo algun error')
 
-               salida = str(self.label.text())
-               salida = salida.replace('f', 'x')
-               msg = QMessageBox()
-               msg.setIcon(QMessageBox.Critical)
+           #    salida = str(self.label.text())
+           #    salida = salida.replace('f', 'x')
+           #    msg = QMessageBox()
+           #    msg.setIcon(QMessageBox.Critical)
 
-               msg.setText("Hay algun error\nfuncion: " + str(salida))
-               msg.setWindowTitle("Error")
-               msg.setStandardButtons(QMessageBox.Ok)
+           #    msg.setText("Hay algun error\nfuncion: " + str(salida))
+           #    msg.setWindowTitle("Error")
+           #   msg.setStandardButtons(QMessageBox.Ok)
 
-               retval = msg.exec_()
+           #    retval = msg.exec_()
                     # creacion de botones
     # creacion de botones
     def eventBoton0(self):

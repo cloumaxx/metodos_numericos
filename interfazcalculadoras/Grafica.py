@@ -360,6 +360,7 @@ class Ui_Form(object):
 
         # creacion de botones
     def objetosAgraficar(self):
+
         msj=""
         contador=1
         for i in range(0,len(self.listadoFunciones)):
@@ -375,11 +376,13 @@ class Ui_Form(object):
             contador+=1
 
         return msj
+    cont =0
     def agregarFuncion(self):
         self.entrada = self.label.text()
         self.listadoFunciones.append(self.entrada)
         msj=self.objetosAgraficar()
         self.use.setText(msj)
+        self.cont += 1
         print(msj)
     def agregarPunto(self):
         self.entrada= self.textinput.text()
@@ -405,7 +408,7 @@ class Ui_Form(object):
             print(self.listadoFunciones[i])
             color =self.colorAleatorio()[0]
             print(color,type(self.colorAleatorio()))
-            gf.graficaParaGraficador(self.listadoFunciones[i],color)
+            gf.graficaParaGraficador(self.listadoFunciones[i],color,i)
         for i in range(0,len(self.listadoPuntosX)):
             color = self.colorAleatorio()[0]
             gf.graficarPunto(self.listadoPuntosX[i],self.listadoPuntosY[i],color)
