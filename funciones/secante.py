@@ -8,9 +8,39 @@ def remplazoFuncion(funcion, ele):
     return accion
 
 
-def  secante(funcion,intervaloA,intervalob,error):
-    print('')
-    return 0
+def secante(funcion1, inferior, superior, tolerancia, repeticiones):
+    x = sp.symbols('x')  # Crea variable x
+    funcion = sp.lambdify(x, funcion1)
+    error = abs(superior - inferior)
+    print('Iteracion {:<2}: p_{:<2}={:.7f}'.format(0, 0, inferior))
+    print('Iteracion {:<2}: p_{:<2}={:.7f},error={:.7f}'.format(1, 1, superior, error))
+    i = 2
+    while i <= repeticiones:
+        if funcion(superior) == funcion(inferior):
+            print('Solucion no encontrada')
+            return None
+
+        aux = inferior - (funcion(inferior) * (superior - inferior)) / (funcion(superior) - funcion(inferior))
+        error = abs(aux - superior)
+        print('Iteracion {:<2}: p_{:<2}={:.7f},error={:.7f}'.format(i, i, aux, error))
+
+        if error < tolerancia:
+            print('Solucion encontrada x={:.7f} , iteraciones: {}'.format(aux, i))
+            return aux
+
+        inferior = superior
+        superior = aux
+        i += 1
+    print('Solucion no encontrada, iteraciones agotadas: {}'.format(i - 1))
+    return None
+
+
+def funcion2(x):
+    return x ** x - 100
+
+
+#secante(funcion2, 3, 4.2, 0.001, 10)
+#print(secante(funcion, 3, 4.2, 0.001, 10))
 """
 def secante(fx, xa, tolera):
 
