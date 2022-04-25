@@ -49,13 +49,13 @@ class Ui_Form(object):
         self.use.setObjectName("labelListado")
         #self.labelListado.
 
-        self.label_5 = QtWidgets.QLabel(Grafica)
+        self.label_5 = QtWidgets.QLineEdit(Grafica)
         self.label_5.setGeometry(QtCore.QRect(140, 20, 251, 31))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_5.setText("")
         self.label_5.setObjectName("label_5")
 
-        self.label = QtWidgets.QLabel(Grafica)
+        self.label = QtWidgets.QLineEdit(Grafica)
         self.label.setGeometry(QtCore.QRect(0, 0, 0 , 0)) #*****
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label.setText("")
@@ -103,8 +103,28 @@ class Ui_Form(object):
                                            "font: 87 12pt \"Arial\";")
         self.botonvergrafica.setObjectName("botonvergrafica")
         self.botonvergrafica.clicked.connect(self.graficar)
+
+        self.botonEliminarListado = QtWidgets.QPushButton(Grafica)
+        self.botonEliminarListado.setGeometry(QtCore.QRect(430, 160, 150, 31))
+        self.botonEliminarListado.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                           "font: 87 12pt \"Arial\";")
+        self.botonEliminarListado.setObjectName("botonEliminarListado")
+        self.botonEliminarListado.setText('Eliminar elemento')
+
+        self.botonEliminarListado.clicked.connect(self.eliminarElem)
+        self.mensajeBorrar = QtWidgets.QLabel(Grafica)
+        self.mensajeBorrar.setGeometry(QtCore.QRect(20, 160, 270, 31))
+        self.mensajeBorrar.setObjectName("mensajeBorrar")
+        self.mensajeBorrar.setText('  Digita la posicion de la lista a borrar: ')
+        self.mensajeBorrar.setStyleSheet("background-color: rgb(170, 170, 255);\n"
+                                           "font: 87 12pt \"Arial\";")
+        self.numeralBorrar = QtWidgets.QLineEdit(Grafica)
+        self.numeralBorrar.setGeometry(QtCore.QRect(300, 160, 45, 31))
+        self.numeralBorrar.setObjectName("mensajeBorrar")
+        self.numeralBorrar.setStyleSheet("font: 87 12pt \"Arial\";")
+
         self.layoutWidget = QtWidgets.QWidget(Grafica)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 160, 565, 203))
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 230, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -359,6 +379,36 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Grafica)
 
         # creacion de botones
+    def ventanaError(self,mensaje):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)
+        msg.setText("Hubo un error:\n"+mensaje)
+        msg.setWindowTitle("Error")
+        msg.setStandardButtons(QMessageBox.Ok)
+        retval = msg.exec_()
+    def eliminarElem(self):
+        print(self.numeralBorrar.text())
+        tamañolista = len(self.listadoFunciones) + len(self.listadoPuntosX)
+        if tamañolista == 0:
+            self.ventanaError('La lista esta vacia')
+        else:
+            try:
+                pos = int(self.numeralBorrar.text())
+                if pos>tamañolista or pos <=0:
+                    self.ventanaError('Revisa la posicion ingresada ')
+                else:
+                    if pos<=len(self.listadoFunciones):
+                        self.listadoFunciones.pop(pos-1)
+                        self.use.setText(self.objetosAgraficar())
+                    else:
+                        pos=pos - len(self.listadoFunciones)
+                        print('-<-->',pos)
+                        self.listadoPuntosX.pop(pos - 1)
+                        self.listadoPuntosY.pop(pos - 1)
+                        self.use.setText(self.objetosAgraficar())
+            except:
+                self.ventanaError('revisa los datos ingresados')
+            print(tamañolista)
     def objetosAgraficar(self):
 
         msj=""
@@ -369,6 +419,7 @@ class Ui_Form(object):
             elem = elem.replace('sqrt', '√')
             elem = elem.replace('exp.', 'e')
             elem = elem.replace('f', 'x')
+            elem = elem.replace('**','^')
             msj+=str(contador)+") "+elem+"\n"
             contador+=1
         for j in range(0,len(self.listadoPuntosX)):
@@ -378,12 +429,17 @@ class Ui_Form(object):
         return msj
     cont =0
     def agregarFuncion(self):
-        self.entrada = self.label.text()
-        self.listadoFunciones.append(self.entrada)
-        msj=self.objetosAgraficar()
-        self.use.setText(msj)
-        self.cont += 1
-        print(msj)
+        self.entrada = self.label_5.text()
+        self.entrada.replace(' ','')
+        if self.entrada =="":
+            self.ventanaError('la funcion esta vacia')
+        else:
+            self.listadoFunciones.append(self.entrada)
+            msj=self.objetosAgraficar()
+            self.use.setText(msj)
+            self.cont += 1
+            print(msj)
+
     def agregarPunto(self):
         self.entrada= self.textinput.text()
         self.entrada2 = self.textinput2.text()
@@ -400,26 +456,29 @@ class Ui_Form(object):
         color = ["#" + ''.join([random.choice('0123456789ABCDEF') for j in range(6)])]
         return color # fuente: https://www.delftstack.com/es/howto/python/generate-random-colors-python/
     def graficar(self):
-        print('grafico')
-        print(self.listadoPuntosX)
-        print(self.listadoPuntosY)
-        #ax.scatter(x=self.listadoPuntosX,y=self.listadoPuntosY)
-        for i in range(0,len(self.listadoFunciones)):
-            print(self.listadoFunciones[i])
-            color =self.colorAleatorio()[0]
-            print(color,type(self.colorAleatorio()))
-            gf.graficaParaGraficador(self.listadoFunciones[i],color,i)
-        for i in range(0,len(self.listadoPuntosX)):
-            color = self.colorAleatorio()[0]
-            gf.graficarPunto(self.listadoPuntosX[i],self.listadoPuntosY[i],color)
-        plt.legend()
-        plt.xlim(-50,50)
-        plt.ylim(-50,50)
+        try:
+            print('grafico')
+            print(self.listadoPuntosX)
+            print(self.listadoPuntosY)
+            #ax.scatter(x=self.listadoPuntosX,y=self.listadoPuntosY)
+            for i in range(0,len(self.listadoFunciones)):
+                print(self.listadoFunciones[i])
+                color =self.colorAleatorio()[0]
+                print(color,type(self.colorAleatorio()))
+                gf.graficaParaGraficador(self.listadoFunciones[i],color,i)
+            for i in range(0,len(self.listadoPuntosX)):
+                color = self.colorAleatorio()[0]
+                gf.graficarPunto(self.listadoPuntosX[i],self.listadoPuntosY[i],color)
+            plt.legend()
+            plt.xlim(-50,50)
+            plt.ylim(-50,50)
 
-        #plt.xticks(range(0,100))
-        #plt.yticks(range(0,100))
-        #print(self.listadoFunciones)
-        plt.show()
+            #plt.xticks(range(0,100))
+            #plt.yticks(range(0,100))
+            #print(self.listadoFunciones)
+            plt.show()
+        except:
+            self.ventanaError('revisa los datos a graficar')
     def eventBoton0(self):
             print('0')
             self.entrada = self.label.text()

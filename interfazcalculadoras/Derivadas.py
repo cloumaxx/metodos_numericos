@@ -67,12 +67,12 @@ class Ui_Form(object):
         self.pushButton_11.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                          "font: 87 12pt \"Arial Black\";")
         self.pushButton_11.setObjectName("pushButton_11")"""
-        self.textEdit_7 = QtWidgets.QTextEdit(Derivadas)
+        self.textEdit_7 = QtWidgets.QLineEdit(Derivadas)
         self.textEdit_7.setGeometry(QtCore.QRect(30, 230, 71, 31))
         self.textEdit_7.setStyleSheet("font: 12pt \"Arial\";\n"
                                       "background-color: rgb(170, 170, 255);")
         self.textEdit_7.setObjectName("textEdit_7")
-        self.textEdit_8 = QtWidgets.QTextEdit(Derivadas)
+        self.textEdit_8 = QtWidgets.QLineEdit(Derivadas)
         self.textEdit_8.setGeometry(QtCore.QRect(30, 270, 71, 31))
         self.textEdit_8.setStyleSheet("font: 12pt \"Arial\";\n"
                                       "background-color: rgb(170, 170, 255);")
@@ -363,40 +363,40 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_2 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_2 = QtWidgets.QLineEdit(Derivadas)
         self.label_2.setGeometry(QtCore.QRect(130, 190, 211, 31))
         self.label_2.setObjectName("label_2")
 
-        self.label_3 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_3 = QtWidgets.QLineEdit(Derivadas)
         self.label_3.setGeometry(QtCore.QRect(130, 230, 211, 31))
         self.label_3.setObjectName("label_3")
 
-        self.label_4 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_4 = QtWidgets.QLineEdit(Derivadas)
         self.label_4.setGeometry(QtCore.QRect(130, 270, 211, 31))
         self.label_4.setObjectName("label_4")
         #
-        self.label_5 = QtWidgets.QLabel(Derivadas)
+        self.label_5 = QtWidgets.QLineEdit(Derivadas)
         self.label_5.setGeometry(QtCore.QRect(180, 30, 261, 31))
         self.label_5.setObjectName("label_5")
         self.label_5.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_10 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_10 = QtWidgets.QLineEdit(Derivadas)
         self.label_10.setGeometry(QtCore.QRect(130, 310, 221, 31))
         self.label_10.setObjectName("label_10")
 
-        self.label_6 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_6 = QtWidgets.QLineEdit(Derivadas)
         self.label_6.setGeometry(QtCore.QRect(480, 190, 211, 31))
         self.label_6.setObjectName("label_6")
 
-        self.label_7 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_7 = QtWidgets.QLineEdit(Derivadas)
         self.label_7.setGeometry(QtCore.QRect(480, 230, 211, 31))
         self.label_7.setObjectName("label_7")
 
-        self.label_8 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_8 = QtWidgets.QLineEdit(Derivadas)
         self.label_8.setGeometry(QtCore.QRect(480, 270, 211, 31))
         self.label_8.setObjectName("label_8")
 
-        self.label_9 = ScrollLabel.ScrollLabel(Derivadas)
+        self.label_9 = QtWidgets.QLineEdit(Derivadas)
         self.label_9.setGeometry(QtCore.QRect(480, 310, 211, 31))
         self.label_9.setObjectName("label_9")
 
@@ -406,9 +406,9 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Derivadas)
 
     def eventCalcular(self):
-        print('entro')
+        print(str(self.label_5.text()))
         try:
-            self.funcion = self.label.text()
+            self.funcion = self.label_5.text()
             self.variable =  self.textEdit_12.text()
             derivada1 = calD.primerDerivada(self.funcion)
             derivada2 = calD.segundaDerivada(self.funcion)
@@ -418,20 +418,22 @@ class Ui_Form(object):
             derivada1 = str(derivada1).replace('math.', '')
             derivada1 = str(derivada1).replace('sqrt', '√')
             derivada1 = str(derivada1).replace('pi', 'π')
-
             derivada1 = str(derivada1).replace('**', '^')
+
             derivada2 = str(derivada2).replace('math.', '')
             derivada2 = str(derivada2).replace('sqrt', '√')
             derivada2 = str(derivada2).replace('pi', 'π')
             derivada2 = str(derivada2).replace('**', '^')
+
             derivada3 = str(derivada3).replace('math.', '')
-            derivada3 = str(derivada4).replace('sqrt', '√')
+            derivada3 = str(derivada3).replace('sqrt', '√')
             derivada3 = str(derivada3).replace('pi', 'π')
+            derivada3 = str(derivada3).replace('**', '^')
+
             derivada4 = str(derivada4).replace('**', '^')
             derivada4 = str(derivada4).replace('math.', '')
             derivada4 = str(derivada4).replace('sqrt', '√')
             derivada4 = str(derivada4).replace('pi', 'π')
-            derivada4 = str(derivada4).replace('**', '^')
             self.entrada = str(derivada1)
             self.entrada2 = str(derivada2)
             self.entrada3 = str(derivada3)

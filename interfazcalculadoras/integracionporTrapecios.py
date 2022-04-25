@@ -39,13 +39,13 @@ class Ui_Form(object):
         self.Funcion.setWordWrap(False)
         self.Funcion.setOpenExternalLinks(True)
         self.Funcion.setObjectName("Funcion")
-        self.label_5 = QtWidgets.QLabel(Form) # -> ingreso de la funcion
+        self.label_5 = QtWidgets.QLineEdit(Form) # -> ingreso de la funcion
         self.label_5.setGeometry(QtCore.QRect(140, 70, 251, 31))
         self.label_5.setStyleSheet( "background-color: rgb(255, 255, 255);")
         self.label_5.setText("")
         self.label_5.setObjectName("label_5")
 
-        self.label = QtWidgets.QLabel(Form)  # -> ingreso de la funcion
+        self.label = QtWidgets.QLineEdit(Form)  # -> ingreso de la funcion
         self.label.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label.setText("")
@@ -136,7 +136,7 @@ class Ui_Form(object):
         self.labelsalida.setOpenExternalLinks(True)
         self.labelsalida.setObjectName("labelsalida")
         self.labelintegral = QtWidgets.QLabel(Form)
-        self.labelintegral.setGeometry(QtCore.QRect(20, 440, 131, 31))
+        self.labelintegral.setGeometry(QtCore.QRect(20, 430, 131, 31))
         self.labelintegral.setAcceptDrops(True)
         self.labelintegral.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.labelintegral.setAutoFillBackground(False)
@@ -157,7 +157,7 @@ class Ui_Form(object):
         self.valorintegral.setWordWrap(False)
         self.valorintegral.setOpenExternalLinks(True)
         self.valorintegral.setObjectName("") # -> resultado integral
-        self.labelvalorintegral = QtWidgets.QLabel(Form)
+        self.labelvalorintegral = QtWidgets.QLineEdit(Form)
         self.labelvalorintegral.setGeometry(QtCore.QRect(140, 490, 251, 31))
         self.labelvalorintegral.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelvalorintegral.setText("") # ->retorna la inteegral
@@ -177,10 +177,31 @@ class Ui_Form(object):
         self.labelerror.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelerror.setText("") # ->muestra el calculo del error
         self.labelerror.setObjectName("labelerror")
-        self.labelintegral_2 = QtWidgets.QLabel(Form)
-        self.labelintegral_2.setGeometry(QtCore.QRect(160, 440, 251, 31))
+
+        self.labelintegral_2 = QtWidgets.QTextEdit(Form)
+        self.labelintegral_2.setGeometry(QtCore.QRect(170, 433, 251, 31))
         self.labelintegral_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelintegral_2.setObjectName("labelintegral_2")
+
+        self.simbolointegral = QtWidgets.QLabel(Form)
+        self.simbolointegral.setGeometry(QtCore.QRect(123, 410, 20, 50))
+        self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
+        self.simbolointegral.setText('∫')
+        self.simbolointegral.setObjectName("simbolointegral")
+
+        self.limiteIntegral_1 = QtWidgets.QLabel(Form)
+        self.limiteIntegral_1.setGeometry(QtCore.QRect(140, 410, 10, 10))
+        self.limiteIntegral_1.setStyleSheet("font: 87 9pt \"Arial\";")
+        self.limiteIntegral_1.setText('a')
+        self.limiteIntegral_1.setObjectName("limiteIntegral_1")
+
+        self.limiteIntegral_2 = QtWidgets.QLabel(Form)
+        self.limiteIntegral_2.setGeometry(QtCore.QRect(140, 443, 10, 10))
+        self.limiteIntegral_2.setStyleSheet("font: 87 9pt \"Arial\";")
+        self.limiteIntegral_2.setText('b')
+        self.limiteIntegral_2.setObjectName("limiteIntegral_2")
+
+
         self.layoutWidget = QtWidgets.QWidget(Form)
         self.layoutWidget.setGeometry(QtCore.QRect(500, 10, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -441,7 +462,7 @@ class Ui_Form(object):
 
         try:
             # se inicializan los labels para poder cambiarlos
-            self.entrada = self.label.text()  # funcion a usar
+            self.entrada = self.label_5.text()  # funcion a usar
             self.entrada2 = int(self.labelParticiones.text())  # particiones
             self.entrada3 = float(self.labelestremoizq.text())
             self.entrada4 = float(self.labelextremodere.text())
@@ -461,14 +482,19 @@ class Ui_Form(object):
     def eventCalcular(self):
         try:
             # se inicializan los labels para poder cambiarlos
-            self.entrada = self.label.text() # funcion a usar
+            self.entrada = self.label_5.text() # funcion a usar
             self.entrada2 = int(self.labelParticiones.text() )# particiones
             self.entrada3 = float(self.labelestremoizq.text())
             self.entrada4 = float(self.labelextremodere.text())
             # se actualizan los label de los resultados, osea ya muestran los resultados
-            integral=cTr.reglaTrapecio(self.entrada,self.entrada3,self.entrada4,self.entrada2)
+            integral=cTr.reglaTrapecio(self.entrada,float(self.entrada3),float(self.entrada4),int(self.entrada2))
+            mostrar= cTr.returnIntegral(self.entrada,float(self.entrada3),float(self.entrada4),int(self.entrada2))
             self.salida=str(integral)
+            self.salida2=str(mostrar)
             self.labelvalorintegral.setText(self.salida)
+            self.labelintegral_2.setText(self.salida2)
+            self.limiteIntegral_1.setText(str(self.entrada3))
+            self.limiteIntegral_2.setText(str(self.entrada4))
         except:
             print('--no se puede borrar mas')
             msg = QMessageBox()
@@ -478,20 +504,6 @@ class Ui_Form(object):
             msg.setStandardButtons(QMessageBox.Ok)
             retval = msg.exec_()
 
-    def eventTabla(self):
-        # se inicializan los labels para poder cambiarlos
-        self.entrada2 = self.label_2.text()
-        self.entrada3 = self.label_3.text()
-        self.entrada4 = self.label_4.text()
-        # se obtiene cada dato que se digito en la interfaz
-        self.funcion = self.label.text()
-        self.limite1 = self.TextLimIn.text()
-        self.limite2 = self.TextLim.text()
-        self.errorTole = self.TextErrorT.text()
-        # se hace los calculos respectivos con las variables anteriores
-        print('salio')
-
-        # creacion de botones
     def eventBoton0(self):
         print('0')
         self.entrada = self.label.text()
@@ -931,7 +943,6 @@ class Ui_Form(object):
         self.labelintegral.setText(_translate("Form", "Integral :  "))
         self.valorintegral.setText(_translate("Form", "Valor de la Integral ="))
         self.Error.setText(_translate("Form", "Error ="))
-        self.labelintegral_2.setText(_translate("Form", "∫_a^b▒f(x)dx"))
         self.botonUno_2.setText(_translate("Form", "1"))
         self.botonUno_2.setShortcut(_translate("Form", "1"))
         self.botonDos_2.setText(_translate("Form", "2"))

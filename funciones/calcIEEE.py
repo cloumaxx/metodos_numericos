@@ -1,7 +1,3 @@
-import matplotlib.pyplot as plt
-import math
-import numpy as np
-
 def ieee(numero):
     def retornarExponente(bits):
         exponente = ""
@@ -116,7 +112,7 @@ def ieee(numero):
         elif i == 12:
             asd2 += " "
         asd2 += str(arreglo64[i])
-    arregloSal=[]
+    arregloSal = []
     # valor 32 bits
     # signo
     # eXponente
@@ -125,84 +121,98 @@ def ieee(numero):
 
     arregloSal.append(asd2)
     return arregloSal
-def ieeeInverso(numero):
-    numeroDec = ' '
 
+def ieeeInverso(bits, numero):
     def binarioDecimal(numero_binario):  # Cambiar
         numero_decimal = 0
         for posicion, digito_string in enumerate(numero_binario[::-1]):
             numero_decimal += int(digito_string) * 2 ** posicion
+
         return numero_decimal
 
     def binarioFraccionario(aux):
         numi = 0
         num2 = aux
         cant = len(num2)
+
         for i in range(cant):
             numi = numi + (int(num2[0 + i:i + 1]) * (1 / (2 ** (i + 1))))
             numi = float(numi)
         return round(float(numi), 30)
 
-    if len(numero) <= 32:
-        aux = 0
-        auxExpo = ''
-        if numero[0] == 0:
-            numeroDec += ""
-            aux += 1
+    numeroDec = ' '
+    if bits == "32":
+        if len(numero) < 9:
+            return "No es posible sacar el numero"
         else:
-            numeroDec += "-"
-            aux += 1
+            aux = 32 - len(numero)
+            for i in range(aux):
+                numero += "0"
+            aux = 0
+            auxExpo = ''
+            if numero[0] == 0:
+                numeroDec += ""
+                aux += 1
+            else:
+                numeroDec += "-"
+                aux += 1
 
-        for i in range(aux, 9):
-            auxExpo += str(numero[i])
+            for i in range(aux, 9):
+                auxExpo += numero[i]
 
-        aux += 8
-        auxExpo = binarioDecimal(auxExpo)
-        auxExpo += -127
-        entero = ""
-        fraccion = ""
+            aux += 8
+            auxExpo = binarioDecimal(auxExpo)
+            auxExpo += -127
+            entero = ""
+            fraccion = ""
 
-        for j in range(aux, aux + auxExpo + 1):
-            entero += str(numero[j])
-        aux += auxExpo + 1
+            for j in range(aux, aux + auxExpo + 1):
+                entero += str(numero[j])
+            aux += auxExpo + 1
 
-        for k in range(0, len(numero)):
-            fraccion += str(numero[k])
-        entero = binarioDecimal(entero)
-        fraccion = binarioFraccionario(fraccion)
-        numeroDec = float(entero) + float(fraccion)
-
+            for k in range(aux, len(numero)):
+                fraccion += str(numero[k])
+            entero = binarioDecimal(entero)
+            fraccion = binarioFraccionario(fraccion)
+            numeroDec = float(entero) + float(fraccion)
+            return numeroDec
     else:
-        aux = 0
-        auxExpo = ''
-        if numero[0] == 0:
-            numeroDec += ""
-            aux += 1
+        if len(numero) < 12:
+            return "No es posible sacar el numero"
         else:
-            numeroDec += "-"
-            aux += 1
+            aux = 64 - len(numero)
+            for i in range(aux):
+                numero += "0"
 
-        for i in range(aux, 12):
-            auxExpo += numero[i]
-        aux += 11
-        auxExpo = binarioDecimal(auxExpo)
-        auxExpo += -1023
-        entero = ""
-        fraccion = ""
+            aux = 0
+            auxExpo = ''
+            if numero[0] == 0:
+                numeroDec += ""
+                aux += 1
+            else:
+                numeroDec += "-"
+                aux += 1
 
-        for j in range(aux, aux + auxExpo + 1):
-            entero += str(numero[j])
-        aux += auxExpo + 1
+            for i in range(aux, 12):
+                auxExpo += numero[i]
+            aux += 11
+            auxExpo = binarioDecimal(auxExpo)
+            auxExpo += -1023
+            entero = ""
+            fraccion = ""
 
-        for k in range(aux, len(numero)):
-            fraccion += str(numero[k])
-        entero = binarioDecimal(entero)
-        fraccion = binarioFraccionario(fraccion)
+            for j in range(aux, aux + auxExpo + 1):
+                entero += str(numero[j])
+            aux += auxExpo + 1
 
-        numeroDec = float(numeroDec + str(float(entero) + float(fraccion)))
+            for k in range(aux, len(numero)):
+                fraccion += str(numero[k])
+            entero = binarioDecimal(entero)
+            fraccion = binarioFraccionario(fraccion)
+            numeroDec = float(numeroDec + str(float(entero) + float(fraccion)))
+            print("El numero decimal es: " + str(numeroDec))
+            return numeroDec
 
-    return numeroDec
 
-
-#print(ieeeInverso('000010101'))
-#ieee(78563.3084)
+#ieeeInverso('64', '01000000111100110010111000110100111011110011010011010110101000010')
+# ieee(78563.3084)

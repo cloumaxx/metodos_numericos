@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QMessageBox
 from funciones import calcIEEE as iee
 from interfazcalculadoras import ScrollLabel
 class Ui_Form(object):
+    estadoNum="Decimal"
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(742, 855)
@@ -22,16 +23,44 @@ class Ui_Form(object):
                                     "background-color: rgb(170, 170, 255);")
         self.BotonNum.setObjectName("BotonNum")
 
+        self.preguntarBase = QtWidgets.QLabel(Form)
+        self.preguntarBase.setGeometry(QtCore.QRect(20, 80, 230, 31))
+        self.preguntarBase.setText('  ¿En que base se encuentra?')
+        self.preguntarBase.setStyleSheet("font: 12pt \"Arial\";\n"
+                                    "background-color: rgb(170, 170, 255);")
+        self.preguntarBase.setObjectName("preguntarBase")
 
-        self.Borrar_2 = QtWidgets.QPushButton(Form)
-        self.Borrar_2.setGeometry(QtCore.QRect(70, 130, 101, 41))
-        self.Borrar_2.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+
+        self.botonDecimal = QtWidgets.QRadioButton(Form)
+        self.botonDecimal.setGeometry(QtCore.QRect(70, 130, 101, 41))
+        self.botonDecimal.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                     "font: 75 10pt \"Arial\";")
-        self.Borrar_2.setObjectName("Borrar_2")
-        self.Borrar_2.clicked.connect(self.eventDecimalAotras)
+        self.botonDecimal.setObjectName("botonDecimal")
+        self.botonDecimal.clicked.connect(self.estadoDecimal)
 
+        self.boton32 = QtWidgets.QRadioButton(Form)
+        self.boton32.setGeometry(QtCore.QRect(200, 130, 101, 41))
+        self.boton32.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                    "font: 75 10pt \"Arial\";")
+        self.boton32.setObjectName("32 bits")
+        self.boton32.setText('32 bits')
+        self.boton32.clicked.connect(self.estado32)
 
+        self.boton64 = QtWidgets.QRadioButton(Form)
+        self.boton64.setGeometry(QtCore.QRect(330, 130, 101, 41))
+        self.boton64.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                   "font: 75 10pt \"Arial\";")
+        self.boton64.setObjectName("64 bits")
+        self.boton64.setText('64 bits')
+        self.boton64.clicked.connect(self.estado64)
 
+        self.botonCalcular = QtWidgets.QPushButton(Form)
+        self.botonCalcular.setGeometry(QtCore.QRect(470, 130, 101, 41))
+        self.botonCalcular.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                   "font: 75 10pt \"Arial\";")
+        self.botonCalcular.setObjectName("botonCalcular")
+        self.botonCalcular.setText('Calcular')
+        self.botonCalcular.clicked.connect(self.eventBotonCalcular)
 
         self.BotonNum_2 = QtWidgets.QTextEdit(Form)
         self.BotonNum_2.setGeometry(QtCore.QRect(30, 240, 101, 31))
@@ -85,12 +114,12 @@ class Ui_Form(object):
         self.BotonSig.setStyleSheet("font: 12pt \"Arial\";\n"
                                     "background-color: rgb(170, 170, 255);")
         self.BotonSig.setObjectName("BotonSig")
-        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2=QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(170, 200, 71, 41))
         self.label_2.setStyleSheet("font: 75 italic 12pt \"Arial\";")
         self.label_2.setObjectName("label_2")
         self.label_2.setStyleSheet("border-radius: 25px;border: 1px solid black;")
-
+        valor = self.label_2
         self.label_3 = QtWidgets.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(530, 200, 71, 41))
         self.label_3.setStyleSheet("font: 75 italic 12pt \"Arial\";")
@@ -214,8 +243,8 @@ class Ui_Form(object):
                                    "font: 87 12pt \"Arial Black\";")
         self.Salir_2.setObjectName("Salir_2")
 
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(210, 30, 241, 31))
+        self.label = QtWidgets.QLineEdit(Form)
+        self.label.setGeometry(QtCore.QRect(210, 30, 300, 31))
         self.label.setObjectName("label")
         self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
@@ -235,7 +264,7 @@ class Ui_Form(object):
         self.label_8.setGeometry(QtCore.QRect(160, 390, 201, 31))
         self.label_8.setObjectName("label_8")
 
-        self.label_9 = ScrollLabel.ScrollLabel(Form)
+        self.label_9 = QtWidgets.QLineEdit(Form)
         self.label_9.setGeometry(QtCore.QRect(170, 440, 201, 31))
         self.label_9.setObjectName("label_9")
 
@@ -255,13 +284,136 @@ class Ui_Form(object):
         self.label_13.setGeometry(QtCore.QRect(510, 390, 201, 31))
         self.label_13.setObjectName("label_13")
 
-        self.label_14 = ScrollLabel.ScrollLabel(Form)
+        self.label_14 = QtWidgets.QLineEdit(Form)
         self.label_14.setGeometry(QtCore.QRect(530, 440, 201, 31))
         self.label_14.setObjectName("label_14")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+    def eventDecimalAotras(self,entrada):
+        try:
+            arreglo= iee.ieee(float(entrada))
+            arreglo32=arreglo[0]
+            numero="".join(arreglo32)
+            ele = numero.split(' ')
+            self.label_5.setText(self.entrada)
+            self.label_6.setText(ele[0])
+            self.label_7.setText(ele[1])
+            self.label_8.setText(ele[2])
+            self.label_9.setText(numero)
+            arreglo64=arreglo[1]
+            num2="".join(arreglo64)
+            elem = num2.split(' ')
+            self.label_10.setText(self.entrada)
+            self.label_11.setText(elem[0])
+            self.label_12.setText(elem[1])
+            self.label_13.setText(elem[2])
+            self.label_14.setText(numero)
+        except:
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+    def event32Aotras(self,entrada):
+        try:
+                usar=iee.ieeeInverso('32',entrada)
+                arreglo = iee.ieee(float(usar))
+                arreglo32 = arreglo[0]
+                numero = "".join(arreglo32)
+                ele = numero.split(' ')
+                self.label_5.setText(str(usar))
+                self.label_6.setText(ele[0])
+                self.label_7.setText(ele[1])
+                self.label_8.setText(ele[2])
+                self.label_9.setText(numero)
+                arreglo64 = arreglo[1]
+                num2 = "".join(arreglo64)
+                elem = num2.split(' ')
+                self.label_10.setText(str(usar))
+                self.label_11.setText(elem[0])
+                self.label_12.setText(elem[1])
+                self.label_13.setText(elem[2])
+                self.label_14.setText(numero)
+        except:
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+    def event64Aotras(self,entrada):
+        try:
+                usar=iee.ieeeInverso('64',entrada)
+                arreglo = iee.ieee(float(usar))
+                arreglo32 = arreglo[0]
+                numero = "".join(arreglo32)
+                ele = numero.split(' ')
+                self.label_5.setText(str(usar))
+                self.label_6.setText(ele[0])
+                self.label_7.setText(ele[1])
+                self.label_8.setText(ele[2])
+                self.label_9.setText(numero)
+                arreglo64 = arreglo[1]
+                num2 = "".join(arreglo64)
+                elem = num2.split(' ')
+                self.label_10.setText(str(usar))
+                self.label_11.setText(elem[0])
+                self.label_12.setText(elem[1])
+                self.label_13.setText(elem[2])
+                self.label_14.setText(numero)
+        except:
+            print('--no se puede borrar mas')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+
+    def eventBotonCalcular(self):
+        if self.estadoNum == "Decimal":
+            self.eventDecimalAotras(self.label.text())
+        elif self.estadoNum == "32bits" or self.estadoNum == "64Bits":
+            estado=self.validarNumero()
+            if estado == True:
+                if self.estadoNum == "32bits":
+                    self.event32Aotras(self.label.text())
+                    print('es 32')
+                elif self.estadoNum == "64Bits":
+                    print('es 64')
+                    self.event64Aotras(self.label.text())
+            else:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Revisa los datos ingresados")
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
+    def estadoDecimal(self):
+        self.estadoNum = "Decimal"
+    def estado32(self):
+        self.estadoNum="32bits"
+    def estado64(self):
+        self.estadoNum="64Bits"
+    def validarNumero(self):
+        numero = self.label.text()
+        valido = True
+        try:
+                numero = numero.replace('.', '')
+                i=0
+                while i <len(numero) and valido==True:
+                    num = float(numero[i])
+                    if num < 0 or num > 1:
+                        valido = False
+                    i+=1
+        except:
+                valido = False
+        return valido
     def eventoBorrarTotal(self):
             try:
                 self.entrada = self.label.text()
@@ -345,92 +497,6 @@ class Ui_Form(object):
         self.entrada += "9"
         self.label.setText(self.entrada)
 
-    def  eventDecimalAotras(self):
-        try:
-            self.entrada=self.label.text()
-            arreglo= iee.ieee(float(self.entrada))
-            arreglo32=arreglo[0]
-            numero="".join(arreglo32)
-            ele = numero.split(' ')
-            self.label_5.setText(self.entrada)
-            self.label_6.setText(ele[0])
-            self.label_7.setText(ele[1])
-            self.label_8.setText(ele[2])
-            self.label_9.setText(numero)
-            arreglo64=arreglo[1]
-            num2="".join(arreglo64)
-            elem = num2.split(' ')
-            self.label_10.setText(self.entrada)
-            self.label_11.setText(elem[0])
-            self.label_12.setText(elem[1])
-            self.label_13.setText(elem[2])
-            self.label_14.setText(numero)
-        except:
-            print('--no se puede borrar mas')
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Revisa los datos ingresados")
-            msg.setWindowTitle("Error")
-            msg.setStandardButtons(QMessageBox.Ok)
-            retval = msg.exec_()
-    def event32Aotras(self):
-        try:
-                self.entrada = self.label.text()
-                usar=iee.ieeeInverso(self.entrada)
-                arreglo = iee.ieee(float(usar))
-                arreglo32 = arreglo[0]
-                numero = "".join(arreglo32)
-                ele = numero.split(' ')
-                self.label_5.setText(str(usar))
-                self.label_6.setText(ele[0])
-                self.label_7.setText(ele[1])
-                self.label_8.setText(ele[2])
-                self.label_9.setText(numero)
-                arreglo64 = arreglo[1]
-                num2 = "".join(arreglo64)
-                elem = num2.split(' ')
-                self.label_10.setText(str(usar))
-                self.label_11.setText(elem[0])
-                self.label_12.setText(elem[1])
-                self.label_13.setText(elem[2])
-                self.label_14.setText(numero)
-        except:
-            print('--no se puede borrar mas')
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Revisa los datos ingresados")
-            msg.setWindowTitle("Error")
-            msg.setStandardButtons(QMessageBox.Ok)
-            retval = msg.exec_()
-    def event64Aotras(self):
-        try:
-                self.entrada = self.label.text()
-                usar=iee.ieeeInverso(self.entrada)
-                arreglo = iee.ieee(float(usar))
-                arreglo32 = arreglo[0]
-                numero = "".join(arreglo32)
-                ele = numero.split(' ')
-                self.label_5.setText(str(usar))
-                self.label_6.setText(ele[0])
-                self.label_7.setText(ele[1])
-                self.label_8.setText(ele[2])
-                self.label_9.setText(numero)
-                arreglo64 = arreglo[1]
-                num2 = "".join(arreglo64)
-                elem = num2.split(' ')
-                self.label_10.setText(str(usar))
-                self.label_11.setText(elem[0])
-                self.label_12.setText(elem[1])
-                self.label_13.setText(elem[2])
-                self.label_14.setText(numero)
-        except:
-            print('--no se puede borrar mas')
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Revisa los datos ingresados")
-            msg.setWindowTitle("Error")
-            msg.setStandardButtons(QMessageBox.Ok)
-            retval = msg.exec_()
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "CalculadoraIEEE"))
@@ -439,7 +505,7 @@ class Ui_Form(object):
                                                  "p, li { white-space: pre-wrap; }\n"
                                                  "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                  "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">Numero a Convertir:</span></p></body></html>"))
-        self.Borrar_2.setText(_translate("Form", "Decimal"))
+        self.botonDecimal.setText(_translate("Form", "Decimal"))
         """ self.Borrar_3.setText(_translate("Form", "32 bits "))
         self.Borrar_4.setText(_translate("Form", "64 bits"))"""
         self.BotonNum_2.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -522,17 +588,7 @@ class Ui_Form(object):
         self.Borrar.setText(_translate("Form", "Borrar"))
         self.Salir.setText(_translate("Form", "Salir"))
         self.Salir_2.setText(_translate("Form", "Grafica"))
-        self.label.setText(_translate("Form", ""))
-        self.label_5.setText(_translate("Form", ""))
-        self.label_6.setText(_translate("Form", ""))
-        self.label_7.setText(_translate("Form", ""))
-        self.label_8.setText(_translate("Form", ""))
-        self.label_9.setText(_translate("Form", ""))
-        self.label_10.setText(_translate("Form", ""))
-        self.label_11.setText(_translate("Form", ""))
-        self.label_12.setText(_translate("Form", ""))
-        self.label_13.setText(_translate("Form", ""))
-        self.label_14.setText(_translate("Form", ""))
+
 
 
 if __name__ == "__main__":

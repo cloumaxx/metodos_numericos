@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QScrollArea, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QScrollArea, QWidget, QLabel, QVBoxLayout, QTextEdit
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import *
@@ -18,8 +18,9 @@ class ScrollLabel(QScrollArea):
 
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.label = QLabel(content)
 
+        self.label = QLabel(content)
+        #setGeometry(QtCore.QRect(190, 70, 261, 31))
         self.label.setAlignment(Qt.AlignLeft | Qt.AlignTop)
 
         self.label.setWordWrap(True)

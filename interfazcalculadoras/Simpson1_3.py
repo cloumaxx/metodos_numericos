@@ -23,7 +23,7 @@ class Ui_Form(object):
         self.label.setText("")
         self.label.setObjectName("label")
 
-        self.label_5 = QtWidgets.QLabel(Simpson13)
+        self.label_5 = QtWidgets.QLineEdit(Simpson13)
         self.label_5.setGeometry(QtCore.QRect(130, 60, 251, 31))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_5.setText("")
@@ -63,7 +63,7 @@ class Ui_Form(object):
         self.labelParticiones.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelParticiones.setText("")
         self.labelParticiones.setObjectName("labelParticiones")
-        self.labelvalorintegral = QtWidgets.QLabel(Simpson13)
+        self.labelvalorintegral = QtWidgets.QTextEdit(Simpson13)
         self.labelvalorintegral.setGeometry(QtCore.QRect(130, 470, 251, 31))
         self.labelvalorintegral.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelvalorintegral.setText("")
@@ -173,11 +173,30 @@ class Ui_Form(object):
         self.labelintegral.setWordWrap(False)
         self.labelintegral.setOpenExternalLinks(True)
         self.labelintegral.setObjectName("labelintegral")
-        self.labelerror = QtWidgets.QLabel(Simpson13)
+        self.labelerror = QtWidgets.QLineEdit(Simpson13)
         self.labelerror.setGeometry(QtCore.QRect(130, 510, 251, 31))
         self.labelerror.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelerror.setText("")
         self.labelerror.setObjectName("labelerror")
+
+        self.simbolointegral = QtWidgets.QLabel(Simpson13)
+        self.simbolointegral.setGeometry(QtCore.QRect(110, 410, 15, 50))
+        self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
+        self.simbolointegral.setText('∫')
+        self.simbolointegral.setObjectName("simbolointegral")
+
+        self.limiteIntegral_1 = QtWidgets.QLabel(Simpson13)
+        self.limiteIntegral_1.setGeometry(QtCore.QRect(125, 410, 20, 10))
+        self.limiteIntegral_1.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_1.setText('a')
+        self.limiteIntegral_1.setObjectName("limiteIntegral_1")
+
+        self.limiteIntegral_2 = QtWidgets.QLabel(Simpson13)
+        self.limiteIntegral_2.setGeometry(QtCore.QRect(125, 443, 20, 10))
+        self.limiteIntegral_2.setStyleSheet("\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_2.setText('b')
+        self.limiteIntegral_2.setObjectName("limiteIntegral_2")
+
         self.layoutWidget = QtWidgets.QWidget(Simpson13)
         self.layoutWidget.setGeometry(QtCore.QRect(500, 10, 571, 203))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -439,17 +458,22 @@ class Ui_Form(object):
     def eventCalcular(self):
         try:
             # se inicializan los labels para poder cambiarlos
-            self.entrada = self.label.text()
+            self.entrada = self.label_5.text()
             self.entrada2 = self.labelestremoizq.text()
             self.entrada3 = self.labelextremodere.text()
             self.entrada4 = self.labelParticiones.text()
             # se actualizan los label de los resultados, osea ya muestran los resultados
             raiz = simp13.calculaRaiz(self.entrada,float(self.entrada2),float(self.entrada3),int(self.entrada4))
             salida =simp13.calculaError(self.entrada,float(self.entrada2),float(self.entrada3),int(self.entrada4))
+            integral = simp13.returnIntegral(str(self.entrada))
             self.salida=str(raiz)
             self.salida2=str(salida)
+            self.salida3= str(integral)
             self.labelvalorintegral.setText(self.salida)
+            self.labelintegral_2.setText(self.salida3)
             self.labelerror.setText(self.salida2)
+            self.limiteIntegral_1.setText(self.entrada2)
+            self.limiteIntegral_2.setText(self.entrada3)
             print('-->',self.entrada2,'  ', self.entrada4)
         except:
                 print('ocurrio un error')
@@ -888,7 +912,6 @@ class Ui_Form(object):
     def retranslateUi(self, Simpson13):
         _translate = QtCore.QCoreApplication.translate
         Simpson13.setWindowTitle(_translate("Simpson13", "Simpson 1/3"))
-        self.labelintegral_2.setText(_translate("Simpson13", "∫_a^b▒f(x)dx"))
         self.labelIntervalo.setText(_translate("Simpson13", "Intervalo:"))
         self.LabeIngreso.setText(_translate("Simpson13", "Ingreso:"))
         self.valorintegral.setText(_translate("Simpson13", "Valor de la Integral ="))

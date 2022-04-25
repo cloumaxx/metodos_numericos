@@ -4,7 +4,25 @@ import matplotlib.pyplot as plt
 import sympy as sp
 import random
 from funciones import calcDerivadas as der
+def traductor(msj):
+    print('entro:',msj)
+    msj=msj.replace('e(','exp(')
+    msj=msj.replace('exp(','math.exp(')
+    msj = msj.replace('sin(', 'math.sin(')
+    msj = msj.replace('sen(', 'math.sin(')
+    msj = msj.replace('cos(', 'math.cos(')
+    msj = msj.replace('tan(', 'math.tan(')
+    msj = msj.replace('sec(', 'math.asin(')
+    msj = msj.replace('csc(', 'math.acos(')
+    msj = msj.replace('cot(', 'math.atan(')
+    msj = msj.replace('log(', 'math.log(')
+    msj = msj.replace('π','math.pi')
+    msj = msj.replace('√(', 'math.sqrt(')
+    msj = msj.replace('√', 'math.sqrt(')
+    msj = msj.replace('^', '**')
+    return msj
 def mostrarGrafica(fx,a,b,tramos):
+    fx = traductor(fx)
     x = sp.symbols('x')  # Crea variable x
     fx = sp.lambdify(x, fx)
     muestras = tramos + 1
@@ -31,8 +49,17 @@ def mostrarGrafica(fx,a,b,tramos):
         plt.axvline(xi[i], color='blue')
     plt.show()
 
+def returnIntegral(expresionf,LimInf,LimSup,NumPar):
+    expresionf= traductor(expresionf)
+    expresionf = str(expresionf).replace('f', 'x')
+    expresionf = str(expresionf).replace('math.', '')
 
+    x = sp.symbols('x')
+    f = sp.lambdify(x, expresionf)
+    funcion = der.primerDerivada(expresionf)
+    return str(funcion)
 def reglaTrapecio(fx, a, b, tramos):
+    fx = traductor(fx)
     x = sp.symbols('x')  # Crea variable x
     fx = sp.lambdify(x, fx)
     muestras = tramos + 1

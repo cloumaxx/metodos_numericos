@@ -3,8 +3,36 @@ import sympy as sp
 from sympy import *
 import math
 import matplotlib.pyplot as plt
+from funciones import calcDerivadas as clD
+def traductor(msj):
+    print('entro:',msj)
+    msj=msj.replace('e(','exp(')
+    msj=msj.replace('exp(','math.exp(')
+    msj = msj.replace('sin(', 'math.sin(')
+    msj = msj.replace('sen(', 'math.sin(')
+    msj = msj.replace('cos(', 'math.cos(')
+    msj = msj.replace('tan(', 'math.tan(')
+    msj = msj.replace('sec(', 'math.asin(')
+    msj = msj.replace('csc(', 'math.acos(')
+    msj = msj.replace('cot(', 'math.atan(')
+    msj = msj.replace('log(', 'math.log(')
+    msj = msj.replace('π','math.pi')
+    msj = msj.replace('√(', 'math.sqrt(')
+    msj = msj.replace('√', 'math.sqrt(')
+    msj = msj.replace('^', '**')
+    return msj
 
+def returnIntegral(expresionf,LimInf,LimSup,NumPar):
+    expresionf= traductor(expresionf)
+    expresionf = str(expresionf).replace('f', 'x')
+    expresionf = str(expresionf).replace('math.', '')
+
+    x = symbols('x')
+    f = sp.lambdify(x, expresionf)
+    funcion = clD.primerDerivada(expresionf)
+    return str(funcion)
 def returnRaiz(expresionf,LimInf,LimSup,NumPar):
+    expresionf = traductor(expresionf)
     expresionf = str(expresionf).replace('f', 'x')
     expresionf = str(expresionf).replace('math.', '')
 
@@ -21,6 +49,7 @@ def ecuacion(funcion, x):
     usar= funcion.replace('f',str(x))
     return eval(usar)
 def mostrarGrafica(fx,a,b,tramos):
+    fx = traductor(fx)
     print(fx)
     fx = str(fx).replace('math.', '')
     fx = str(fx).replace('f','x')

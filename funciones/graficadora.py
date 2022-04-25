@@ -108,7 +108,29 @@ def graficarPunto(puntoX,puntoY,color):
     return plt
 
 elec= 0
+def traductor(msj):
+    print('entro:',msj)
+
+    msj=msj.replace('e(','exp(')
+    msj=msj.replace('exp(','math.exp(')
+
+    msj = msj.replace('sin(', 'math.sin(')
+    msj = msj.replace('sen(', 'math.sin(')
+    msj = msj.replace('cos(', 'math.cos(')
+    msj = msj.replace('tan(', 'math.tan(')
+    msj = msj.replace('sec(', 'math.asin(')
+    msj = msj.replace('csc(', 'math.acos(')
+    msj = msj.replace('cot(', 'math.atan(')
+    msj = msj.replace('log(', 'math.log(')
+    msj = msj.replace('π','math.pi')
+    msj = msj.replace('√(', 'math.sqrt(')
+    msj = msj.replace('√', 'math.sqrt(')
+    msj = msj.replace('^', '**')
+    return msj
 def graficaParaGraficador(ecuacionUsar,color,ele):
+    print(ecuacionUsar)
+    ecuacionUsar=traductor(ecuacionUsar)
+    print('-->',ecuacionUsar)
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))
     msj= msj.replace('math.','')
     msj = msj.replace('pi', 'π')

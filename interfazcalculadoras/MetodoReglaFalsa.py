@@ -356,7 +356,7 @@ class Ui_Form(object):
                 self.label_4.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
                 self.label_5 = QtWidgets.QLabel(Form)
-                self.label_5.setGeometry(QtCore.QRect(140, 30, 700, 21))
+                self.label_5.setGeometry(QtCore.QRect(140, 30, 400, 31))
                 self.label_5.setObjectName("label_5")
                 self.label_5.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 

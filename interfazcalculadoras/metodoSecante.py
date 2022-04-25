@@ -329,7 +329,7 @@ class Ui_Form(object):
         self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
         self.label_5 = QtWidgets.QLabel(calculadora)
-        self.label_5.setGeometry(QtCore.QRect(150, 20, 221, 31))
+        self.label_5.setGeometry(QtCore.QRect(150, 20, 400, 31))
         self.label_5.setObjectName("label")
         self.label_5.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
@@ -382,8 +382,8 @@ class Ui_Form(object):
 
             #self.errorTole = self.TextErrorT.text()
             # se hace los calculos respectivos con las variables anteriores
-            #raiz = sc.returnRaiz(self.funcion, self.limite1, self.limite2, self.errorTole)
-            self.entrada2 = str('juan debe arreglarlo')
+            raiz = sc.secante(self.funcion, float(self.limite1), float(self.limite2), float(self.errorTole),50)
+            self.entrada2 = str(raiz)
 
 
             print(self.entrada2)

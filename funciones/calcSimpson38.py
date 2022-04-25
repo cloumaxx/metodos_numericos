@@ -1,12 +1,32 @@
 import numpy as np
 import sympy as sp
 from math import *
-
-
+from funciones import  calcDerivadas as cD
+def returnIntegral(funcion):
+    funcion = traductor(funcion)
+    funcion=cD.primerDerivada(funcion)
+    return funcion
+def traductor(msj):
+    msj=msj.replace('e(','exp(')
+    msj=msj.replace('exp(','math.exp(')
+    msj = msj.replace('sin(', 'math.sin(')
+    msj = msj.replace('sen(', 'math.sin(')
+    msj = msj.replace('cos(', 'math.cos(')
+    msj = msj.replace('tan(', 'math.tan(')
+    msj = msj.replace('sec(', 'math.asin(')
+    msj = msj.replace('csc(', 'math.acos(')
+    msj = msj.replace('cot(', 'math.atan(')
+    msj = msj.replace('log(', 'math.log(')
+    msj = msj.replace('π','math.pi')
+    msj = msj.replace('√(', 'math.sqrt(')
+    msj = msj.replace('√', 'math.sqrt(')
+    msj = msj.replace('^', '**')
+    return msj
 def f(x):
     return 2*np.pi*x*np.cos(x**2+1)*(x**2+1)#np.exp(-0.85*x)+np.cos(x)-0.95*x**2+3.25*x
 
 def calcularRaiz(funcion,a,b,n):
+    funcion= traductor(funcion)
     x = sp.symbols('x')
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
 
@@ -21,6 +41,7 @@ def calcularRaiz(funcion,a,b,n):
     return suma
 
 def s38(funcion, a, b):
+    funcion = traductor(funcion)
     x = sp.symbols('x')
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
 
@@ -30,6 +51,8 @@ def s38(funcion, a, b):
     return integral
 
 def calcularError(funcion,a,b,n):
+    funcion = traductor(funcion)
+
     raiz = calcularRaiz(funcion,a,b,n)
 
     vt = np.exp(np.pi) / 2 + 1 / 2

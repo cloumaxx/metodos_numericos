@@ -90,13 +90,13 @@ class Ui_Form(object):
         self.particiones.setOpenExternalLinks(True)
         self.particiones.setObjectName("particiones")
 
-        self.label = QtWidgets.QLabel(Form)
+        self.label = QtWidgets.QLineEdit(Form)
         self.label.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label.setText("")
         self.label.setObjectName("label")
 
-        self.label_5 = QtWidgets.QLabel(Form)
+        self.label_5 = QtWidgets.QLineEdit(Form)
         self.label_5.setGeometry(QtCore.QRect(140, 60, 251, 31))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_5.setText("")
@@ -170,7 +170,7 @@ class Ui_Form(object):
         self.labelResultado.setOpenExternalLinks(True)
         self.labelResultado.setObjectName("labelResultado")
 
-        self.labelResultadoIntegral = QtWidgets.QLabel(Form) # raiz
+        self.labelResultadoIntegral = QtWidgets.QLineEdit(Form) # raiz
         self.labelResultadoIntegral.setGeometry(QtCore.QRect(140, 480, 251, 31))
         self.labelResultadoIntegral.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelResultadoIntegral.setText("")
@@ -193,10 +193,26 @@ class Ui_Form(object):
         self.labelError.setText("")
         self.labelError.setObjectName("labelError")
 
+        self.simbolointegral = QtWidgets.QLabel(Form)
+        self.simbolointegral.setGeometry(QtCore.QRect(150, 410, 251, 50))
+        self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
+        self.simbolointegral.setText('∫')
+        self.simbolointegral.setObjectName("simbolointegral")
 
+        self.limiteIntegral_1 = QtWidgets.QLabel(Form)
+        self.limiteIntegral_1.setGeometry(QtCore.QRect(164, 410, 251, 10))
+        self.limiteIntegral_1.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_1.setText('a')
+        self.limiteIntegral_1.setObjectName("limiteIntegral_1")
 
-        self.labelintegral_2 = QtWidgets.QLabel(Form)
-        self.labelintegral_2.setGeometry(QtCore.QRect(170, 430, 251, 31))
+        self.limiteIntegral_2 = QtWidgets.QLabel(Form)
+        self.limiteIntegral_2.setGeometry(QtCore.QRect(164, 443, 50, 10))
+        self.limiteIntegral_2.setStyleSheet("\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_2.setText('b')
+        self.limiteIntegral_2.setObjectName("limiteIntegral_2")
+
+        self.labelintegral_2 = QtWidgets.QTextEdit(Form)
+        self.labelintegral_2.setGeometry(QtCore.QRect(175, 430, 50, 31))
         self.labelintegral_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelintegral_2.setObjectName("labelintegral_2")
 
@@ -461,7 +477,7 @@ class Ui_Form(object):
         try:
             #
 
-            self.entrada = self.label.text()
+            self.entrada = self.label_5.text()
             self.entrada2 = self.labelestremoizq.text()
             self.entrada3 = self.labelextremodere.text()
             self.entrada4 = self.labelParticiones.text()
@@ -485,13 +501,16 @@ class Ui_Form(object):
     def eventCalcular(self):
         try:
             # se inicializan los labels para poder cambiarlos
-            self.entrada = self.label.text()
+            self.entrada = self.label_5.text()
             self.entrada2 = self.labelestremoizq.text()
             self.entrada3 = self.labelextremodere.text()
             self.entrada4 = self.labelParticiones.text()
             raiz = calcRec.returnRaiz(self.entrada,float(self.entrada2),float(self.entrada3),int(self.entrada4))
-
+            integral = ''+str(calcRec.returnIntegral(self.entrada,float(self.entrada2),float(self.entrada3),int(self.entrada4)))
             self.labelResultadoIntegral.setText(str(raiz))
+            self.labelintegral_2.setText(str(integral))
+            self.limiteIntegral_1.setText(self.entrada2)
+            self.limiteIntegral_2.setText(self.entrada3)
         except:
                 print('hubo algun error')
                 salida = str(self.label.text())

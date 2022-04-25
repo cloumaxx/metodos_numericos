@@ -1,12 +1,14 @@
 import numpy as np
 import sympy as sp
 from math import *
-
+from funciones import calcDerivadas as cD
 
 def f(x):
     return np.exp(x) * np.sin(x)
-
-
+def returnIntegral(funcion):
+    print(funcion)
+    funcion=cD.primerDerivada(funcion)
+    return funcion
 def s13(funcion, a, b):
     x = sp.symbols('x')
     f = sp.lambdify(x, funcion)  # Creamos simbolicamente a f
