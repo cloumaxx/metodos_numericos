@@ -248,19 +248,19 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.label.setStyleSheet("border-radius: 25px;border: 1px solid black;")
 
-        self.label_5 = ScrollLabel.ScrollLabel(Form)
+        self.label_5 = QtWidgets.QLineEdit(Form)
         self.label_5.setGeometry(QtCore.QRect(150, 240, 201, 31))
         self.label_5.setObjectName("label_5")
 
-        self.label_6 = ScrollLabel.ScrollLabel(Form)
+        self.label_6 = QtWidgets.QLineEdit(Form)
         self.label_6.setGeometry(QtCore.QRect(150, 290, 201, 31))
         self.label_6.setObjectName("label_6")
 
-        self.label_7 = ScrollLabel.ScrollLabel(Form)
+        self.label_7 = QtWidgets.QLineEdit(Form)
         self.label_7.setGeometry(QtCore.QRect(150, 340, 201, 31))
         self.label_7.setObjectName("label_7")
 
-        self.label_8 = ScrollLabel.ScrollLabel(Form)
+        self.label_8 = QtWidgets.QLineEdit(Form)
         self.label_8.setGeometry(QtCore.QRect(160, 390, 201, 31))
         self.label_8.setObjectName("label_8")
 
@@ -268,19 +268,19 @@ class Ui_Form(object):
         self.label_9.setGeometry(QtCore.QRect(170, 440, 201, 31))
         self.label_9.setObjectName("label_9")
 
-        self.label_10 = ScrollLabel.ScrollLabel(Form)
+        self.label_10 = QtWidgets.QLineEdit(Form)
         self.label_10.setGeometry(QtCore.QRect(510, 240, 201, 31))
         self.label_10.setObjectName("label_10")
 
-        self.label_11 = ScrollLabel.ScrollLabel(Form)
+        self.label_11 = QtWidgets.QLineEdit(Form)
         self.label_11.setGeometry(QtCore.QRect(510, 290, 201, 31))
         self.label_11.setObjectName("label_11")
 
-        self.label_12 = ScrollLabel.ScrollLabel(Form)
+        self.label_12 = QtWidgets.QLineEdit(Form)
         self.label_12.setGeometry(QtCore.QRect(510, 340, 201, 31))
         self.label_12.setObjectName("label_12")
 
-        self.label_13 = ScrollLabel.ScrollLabel(Form)
+        self.label_13 = QtWidgets.QLineEdit(Form)
         self.label_13.setGeometry(QtCore.QRect(510, 390, 201, 31))
         self.label_13.setObjectName("label_13")
 

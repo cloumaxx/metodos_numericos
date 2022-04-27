@@ -46,7 +46,9 @@ def mostrarGrafica(fx,a,b,tramos):
 
     plt.fill_between(xi, 0, fi, color='g')
     for i in range(0, muestras, 1):
-        plt.axvline(xi[i], color='blue')
+        limite = float(fx(xi[i]))
+        plt.vlines(xi[i], ymin=0.0, ymax=limite, color='blue')
+    plt.grid()
     plt.show()
 
 def returnIntegral(expresionf,LimInf,LimSup,NumPar):

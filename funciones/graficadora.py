@@ -31,7 +31,6 @@ def graficaTriangulo(rectangles,a,b,fx ):
     fk = fx(xk)
     lugar =  str(fx).find('acos')
     lugar2 = str(fx).find('asin')
-
     # Graficando
     plt.plot(xk, fk, label='f(x)')
     plt.plot(xi, fi, marker='o',
@@ -42,18 +41,21 @@ def graficaTriangulo(rectangles,a,b,fx ):
 
     plt.title('Integral: Regla de Rectangulos')
     plt.legend()
-
     plt.fill_between(xi, 0, fi, color='g')
     for i in range(0, muestras, 1):
-        plt.axvline(xi[i], color='w')
+        limite= float(fx(xi[i]))
+        plt.vlines(xi[i],ymin=0.0,ymax=limite,color='blue')
     xeje = np.arange(-200, 200, 0.01)
     ecuacionEje = 'x*0'
     plt.plot(xeje, [ecuacion(ecuacionEje, i) for i in xeje], color='black', label='eje x')
     plt.plot([ecuacion(ecuacionEje, i) for i in xeje], xeje, color='black', label='eje y')
+    plt.grid()
     plt.show()
-#graficaTriangulo(15,-5,10,lambda x: x**2-2*x+3)
+
+#graficaTriangulo(25,-25,10, "x**2-2*x+3")
 def graficarFuncion(ecuacionUsar):
     plt.clf()
+    plt.grid()
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))
     msj = msj.replace('math.', '')
     msj = msj.replace('pi', 'π')
@@ -79,6 +81,7 @@ def graficarFuncion(ecuacionUsar):
     return plt
 def graficadoraRecta(ecuacionUsar):
     # Graficar positivamente
+    plt.grid()
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))
     msj = msj.replace('math.', '')
     msj = msj.replace('pi', 'π')
@@ -104,6 +107,7 @@ def graficadoraRecta(ecuacionUsar):
     return plt
 def graficarPunto(puntoX,puntoY,color):
     msj="("+str(puntoX)+" , "+str(puntoY)+")"
+    plt.grid()
     plt.plot(puntoX,puntoY,marker="o", label=msj, color=color)
     return plt
 
@@ -129,6 +133,7 @@ def traductor(msj):
     return msj
 def graficaParaGraficador(ecuacionUsar,color,ele):
     print(ecuacionUsar)
+    plt.grid()
     ecuacionUsar=traductor(ecuacionUsar)
     print('-->',ecuacionUsar)
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))

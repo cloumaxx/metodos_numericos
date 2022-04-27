@@ -80,11 +80,14 @@ def mostrarGrafica(fx,a,b,tramos):
 
     plt.fill_between(xi, 0, fi, color='g')
     for i in range(0, muestras, 1):
-        plt.axvline(xi[i], color='w')
+        limite = float(fx(xi[i]))
+        plt.vlines(xi[i], ymin=0.0, ymax=limite, color='blue')
+
     xPositivo = np.arange(-200, 200, 0.01)
     ecuacionEje = 'x*0'
     plt.plot(xPositivo, [ecuacion(ecuacionEje, i) for i in xPositivo], color='black', label='eje x')
     plt.plot([ecuacion(ecuacionEje, i) for i in xPositivo], xPositivo, color='black', label='eje y')
+    plt.grid()
     plt.show()
 """
 x = symbols('x')

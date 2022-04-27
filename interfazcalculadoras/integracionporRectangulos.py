@@ -194,25 +194,25 @@ class Ui_Form(object):
         self.labelError.setObjectName("labelError")
 
         self.simbolointegral = QtWidgets.QLabel(Form)
-        self.simbolointegral.setGeometry(QtCore.QRect(150, 410, 251, 50))
+        self.simbolointegral.setGeometry(QtCore.QRect(150, 410, 25, 50))
         self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
         self.simbolointegral.setText('∫')
         self.simbolointegral.setObjectName("simbolointegral")
 
         self.limiteIntegral_1 = QtWidgets.QLabel(Form)
-        self.limiteIntegral_1.setGeometry(QtCore.QRect(164, 410, 251, 10))
+        self.limiteIntegral_1.setGeometry(QtCore.QRect(164, 410, 20, 10))
         self.limiteIntegral_1.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 9pt \"Arial\";")
         self.limiteIntegral_1.setText('a')
         self.limiteIntegral_1.setObjectName("limiteIntegral_1")
 
         self.limiteIntegral_2 = QtWidgets.QLabel(Form)
-        self.limiteIntegral_2.setGeometry(QtCore.QRect(164, 443, 50, 10))
+        self.limiteIntegral_2.setGeometry(QtCore.QRect(164, 443, 20, 10))
         self.limiteIntegral_2.setStyleSheet("\n""font: 87 9pt \"Arial\";")
         self.limiteIntegral_2.setText('b')
         self.limiteIntegral_2.setObjectName("limiteIntegral_2")
 
         self.labelintegral_2 = QtWidgets.QTextEdit(Form)
-        self.labelintegral_2.setGeometry(QtCore.QRect(175, 430, 50, 31))
+        self.labelintegral_2.setGeometry(QtCore.QRect(190, 420, 251, 31))
         self.labelintegral_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelintegral_2.setObjectName("labelintegral_2")
 
@@ -961,7 +961,6 @@ class Ui_Form(object):
         self.labelintegral.setText(_translate("Form", "Integral :  "))
         self.labelResultado.setText(_translate("Form", "Valor de la integral"))
         self.labeleMensajeError.setText(_translate("Form", "Error: "))
-        self.labelintegral_2.setText(_translate("Form", "∫_a^b▒f(x)dx"))
         self.botonUno_2.setText(_translate("Form", "1"))
         self.botonUno_2.setShortcut(_translate("Form", "1"))
         self.botonDos_2.setText(_translate("Form", "2"))

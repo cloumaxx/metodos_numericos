@@ -179,7 +179,7 @@ class Ui_Form(object):
         self.labelerror.setObjectName("labelerror")
 
         self.labelintegral_2 = QtWidgets.QTextEdit(Form)
-        self.labelintegral_2.setGeometry(QtCore.QRect(170, 433, 251, 31))
+        self.labelintegral_2.setGeometry(QtCore.QRect(190, 420, 251, 31))
         self.labelintegral_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.labelintegral_2.setObjectName("labelintegral_2")
 
@@ -190,13 +190,13 @@ class Ui_Form(object):
         self.simbolointegral.setObjectName("simbolointegral")
 
         self.limiteIntegral_1 = QtWidgets.QLabel(Form)
-        self.limiteIntegral_1.setGeometry(QtCore.QRect(140, 410, 10, 10))
+        self.limiteIntegral_1.setGeometry(QtCore.QRect(140, 410, 20, 10))
         self.limiteIntegral_1.setStyleSheet("font: 87 9pt \"Arial\";")
         self.limiteIntegral_1.setText('a')
         self.limiteIntegral_1.setObjectName("limiteIntegral_1")
 
         self.limiteIntegral_2 = QtWidgets.QLabel(Form)
-        self.limiteIntegral_2.setGeometry(QtCore.QRect(140, 443, 10, 10))
+        self.limiteIntegral_2.setGeometry(QtCore.QRect(140, 443, 20, 10))
         self.limiteIntegral_2.setStyleSheet("font: 87 9pt \"Arial\";")
         self.limiteIntegral_2.setText('b')
         self.limiteIntegral_2.setObjectName("limiteIntegral_2")
