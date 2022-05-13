@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Simpson13</class>
+ <widget class="QWidget" name="Simpson13">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>799</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Simpson 1/3</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(250, 250, 250);</string>
+  </property>
+  <widget class="QLabel" name="labelFuncion">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>60</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelintegral_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>420</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>∫_a^b▒f(x)dx</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelestremoizq">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>160</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelextremodere">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>200</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelIntervalo">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(250, 250, 250);
+font: 11pt &quot;Arial&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>Intervalo:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelParticiones">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>240</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelvalorintegral">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>470</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabeIngreso">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(250, 250, 250);
+font: 11pt &quot;Arial&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>Ingreso:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="valorintegral">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>470</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>Valor de la Integral =</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Error">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>510</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>Error =</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="botonSalir">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>300</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(225, 225, 225);
+font: 87 12pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Extremodere">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>Extremo Der  b =</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="botonborrar">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>300</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(225, 225, 225);
+font: 87 12pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Borrar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="botonCalcular">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>300</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(225, 225, 225);
+font: 87 12pt &quot;Arial&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Calcular</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelsalida">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>370</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(250, 250, 250);
+font: 11pt &quot;Arial&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>Salida:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Funcion">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>Función F(x) =</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Extremoizq">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>Extremo Izq  a =</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="particiones">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 170, 255);</string>
+   </property>
+   <property name="text">
+    <string>Numero de Particiones  n =</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelintegral">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>420</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(250, 250, 250);
+font: 11pt &quot;Arial&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>Integral :  </string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelerror">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>510</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>560</y>
+     <width>571</width>
+     <height>203</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0" rowspan="5">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="botonUno">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+        <property name="shortcut">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="botonDos">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="shortcut">
+         <string>2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="botonTres">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>3</string>
+        </property>
+        <property name="shortcut">
+         <string>3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="botonCuatro">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>4</string>
+        </property>
+        <property name="shortcut">
+         <string>4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="botonCinco">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>5</string>
+        </property>
+        <property name="shortcut">
+         <string>5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="botonSeis">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>6</string>
+        </property>
+        <property name="shortcut">
+         <string>6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="botonSiete">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>7</string>
+        </property>
+        <property name="shortcut">
+         <string>7</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="botonOcho">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>8</string>
+        </property>
+        <property name="shortcut">
+         <string>8</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QPushButton" name="botonNueve">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>9</string>
+        </property>
+        <property name="shortcut">
+         <string>9</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QPushButton" name="botonCabierto">
+        <property name="styleSheet">
+         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+        </property>
+        <property name="text">
+         <string>(</string>
+        </property>
+        <property name="shortcut">
+         <string>(</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QPushButton" name="botonCero">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 255);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="shortcut">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="botonCerrado">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 127);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>)</string>
+        </property>
+        <property name="shortcut">
+         <string>)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="botonCabierto_2">
+        <property name="styleSheet">
+         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+        </property>
+        <property name="text">
+         <string>[</string>
+        </property>
+        <property name="shortcut">
+         <string>(</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="botonPunto">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 170, 127);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>.</string>
+        </property>
+        <property name="shortcut">
+         <string>.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="botonCabierto_3">
+        <property name="styleSheet">
+         <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+        </property>
+        <property name="text">
+         <string>]</string>
+        </property>
+        <property name="shortcut">
+         <string>(</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="botonMas">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>+</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="botonMas_2">
+      <property name="styleSheet">
+       <string notr="true">font: 75 14pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>√</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="botonMas_3">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>exp</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="4">
+     <widget class="QPushButton" name="botonMas_11">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>tan</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="botonMenos">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+      <property name="shortcut">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="botonMas_4">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>^</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QPushButton" name="botonMas_8">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>log</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QPushButton" name="botonMas_12">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>sec</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="BotonMulti">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 127);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+      </property>
+      <property name="text">
+       <string>x</string>
+      </property>
+      <property name="shortcut">
+       <string>*</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="botonMas_7">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>π</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="botonMas_9">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>sin</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QPushButton" name="botonMas_13">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>csc</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="botonDivision">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>÷</string>
+      </property>
+      <property name="shortcut">
+       <string>/</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QPushButton" name="botonMas_5">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>ln</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="botonMas_10">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>cos</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
+     <widget class="QPushButton" name="botonMas_14">
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Arial&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>cot</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="botonPorcentaje">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>%</string>
+      </property>
+      <property name="shortcut">
+       <string>%</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QPushButton" name="botonMas_6">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>=</string>
+      </property>
+      <property name="shortcut">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QPushButton" name="BotonBorrar">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 127);
+font: 87 14pt &quot;Arial Black&quot;;</string>
+      </property>
+      <property name="text">
+       <string>C</string>
+      </property>
+      <property name="shortcut">
+       <string>Esc</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4">
+     <widget class="QPushButton" name="botonAC">
+      <property name="styleSheet">
+       <string notr="true">font: 87 14pt &quot;Arial Black&quot;;
+background-color: rgb(0, 170, 127);</string>
+      </property>
+      <property name="text">
+       <string>AC</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
