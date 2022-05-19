@@ -8,6 +8,7 @@
 #from funciones import biseccion as bss
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import falsaposicion as bss
@@ -22,6 +23,17 @@ class Ui_Form(object):
                                    "background-color: rgb(250, 250, 250);\n"
                                    "font: 75 14pt \"Arial\";\n"
                                    "")
+                Form.setWindowIcon(
+                        QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+                # pero le cambias el inicio segun corresponda
+                Form.setWindowIcon(
+                        QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+                self.imagenFondo = QtWidgets.QLabel(Form)
+                pixmap = QPixmap('imagenes/fondo1.png')
+                self.imagenFondo.setPixmap(pixmap)
+                self.imagenFondo.setGeometry(0, 0, 270, 120)
+                self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
                 self.BotonFunc = QtWidgets.QTextEdit(Form)
                 self.BotonFunc.setGeometry(QtCore.QRect(10, 20, 111, 31))
                 self.BotonFunc.setStyleSheet("font: 12pt \"Arial\";\n"

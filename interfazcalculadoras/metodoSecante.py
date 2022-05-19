@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import secante as sc
@@ -17,6 +18,15 @@ class Ui_Form(object):
         calculadora.setObjectName("calculadora")
         calculadora.resize(800, 800)
         calculadora.setStyleSheet("background-color: rgb(250, 250, 250);")
+        calculadora.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun corresponda
+        calculadora.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(calculadora)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
         self.layoutWidget = QtWidgets.QWidget(calculadora)
         self.layoutWidget.setGeometry(QtCore.QRect(20, 390, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")

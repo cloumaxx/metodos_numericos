@@ -30,6 +30,15 @@ class Ui_Form(object):
                            "background-color: rgb(250, 250, 250);\n"
                            "font: 75 14pt \"Arial\";\n"
                            "")
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun corresponda
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Form)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
         self.BotonFunc = QtWidgets.QTextEdit(Form)
         self.BotonFunc.setGeometry(QtCore.QRect(10, 20, 111, 31))
         self.BotonFunc.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -1017,7 +1026,7 @@ class Ui_Form(object):
         self.label_5.setText(_translate("Form", "x*x-2"))  # ingresoFuncion
 
 
-from PyQt5.QtGui import QFont, QIcon, QColor
+from PyQt5.QtGui import QFont, QIcon, QColor, QPixmap
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QApplication, QDialog, QPushButton, QTableWidget,
                              QTableWidgetItem, QAbstractItemView, QHeaderView, QMenu,

@@ -5,6 +5,7 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 from funciones import calcSimpson13 as calc13
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -21,6 +22,15 @@ class Ui_Form(object):
         Simpson13.setObjectName("Simpson13")
         Simpson13.resize(1500, 799)
         Simpson13.setStyleSheet("background-color: rgb(250, 250, 250);")
+        Simpson13.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun corresponda
+        Simpson13.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Simpson13)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
         self.label = QtWidgets.QLabel(Simpson13)
         self.label.setGeometry(QtCore.QRect(0, 0, 0, 0))
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")

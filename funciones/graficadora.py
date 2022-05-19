@@ -142,7 +142,7 @@ def traductor(msj):
 
 
 def graficaParaGraficador(ecuacionUsar, color, ele):
-    plt.grid()
+
     ecuacionUsar = traductor(ecuacionUsar)
     msj = str(remplazoFuncion(ecuacionUsar, 'x'))
     msj = msj.replace('math.', '')
@@ -167,6 +167,8 @@ def graficaParaGraficador(ecuacionUsar, color, ele):
         plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj, color=color)
     except:
         plt.plot(xPositivo, [ecuacion(ecuacionUsar, i) for i in xPositivo], label=msj, color=color)
+    plt.grid()
+
     return plt
 
 # graficaParaGraficador

@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import calcTrapecio as cTr
@@ -16,6 +17,13 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1150, 600)
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Form)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
         self.labelIngreso = QtWidgets.QLabel(Form)
         self.labelIngreso.setGeometry(QtCore.QRect(20, 20, 111, 31))

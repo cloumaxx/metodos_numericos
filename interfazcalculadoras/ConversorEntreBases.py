@@ -5,6 +5,8 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
+from PyQt5.QtGui import QIcon,QPixmap
+
 from funciones import calcBases
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
@@ -20,6 +22,23 @@ class Ui_ConversorEntreBases(object):
         ConversorEntreBases.resize(800, 800)
         ConversorEntreBases.setStyleSheet("\n"
                                           "background-color: rgb(250, 250, 250);")
+        # pero le cambias el inicio segun corresponda
+        ConversorEntreBases.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(ConversorEntreBases)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+        self.textEdit_1 = QtWidgets.QLabel(ConversorEntreBases)
+        self.textEdit_1.setGeometry(QtCore.QRect(450, 250, 320, 100))
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("El conversor entre bases funciona \n"
+                                "ingresando el numero que deseas, en donde \n"
+                                "despues escojes la opcion que deseas  \n"
+                                "utilizar y luego calcular")
+
         self.TextCon = QtWidgets.QLabel(ConversorEntreBases)
         self.TextCon.setGeometry(QtCore.QRect(20, 25, 350, 31))
         self.TextCon.setStyleSheet("font: 12pt \"Arial\";\nbackground-color: rgb(170, 170, 255);")

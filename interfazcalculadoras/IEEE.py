@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import calcIEEE as iee
@@ -17,6 +18,16 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(742, 855)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun corresponda
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Form)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
+
         self.BotonNum = QtWidgets.QTextEdit(Form)
         self.BotonNum.setGeometry(QtCore.QRect(20, 30, 161, 31))
         self.BotonNum.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -297,7 +308,7 @@ class Ui_Form(object):
             arreglo32=arreglo[0]
             numero="".join(arreglo32)
             ele = numero.split(' ')
-            self.label_5.setText(self.entrada)
+            self.label_5.setText(entrada)
             self.label_6.setText(ele[0])
             self.label_7.setText(ele[1])
             self.label_8.setText(ele[2])
@@ -305,7 +316,7 @@ class Ui_Form(object):
             arreglo64=arreglo[1]
             num2="".join(arreglo64)
             elem = num2.split(' ')
-            self.label_10.setText(self.entrada)
+            self.label_10.setText(entrada)
             self.label_11.setText(elem[0])
             self.label_12.setText(elem[1])
             self.label_13.setText(elem[2])
@@ -377,7 +388,8 @@ class Ui_Form(object):
 
     def eventBotonCalcular(self):
         if self.estadoNum == "Decimal":
-            self.eventDecimalAotras(self.label.text())
+            aux = self.label.text()
+            self.eventDecimalAotras(aux)
         elif self.estadoNum == "32bits" or self.estadoNum == "64Bits":
             estado=self.validarNumero()
             if estado == True:

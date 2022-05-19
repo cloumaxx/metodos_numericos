@@ -22,6 +22,7 @@ class Ui_interfaz(object):
                                                                 # pero le cambias el inicio segun corresponda
         self.imagenFondo= QtWidgets.QLabel(interfaz)
         pixmap = QPixmap('imagenes/fondo1.png')
+
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -32,7 +33,6 @@ class Ui_interfaz(object):
         #self.label.setPixmap(pixi)
         self.imagenUsar.setPixmap(pixmap2)
         self.imagenUsar.setStyleSheet("border-image : url(magenes/escudoEmpr.png);")
-
         self.imagenUsar.setGeometry(430, 12, 100, 120)
         # Opcional, redimensionar la ventana al tamaño de la imagen
         self.pushButton = QtWidgets.QPushButton(interfaz)

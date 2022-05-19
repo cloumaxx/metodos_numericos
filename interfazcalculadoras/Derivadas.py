@@ -5,6 +5,7 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from interfazcalculadoras import ScrollLabel
@@ -17,7 +18,26 @@ class Ui_Form(object):
     def setupUi(self, Derivadas):
         Derivadas.setObjectName("Derivadas")
         Derivadas.resize(745, 611)
+        Derivadas.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun correspond
+
         Derivadas.setStyleSheet("background-color: rgb(250, 250, 250);")
+        Derivadas.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Derivadas)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+        self.textEdit_1 = QtWidgets.QLabel(Derivadas)
+        self.textEdit_1.setGeometry(QtCore.QRect(500, 20, 230, 150))
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("La calculadora de derivadas \n"
+                                "funciona ingresando el numero\n"
+                                "que deseas, en donde despues \n"
+                                "escoges la opcion que deseas  \n"
+                                "utilizar y luego calcular")
         self.textEdit = QtWidgets.QLabel(Derivadas)
         self.textEdit.setGeometry(QtCore.QRect(30, 30, 111, 31))
         self.textEdit.setStyleSheet("font: 12pt \"Arial\";\n"

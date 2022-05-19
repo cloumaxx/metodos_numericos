@@ -29,6 +29,25 @@ class Ui_Form(object):
         Grafica.setObjectName("Grafica")
         Grafica.resize(1150, 600)
         Grafica.setStyleSheet("background-color: rgb(250, 250, 250);")
+        Grafica.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun corresponda
+        Grafica.setWindowIcon(
+            QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Grafica)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+        self.textEdit_1 = QtWidgets.QLabel(Grafica)
+        self.textEdit_1.setGeometry(QtCore.QRect(180, 450, 300, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora funciona ingresando la\n"
+                                "funcion que deseas, en donde tambien \n"
+                                "podras colocar los puntos de corte  \n"
+                                "que quieres tener en la grafica")
         self.funcion = QtWidgets.QTextEdit(Grafica)
         self.funcion.setGeometry(QtCore.QRect(20, 20, 111, 31))
         self.funcion.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -469,6 +488,7 @@ class Ui_Form(object):
             for i in range(0,len(self.listadoPuntosX)):
                 color = self.colorAleatorio()[0]
                 gf.graficarPunto(self.listadoPuntosX[i],self.listadoPuntosY[i],color)
+            plt.grid()
             plt.legend()
             plt.xlim(-50,50)
             plt.ylim(-50,50)

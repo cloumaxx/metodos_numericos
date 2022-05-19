@@ -8,9 +8,12 @@
 from tkinter import Scale
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import pyqtSlot
+
 from interfazcalculadoras import ScrollLabel
 from funciones import calcMatrices
 class Ui_Form(object):
+    arregloUtilizar= []
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(732, 1045)
@@ -415,16 +418,20 @@ class Ui_Form(object):
 
     def eventResultado(self):
         listado = self.objeto.get_data()#IngresarMatriz.get_data(self)#IngresarMatriz.get_data(self)#ventana.get_data()
-        ecuacion ="A+B-C-D+E+F" #self.label.text()
+        copia = listado.copy()
+        ecuacion ="A+B+C" #self.label.text()
         i =0
         msj =""
+        acum = []
         while i<len(ecuacion):
             if ecuacion[i] == "+":
                 letra1=ecuacion[i-1]
                 letra2=ecuacion[i+1]
-                pos1=calcMatrices.returnarPosArregloPorletra(listado,letra1)
-                pos2=calcMatrices.returnarPosArregloPorletra(listado,letra2)
-                #acum+=listado[pos1]
+                pos1=calcMatrices.returnarPosArregloPorletra(copia,letra1)
+                dos= calcMatrices.eliminarLetra(copia)
+                pos2=calcMatrices.returnarPosArregloPorletra(copia,letra2)
+                acum+=listado[pos1]
+                acum+=listado[pos2]
                 #terner en cuenta el .shape de un arreglo ############################################################################33
                 i+=3
             elif ecuacion[i] == "-":
@@ -432,11 +439,16 @@ class Ui_Form(object):
                 i += 3
             else:
                 i+=1
-        print(msj)
+        self.actualizarResultado(acum)
     import sys
+    def actualizarResultado(self,arreglo):
+        tama = len(arreglo)
+        aux = ""
+        for i in range(0, tama):  # len(arreglo[i])):
+            aux +=str(arreglo[i])+"\n"
+        self.visor2Resultado.setText(aux)
+
     def agregarMatriz(self):
-        #salir=False
-        #while salir == False:
         try:
                 filas = int(self.numerdefilasedit.text())
                 columnas = int(self.columnasedit.text())
@@ -446,26 +458,28 @@ class Ui_Form(object):
                 self.ui = self.objeto#IngresarMatriz()#__init__(self,tamaFilas=filas,tamaColum=columnas)#initUI(self,numFilas=filas,numColum=columnas)
                 self.ui.initUI(self.interfaz,numColum=columnas,numFilas=filas)
                 self.interfaz.show()
+
         except:
                 print('revisa')
     def eventbotonActualizar(self):
-        arreglo = self.objeto.get_data()#IngresarMatriz.get_data(self)#IngresarMatriz.get_data(self)#ventana.get_data()
-        filas = int(self.numerdefilasedit.text())
-        tama=len(arreglo)
-        print('tama:',len(arreglo))
+        arregloAux = self.objeto.get_data()
+        for m in range(0,len(arregloAux)):
+            self.arregloUtilizar.append(arregloAux[m])
+        arreglo = self.arregloUtilizar
+        tama = len(arreglo)
         abecedario = "abcdefghijklmnopqrstuvwxyz".upper()
-        print(arreglo)
-        print(arreglo[0])
-        aux=""
-        for j in range(0,tama):#len(arreglo[i])):
+        aux = ""
+        for j in range(0, tama):  # len(arreglo[i])):
             matriz = arreglo[j]
+            filas = len(matriz)
             aux += "Matriz: " + abecedario[j] + "\n"
-            for i in range(0,filas):
+            for i in range(0, filas):
                 aux += "["
                 aux += ",".join(matriz[i])+"]\n"
-            aux+="\n"
-        print(aux)
+            aux += "\n"
+
         self.visor.setText(aux)
+
 
     def eventBotonParentesis(self):
         print('(')
@@ -781,14 +795,12 @@ class Ui_Form(object):
 
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout, \
-    QPushButton, QLabel, QHBoxLayout, QDialog
-from PyQt5.QtGui import QIcon, QFont
+    QPushButton, QLabel
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget,QTableWidgetItem,QVBoxLayout
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
-from PyQt5 import QtCore
 
-from PyQt5.QtGui import QFont, QIcon, QColor
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (QApplication, QDialog, QPushButton, QTableWidget,
+from PyQt5.QtWidgets import ( QPushButton, QTableWidget,
                              QTableWidgetItem, QAbstractItemView, QHeaderView, QMenu,
                              QActionGroup, QAction, QMessageBox)
 
@@ -828,7 +840,9 @@ class IngresarMatriz(object):
         self.BotonGuardar.setText("Guardar")
         self.BotonGuardar.clicked.connect(self.agregarNuevaMatriz)
         self.layout.addWidget(self.BotonGuardar)
+
         interfaz.setLayout(self.layout)
+
         #self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
 
 
@@ -836,11 +850,17 @@ class IngresarMatriz(object):
     def createTable(self,filas,columnas):
         # Crea Tabla
         self.tableWidget = QTableWidget()
-        self.tableWidget.setGeometry(10,45,10,10)
+        self.tableWidget.setColumnCount(columnas)
+        self.tableWidget.setRowCount(filas)
+        #self.rellenarMatriz(filas,columnas)
         self.tableWidget.verticalHeader().setVisible(False)
         self.tableWidget.horizontalHeader().setVisible(False)
-        self.tableWidget.setRowCount(filas)
-        self.tableWidget.setColumnCount(columnas)
+        self.tableWidget.doubleClicked.connect(self.on_click)
+        self.tableWidget.move(0, 0)
+
+        #self.tableWidget.doubleClicked.connect(self.on_click)
+
+        #elf.tableWidget.item()
         #self.tableWidget.setItem(0, 0, QTableWidgetItem("1"))
         #self.tableWidget.setItem(0, 1, QTableWidgetItem("2"))
         #self.tableWidget.setItem(1, 0, QTableWidgetItem("3"))
@@ -849,7 +869,6 @@ class IngresarMatriz(object):
         #self.tableWidget.setItem(2, 1, QTableWidgetItem("6"))
         #self.tableWidget.setItem(3, 0, QTableWidgetItem("7"))
         #self.tableWidget.setItem(3, 1, QTableWidgetItem("8"))
-        #self.tableWidget.move(0, 0)
         #self.tableWidget.adjustSize(True)
 
         # cambio de selección de tabla
@@ -857,17 +876,23 @@ class IngresarMatriz(object):
 
     def agregarNuevaMatriz(self):
         columna = self.tableWidget.columnCount()
+        self.tableWidget.update()
+
         fila=self.tableWidget.rowCount()
         item = []
-        for n in range(fila):
-            #print('n: ',n)
+        for n in range(0,fila):
             fila = []
-            for column in range(columna):
+            for column in range(0,columna):
+                itemUsar =  self.tableWidget.item(n, column)
                 try:
-                    #print('n: ', n, ' column: ', column, '  ', self.tableWidget.item(n, column).text())
-                    fila.append(self.tableWidget.item(n, column).text())
+                    #>viewport()->update())
+                    print('fila: ', n, ' columna: ', column, ' : ',itemUsar," tipo: ",itemUsar.text())
+                    #fila.append(self.tableWidget.item(n, column).text())
                 except:
+                    print('no')
                     fila.append('0')
+
+
             item.append(fila)
         arregloSalida=[]
         for n in range(0,len(item)):
@@ -878,9 +903,9 @@ class IngresarMatriz(object):
                 arregloAux.append(fila[i])
             arregloSalida.append(arregloAux)
             #print(linea)
-        #print(arregloSalida)
+        #print(' *  * * ** ',arregloSalida)
         msj = ""
-        #self.close()
+
         self.arregloAdevolver.append(arregloSalida)
         msg = QMessageBox()
         #msg.setIcon(QMessageBox.Accepted)
@@ -888,13 +913,23 @@ class IngresarMatriz(object):
         msg.setWindowTitle("Clompleto")
         msg.setStandardButtons(QMessageBox.Ok)
         retval = msg.exec_()
-        return arregloSalida
 
     def get_data(self):
-        print(self.arregloAdevolver)
         return self.arregloAdevolver#arregloAdevolver
+
+    def rellenarMatriz(self,fila,columnas):
+        for i in range(0,fila):
+            for j in range(0,columnas):
+                print('')
+                self.tableWidget.setItem(i, j, QTableWidgetItem("0"))
+    def on_click(self):
+        print("?\n")
+        for currentQTableWidgetItem in self.tableWidget.selectedItems():
+            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
+
     # ref: https://pythonlcpa.blogspot.com/p/blog-page_1.html
 # ====================================================================
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -74,28 +74,38 @@ def transpuesta():
 def gauss():
 """
 
-a = [[[1, 2, 3], [4, 5, 6], [7, 8, 9],[[1, 2, 3], [4, 5, 6]],[[1, 2, 3], [4, 5, 6]]]]
+a = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],[[1, 2, 3], [4, 5, 6]],[[1, 2, 3], [4, 5, 6]]]
 b = [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
 c = [[1, 5, 2], [5, 5, 5], [3, 3, 6]]
 d = [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
 m = [b, c, d]
 
-def nombrarMatrices(arreglo):
+def nombrarMatrices(arregloNombre):
     abecedario="abcdefghijklmnopqrstuvwxyz".upper()
-    for i in range(0,len(arreglo)):
-        for j in range(0,len(arreglo[i])):
-            arreglo[i][j].append(abecedario[j])
+    for i in range(0,len(arregloNombre)):
+        for j in range(0,len(arregloNombre[i])):
+            arregloNombre[i][j].append(abecedario[j])
+    return arregloNombre
+def eliminarLetra(arregloNombre2):
+    abecedario = "abcdefghijklmnopqrstuvwxyz".upper()
+    for i in range(0,len(arregloNombre2)):
+        for j in range(0,len(arregloNombre2[i])):
+            for x in range(0,len(arregloNombre2[i][j])):
+                if str(arregloNombre2[i][j][x]) in abecedario:
+                    pos = abecedario.find(str(arregloNombre2[i][j][x]))
+                    arregloNombre2[i][j].remove(abecedario[pos])
 
-    #for x in range(0,len(arreglo[0])):
-        #print('->',arreglo[0][x][len(arreglo[0][x])-1])
-    return arreglo
+
+    return arregloNombre2
 def returnarPosArregloPorletra(arreglo,letra):
-    arreglo=nombrarMatrices(arreglo)
     lugar = 0
+    arreglo = nombrarMatrices(arreglo)
     for x in range(0, len(arreglo[0])):
         if arreglo[0][x][len(arreglo[0][x])-1]==letra:
             lugar=x
+    eliminarLetra(arreglo)
+
     return lugar
-#returnarPosArregloPorletra(a,'D')
+#print(returnarPosArregloPorletra(a,'B')," ** ")
 #nombrarMatrices(a)

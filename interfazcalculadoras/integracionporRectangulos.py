@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 from funciones import  calcRectangulo as calcRec
 
@@ -20,6 +21,14 @@ class Ui_Form(object):
         Form.resize(1500, 861)
         Form.setStyleSheet("\n"
 "background-color: rgb(250, 250, 250);")
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # pero le cambias el inicio segun corresponda
+        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Form)
+        pixmap = QPixmap('imagenes/fondo1.png')
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
         self.Funcion = QtWidgets.QLabel(Form)
         self.Funcion.setGeometry(QtCore.QRect(20, 60, 111, 31))
@@ -145,16 +154,11 @@ class Ui_Form(object):
         self.labelsalida.setObjectName("labelsalida")
 
         self.labelintegral = QtWidgets.QLabel(Form)
-        self.labelintegral.setGeometry(QtCore.QRect(20, 430, 131, 31))
+        self.labelintegral.setGeometry(QtCore.QRect(20, 410, 900, 50))
         self.labelintegral.setAcceptDrops(True)
-        self.labelintegral.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.labelintegral.setAutoFillBackground(False)
-        self.labelintegral.setStyleSheet("background-color: rgb(250, 250, 250);\n"
+        self.labelintegral.setStyleSheet("background-color: rgb(31, 195, 153);\n"
 "font: 11pt \"Arial\";\n"
 "")
-        #self.labelintegral.setText("asdasdasdas")
-
-        self.labelintegral.setAlignment(QtCore.Qt.AlignCenter)
         self.labelintegral.setWordWrap(False)
         self.labelintegral.setOpenExternalLinks(True)
         self.labelintegral.setObjectName("labelintegral")
@@ -195,19 +199,19 @@ class Ui_Form(object):
 
         self.simbolointegral = QtWidgets.QLabel(Form)
         self.simbolointegral.setGeometry(QtCore.QRect(150, 410, 25, 50))
-        self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
+        self.simbolointegral.setStyleSheet("background-color: rgb(31, 195, 153);\n""font: 87 27pt \"Arial Black\";")
         self.simbolointegral.setText('∫')
         self.simbolointegral.setObjectName("simbolointegral")
 
         self.limiteIntegral_1 = QtWidgets.QLabel(Form)
         self.limiteIntegral_1.setGeometry(QtCore.QRect(164, 410, 20, 10))
-        self.limiteIntegral_1.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_1.setStyleSheet("background-color: rgb(31, 195, 153);\n""font: 87 9pt \"Arial\";")
         self.limiteIntegral_1.setText('a')
         self.limiteIntegral_1.setObjectName("limiteIntegral_1")
 
         self.limiteIntegral_2 = QtWidgets.QLabel(Form)
         self.limiteIntegral_2.setGeometry(QtCore.QRect(164, 443, 20, 10))
-        self.limiteIntegral_2.setStyleSheet("\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_2.setStyleSheet("background-color: rgb(31, 195, 153);\n""font: 87 9pt \"Arial\";")
         self.limiteIntegral_2.setText('b')
         self.limiteIntegral_2.setObjectName("limiteIntegral_2")
 
