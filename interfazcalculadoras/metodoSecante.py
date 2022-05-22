@@ -11,6 +11,12 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import secante as sc
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
+
 class Ui_Form(object):
     funcionLabel1 = []
     funcionLabel2 = []
@@ -18,11 +24,11 @@ class Ui_Form(object):
         calculadora.setObjectName("calculadora")
         calculadora.resize(800, 800)
         calculadora.setStyleSheet("background-color: rgb(250, 250, 250);")
-        calculadora.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        calculadora.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        calculadora.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        calculadora.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(calculadora)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -30,6 +36,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(calculadora)
         self.layoutWidget.setGeometry(QtCore.QRect(20, 390, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -281,7 +289,7 @@ class Ui_Form(object):
         self.gridLayout_2.addWidget(self.botonAC, 4, 4, 1, 1)
         self.botonAC.clicked.connect(self.eventBorrarTodo)
 
-        self.BotonFun = QtWidgets.QTextEdit(calculadora)
+        self.BotonFun = QtWidgets.QLabel(calculadora)
         self.BotonFun.setGeometry(QtCore.QRect(20, 20, 111, 31))
         self.BotonFun.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
@@ -292,25 +300,20 @@ class Ui_Form(object):
 "font: 87 12pt \"Arial Black\";")
         self.pushButton_8.setObjectName("pushButton_8")
         self.pushButton_8.clicked.connect(self.mostrarGrafica)
-        self.BotonRaiz = QtWidgets.QTextEdit(calculadora)
+        self.BotonRaiz = QtWidgets.QLabel(calculadora)
         self.BotonRaiz.setGeometry(QtCore.QRect(20, 250, 121, 31))
         self.BotonRaiz.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonRaiz.setObjectName("BotonRaiz")
-        self.BotonLimIn = QtWidgets.QTextEdit(calculadora)
+        self.BotonLimIn = QtWidgets.QLabel(calculadora)
         self.BotonLimIn.setGeometry(QtCore.QRect(20, 100, 131, 31))
         self.BotonLimIn.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonLimIn.setObjectName("BotonLimIn")
-        self.pushButton_10 = QtWidgets.QPushButton(calculadora)
-        self.pushButton_10.setGeometry(QtCore.QRect(490, 260, 91, 41))
-        self.pushButton_10.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-"font: 87 12pt \"Arial Black\";")
-        self.pushButton_10.setObjectName("pushButton_10")
 
         #self.BotonNum.setGeometry(QtCore.QRect(20, 330, 131, 31))
 
-        self.BotonLimSup = QtWidgets.QTextEdit(calculadora)
+        self.BotonLimSup = QtWidgets.QLabel(calculadora)
         self.BotonLimSup.setGeometry(QtCore.QRect(20, 140, 131, 31))
         self.BotonLimSup.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
@@ -322,14 +325,14 @@ class Ui_Form(object):
         self.pushButton_9.setObjectName("pushButton_9")
         self.pushButton_9.clicked.connect(self.eventCalcular)
 
-        self.BotonErrorT = QtWidgets.QTextEdit(calculadora)
+        self.BotonErrorT = QtWidgets.QLabel(calculadora)
         self.BotonErrorT.setGeometry(QtCore.QRect(20, 180, 181, 31))
         self.BotonErrorT.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonErrorT.setObjectName("BotonErrorT")
         #        self.BotonError.setGeometry(QtCore.QRect(20, 290, 91, 31))
 
-        self.Intervalos = QtWidgets.QTextEdit(calculadora)
+        self.Intervalos = QtWidgets.QLabel(calculadora)
         self.Intervalos.setGeometry(QtCore.QRect(20, 60, 111, 31))
         self.Intervalos.setStyleSheet("font: 12pt \"Arial\";")
         self.Intervalos.setObjectName("Intervalos")
@@ -914,35 +917,34 @@ class Ui_Form(object):
         self.BotonBorrar.setText(_translate("calculadora", "C"))
         self.BotonBorrar.setShortcut(_translate("calculadora", "Esc"))
         self.botonAC.setText(_translate("calculadora", "AC"))
-        self.BotonFun.setHtml(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonFun.setText(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; color:#000000;\">Función </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#000000;\">F(x):</span></p></body></html>"))
         self.pushButton_8.setText(_translate("calculadora", "Grafica"))
-        self.BotonRaiz.setHtml(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonRaiz.setText(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">La raiz es  r:</span></p></body></html>"))
-        self.BotonLimIn.setHtml(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonLimIn.setText(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">limite inferior </span><span style=\" font-style:italic; color:#000000;\"> a:</span></p></body></html>"))
-        self.pushButton_10.setText(_translate("calculadora", "Tabla"))
-        self.BotonLimSup.setHtml(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonLimSup.setText(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">limite superior </span><span style=\" font-style:italic; color:#000000;\"> b:</span></p></body></html>"))
         self.pushButton_9.setText(_translate("calculadora", "Calcular"))
-        self.BotonErrorT.setHtml(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonErrorT.setText(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error de Tolerancia  Et</span><span style=\" font-style:italic; color:#ffffff;\">:</span></p></body></html>"))
-        self.Intervalos.setHtml(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Intervalos.setText(_translate("calculadora", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"

@@ -12,6 +12,11 @@ from PyQt5.QtWidgets import QMessageBox
 from funciones import  calcRectangulo as calcRec
 
 from funciones import graficadora as gf
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_Form(object):
     funcionLabel1 = []
@@ -21,11 +26,11 @@ class Ui_Form(object):
         Form.resize(1500, 861)
         Form.setStyleSheet("\n"
 "background-color: rgb(250, 250, 250);")
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Form)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -154,7 +159,7 @@ class Ui_Form(object):
         self.labelsalida.setObjectName("labelsalida")
 
         self.labelintegral = QtWidgets.QLabel(Form)
-        self.labelintegral.setGeometry(QtCore.QRect(20, 410, 900, 50))
+        self.labelintegral.setGeometry(QtCore.QRect(20, 410, 2000, 50))
         self.labelintegral.setAcceptDrops(True)
         self.labelintegral.setStyleSheet("background-color: rgb(31, 195, 153);\n"
 "font: 11pt \"Arial\";\n"
@@ -223,6 +228,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(Form)
         self.layoutWidget.setGeometry(QtCore.QRect(500, 10, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_3 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")

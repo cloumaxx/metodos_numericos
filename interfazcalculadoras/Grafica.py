@@ -16,6 +16,11 @@ import matplotlib.pyplot as plt
 import math
 import numpy as np
 from interfazcalculadoras import ScrollLabel
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 
 class Ui_Form(object):
@@ -29,12 +34,11 @@ class Ui_Form(object):
         Grafica.setObjectName("Grafica")
         Grafica.resize(1150, 600)
         Grafica.setStyleSheet("background-color: rgb(250, 250, 250);")
-        Grafica.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Grafica.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        Grafica.setWindowIcon(
-            QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+       # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Grafica)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -48,7 +52,7 @@ class Ui_Form(object):
                                 "funcion que deseas, en donde tambien \n"
                                 "podras colocar los puntos de corte  \n"
                                 "que quieres tener en la grafica")
-        self.funcion = QtWidgets.QTextEdit(Grafica)
+        self.funcion = QtWidgets.QLabel(Grafica)
         self.funcion.setGeometry(QtCore.QRect(20, 20, 111, 31))
         self.funcion.setStyleSheet("font: 12pt \"Arial\";\n"
                                    "background-color: rgb(170, 170, 255);")
@@ -79,19 +83,19 @@ class Ui_Form(object):
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label.setText("")
         self.label.setObjectName("label")
-        self.punto = QtWidgets.QTextEdit(Grafica)
+        self.punto = QtWidgets.QLabel(Grafica)
         self.punto.setGeometry(QtCore.QRect(20, 70, 81, 31))
         self.punto.setStyleSheet("font: 12pt \"Arial\";\n"
                                  "background-color: rgb(170, 170, 255);")
         self.punto.setObjectName("punto")
-        self.parentesisabre = QtWidgets.QTextEdit(Grafica)
+        self.parentesisabre = QtWidgets.QLabel(Grafica)
         self.parentesisabre.setGeometry(QtCore.QRect(110, 70, 21, 31))
         self.parentesisabre.setStyleSheet("font: 12pt \"Arial\";")
         self.parentesisabre.setObjectName("parentesisabre")
         self.textinput = QtWidgets.QLineEdit(Grafica)
         self.textinput.setGeometry(QtCore.QRect(140, 69, 51, 31))
         self.textinput.setObjectName("textinput")
-        self.coma = QtWidgets.QTextEdit(Grafica)
+        self.coma = QtWidgets.QLabel(Grafica)
         self.coma.setGeometry(QtCore.QRect(200, 70, 21, 31))
         self.coma.setStyleSheet("font: 12pt \"Arial\";")
         self.coma.setObjectName("coma")
@@ -100,7 +104,7 @@ class Ui_Form(object):
         self.textinput2.setObjectName("textinput2")
         self.textinput.setText('0')
         self.textinput2.setText('0')
-        self.parentesiscierra = QtWidgets.QTextEdit(Grafica)
+        self.parentesiscierra = QtWidgets.QLabel(Grafica)
         self.parentesiscierra.setGeometry(QtCore.QRect(290, 70, 21, 31))
         self.parentesiscierra.setStyleSheet("font: 12pt \"Arial\";")
         self.parentesiscierra.setObjectName("parentesiscierra")
@@ -144,6 +148,8 @@ class Ui_Form(object):
 
         self.layoutWidget = QtWidgets.QWidget(Grafica)
         self.layoutWidget.setGeometry(QtCore.QRect(20, 230, 565, 203))
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -927,27 +933,27 @@ class Ui_Form(object):
     def retranslateUi(self, Grafica):
         _translate = QtCore.QCoreApplication.translate
         Grafica.setWindowTitle(_translate("Grafica", "Grafica"))
-        self.funcion.setHtml(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.funcion.setText(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                    "p, li { white-space: pre-wrap; }\n"
                                                    "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                    "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; color:#000000;\">Función </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#000000;\">F(x):</span></p></body></html>"))
-        self.punto.setHtml(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.punto.setText(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                  "p, li { white-space: pre-wrap; }\n"
                                                  "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                  "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Punto: </p></body></html>"))
-        self.parentesisabre.setHtml(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.parentesisabre.setText(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                           "p, li { white-space: pre-wrap; }\n"
                                                           "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                           "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">(</p></body></html>"))
-        self.coma.setHtml(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.coma.setText(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                 "p, li { white-space: pre-wrap; }\n"
                                                 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">,</p></body></html>"))
-        self.parentesiscierra.setHtml(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.parentesiscierra.setText(_translate("Grafica", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                             "p, li { white-space: pre-wrap; }\n"
                                                             "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"

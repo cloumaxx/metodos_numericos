@@ -11,6 +11,11 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 from funciones import calcMonteCarlo
 #funciona el txt
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_Form(object):
     funcionLabel1 = []
@@ -19,11 +24,11 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(593, 686)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Form)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -161,6 +166,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(Form)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 440, 571, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")

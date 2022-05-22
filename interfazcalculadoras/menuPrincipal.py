@@ -10,25 +10,29 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon, QPixmap
 
 from interfazcalculadoras import ConversorEntreBases as cEb, Derivadas as der, IEEE as ieee, MetodoBiseccion as mBee, \
-    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra,  Simpson1_3 as simp13,Simpson3_8 as simp38, Grafica  as grafica,Metodo_Montecarlo as Met_Mon
-
+    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra,  Simpson1_3 as simp13,Simpson3_8 as simp38, Grafica  as grafica,Metodo_Montecarlo as Met_Mon,Matrices
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_interfaz(object):
     def setupUi(self, interfaz): # el nombre del dominio de esta pantalla es "interfaz"
         interfaz.setObjectName("interfaz")
         interfaz.resize(1350, 680)
         interfaz.setStyleSheet("background-color: rgb(250, 250, 250);")
-        interfaz.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))#se copia y pega esta linea en todas  las interfaces
+        interfaz.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))#se copia y pega esta linea en todas  las interfaces
                                                                 # pero le cambias el inicio segun corresponda
         self.imagenFondo= QtWidgets.QLabel(interfaz)
-        pixmap = QPixmap('imagenes/fondo1.png')
-
+        nombreArch = resolver_ruta("imagenes/fondo1.png")
+        pixmap = QPixmap(nombreArch)
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
         self.imagenUsar = QtWidgets.QLabel(interfaz)
-        pixmap2 = QPixmap('imagenes/escudoEmpr.png')
+        pixmap2 = QPixmap(resolver_ruta('imagenes/escudoEmpr.png'))
         #pixi = QtGui.QPixmap.fromImage(image).scaledToWidth(150)
         #self.label.setPixmap(pixi)
         self.imagenUsar.setPixmap(pixmap2)
@@ -139,6 +143,14 @@ class Ui_interfaz(object):
         self.botonMonteCarlo.setObjectName("botonMonteCarlo")
         self.botonMonteCarlo.clicked.connect(self.cambioMonteCarlo)
 
+        self.botonMatriz = QtWidgets.QPushButton(interfaz)
+        self.botonMatriz.setGeometry(QtCore.QRect(380, 550, 141, 71))
+        self.botonMatriz.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                           "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonMatriz.setText("Matrices")
+        self.botonMatriz.setObjectName("botonMatriz")
+        self.botonMatriz.clicked.connect(self.cambioMatrices)
+
         self.retranslateUi(interfaz)
         QtCore.QMetaObject.connectSlotsByName(interfaz)
 
@@ -161,6 +173,11 @@ class Ui_interfaz(object):
     def cambioMonteCarlo(self):
         self.interfaz = QtWidgets.QWidget()
         self.ui =Met_Mon.Ui_Form()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
+    def cambioMatrices(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui =Matrices.Ui_Form()
         self.ui.setupUi(self.interfaz)
         self.interfaz.show()
 

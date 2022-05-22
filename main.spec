@@ -17,6 +17,9 @@ a = Analysis(['main.py'],
              win_private_assemblies=False,
              cipher=block_cipher,
              noarchive=False)
+a.datas +=[("./imagenes/fondo1.png","imagenes/fondo1.png","DATA")]
+a.datas +=[("./imagenes/icono.png","imagenes/icono.png","DATA")]
+
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
@@ -37,4 +40,4 @@ exe = EXE(pyz,
           disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
-          entitlements_file=None )
+          entitlements_file=None , icon='icono.ico')

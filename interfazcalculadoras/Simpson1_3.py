@@ -13,6 +13,11 @@ from funciones import calcSimpson13 as simp13
 
 
 #funciona el txt
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_Form(object):
     funcionLabel1 = []
@@ -22,11 +27,11 @@ class Ui_Form(object):
         Simpson13.setObjectName("Simpson13")
         Simpson13.resize(1500, 799)
         Simpson13.setStyleSheet("background-color: rgb(250, 250, 250);")
-        Simpson13.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Simpson13.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        Simpson13.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Simpson13)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -37,6 +42,17 @@ class Ui_Form(object):
         self.label.setText("")
         self.label.setObjectName("label")
 
+        self.labelintegral = QtWidgets.QLabel(Simpson13)
+        self.labelintegral.setGeometry(QtCore.QRect(20, 410, 2000, 50))
+        self.labelintegral.setAcceptDrops(True)
+        self.labelintegral.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.labelintegral.setAutoFillBackground(False)
+        self.labelintegral.setStyleSheet("background-color: rgb(31, 195, 153);\n"
+                                         "font: 11pt \"Arial\";\n"
+                                         "")
+        self.labelintegral.setWordWrap(False)
+        self.labelintegral.setOpenExternalLinks(True)
+        self.labelintegral.setObjectName("labelintegral")
         self.label_5 = QtWidgets.QLineEdit(Simpson13)
         self.label_5.setGeometry(QtCore.QRect(130, 60, 251, 31))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -175,18 +191,6 @@ class Ui_Form(object):
         self.particiones.setWordWrap(False)
         self.particiones.setOpenExternalLinks(True)
         self.particiones.setObjectName("particiones")
-        self.labelintegral = QtWidgets.QLabel(Simpson13)
-        self.labelintegral.setGeometry(QtCore.QRect(10, 420, 131, 31))
-        self.labelintegral.setAcceptDrops(True)
-        self.labelintegral.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.labelintegral.setAutoFillBackground(False)
-        self.labelintegral.setStyleSheet("background-color: rgb(250, 250, 250);\n"
-                                         "font: 11pt \"Arial\";\n"
-                                         "")
-        self.labelintegral.setAlignment(QtCore.Qt.AlignCenter)
-        self.labelintegral.setWordWrap(False)
-        self.labelintegral.setOpenExternalLinks(True)
-        self.labelintegral.setObjectName("labelintegral")
         self.labelerror = QtWidgets.QLineEdit(Simpson13)
         self.labelerror.setGeometry(QtCore.QRect(130, 510, 251, 31))
         self.labelerror.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -195,25 +199,27 @@ class Ui_Form(object):
 
         self.simbolointegral = QtWidgets.QLabel(Simpson13)
         self.simbolointegral.setGeometry(QtCore.QRect(110, 410, 15, 50))
-        self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
+        self.simbolointegral.setStyleSheet("background-color: rgb(31,195,153);\n""font: 87 27pt \"Arial Black\";")
         self.simbolointegral.setText('∫')
         self.simbolointegral.setObjectName("simbolointegral")
 
         self.limiteIntegral_1 = QtWidgets.QLabel(Simpson13)
         self.limiteIntegral_1.setGeometry(QtCore.QRect(125, 410, 20, 10))
-        self.limiteIntegral_1.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_1.setStyleSheet("background-color: rgb(31, 195, 153);\n""font: 87 9pt \"Arial\";")
         self.limiteIntegral_1.setText('a')
         self.limiteIntegral_1.setObjectName("limiteIntegral_1")
 
         self.limiteIntegral_2 = QtWidgets.QLabel(Simpson13)
         self.limiteIntegral_2.setGeometry(QtCore.QRect(125, 443, 20, 10))
-        self.limiteIntegral_2.setStyleSheet("\n""font: 87 9pt \"Arial\";")
+        self.limiteIntegral_2.setStyleSheet("background-color: rgb(31, 195, 153);\n""font: 87 9pt \"Arial\";")
         self.limiteIntegral_2.setText('b')
         self.limiteIntegral_2.setObjectName("limiteIntegral_2")
 
         self.layoutWidget = QtWidgets.QWidget(Simpson13)
         self.layoutWidget.setGeometry(QtCore.QRect(500, 10, 571, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")

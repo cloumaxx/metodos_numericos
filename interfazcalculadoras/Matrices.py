@@ -8,30 +8,53 @@
 from tkinter import Scale
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, QDir
 
 from interfazcalculadoras import ScrollLabel
 from funciones import calcMatrices
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
+
+
 class Ui_Form(object):
-    arregloUtilizar= []
+    arregloUtilizar = []
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(732, 1045)
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
+
         Form.setStyleSheet("background-color: rgb(250, 250, 250);\n"
                            "")
-        self.matrizLabel= QtWidgets.QLabel(Form)
-        self.matrizLabel.setGeometry(QtCore.QRect(80, 10, 300, 20))
+        self.imagenFondo = QtWidgets.QLabel(Form)
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
+
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
+
+        self.matrizLabel = QtWidgets.QLabel(Form)
+        self.matrizLabel.setGeometry(QtCore.QRect(80, 10, 150, 20))
         self.matrizLabel.setText('Matrices guardadas:')
+        self.matrizLabel.setStyleSheet("background-color: rgb(31, 195, 153);\nfont: 10 10pt \"Arial BLACK\";")
+        self.matrizLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.visor = ScrollLabel.ScrollLabel(Form)
         self.visor.setGeometry(QtCore.QRect(10, 40, 300, 180))
 
         self.matrizLabel2 = QtWidgets.QLabel(Form)
-        self.matrizLabel2.setGeometry(QtCore.QRect(470, 10, 300, 20))
+        self.matrizLabel2.setGeometry(QtCore.QRect(470, 10, 150, 20))
         self.matrizLabel2.setText('Matriz Resultante:')
+        self.matrizLabel2.setAlignment(QtCore.Qt.AlignCenter)
+        self.matrizLabel2.setStyleSheet("background-color: rgb(31, 195, 153);\nfont: 10 10pt \"Arial BLACK\";")
+
+
         self.visor2Resultado = ScrollLabel.ScrollLabel(Form)
         self.visor2Resultado.setGeometry(QtCore.QRect(380, 40, 300, 180))
 
-        self.numerodefilas = QtWidgets.QTextEdit(Form)
+        self.numerodefilas = QtWidgets.QLabel(Form)
         self.numerodefilas.setGeometry(QtCore.QRect(10, 230, 181, 31))
         self.numerodefilas.setStyleSheet("font: 12pt \"Arial\";\n"
                                          "background-color: rgb(170, 170, 255);")
@@ -39,14 +62,17 @@ class Ui_Form(object):
         self.numerdefilasedit = QtWidgets.QLineEdit(Form)
         self.numerdefilasedit.setGeometry(QtCore.QRect(200, 230, 161, 31))
         self.numerdefilasedit.setObjectName("numerdefilasedit")
-        self.numcolumnas = QtWidgets.QTextEdit(Form)
+        self.numerdefilasedit.setText("2")
+        self.numcolumnas = QtWidgets.QLabel(Form)
         self.numcolumnas.setGeometry(QtCore.QRect(10, 280, 181, 31))
         self.numcolumnas.setStyleSheet("font: 12pt \"Arial\";\n"
                                        "background-color: rgb(170, 170, 255);")
         self.numcolumnas.setObjectName("numcolumnas")
+
         self.columnasedit = QtWidgets.QLineEdit(Form)
         self.columnasedit.setGeometry(QtCore.QRect(200, 280, 161, 31))
         self.columnasedit.setObjectName("columnasedit")
+        self.columnasedit.setText("2")
         self.botonagregarvalores = QtWidgets.QPushButton(Form)
         self.botonagregarvalores.setGeometry(QtCore.QRect(400, 225, 151, 41))
         self.botonagregarvalores.setStyleSheet("background-color: rgb(225, 225, 225);\n"
@@ -59,13 +85,12 @@ class Ui_Form(object):
         self.botonActualizar = QtWidgets.QPushButton(Form)
         self.botonActualizar.setGeometry(QtCore.QRect(400, 280, 151, 41))
         self.botonActualizar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                               "font: 87 12pt \"Arial Black\";")
+                                           "font: 87 12pt \"Arial Black\";")
         self.botonActualizar.setObjectName("botonActualizar")
         self.botonActualizar.setText('Actualizar')
         self.botonActualizar.clicked.connect(self.eventbotonActualizar)
 
-
-        self.Operaciones = QtWidgets.QTextEdit(Form)
+        self.Operaciones = QtWidgets.QLabel(Form)
         self.Operaciones.setGeometry(QtCore.QRect(10, 340, 181, 31))
         self.Operaciones.setStyleSheet("font: 12pt \"Arial\";\n"
                                        "background-color: rgb(170, 170, 255);")
@@ -84,32 +109,38 @@ class Ui_Form(object):
         self.botonsuma.setStyleSheet("background-color: rgb(0, 170, 127);\n"
                                      "font: 87 14pt \"Arial Black\";")
         self.botonsuma.setObjectName("botonsuma")
+        self.botonsuma.clicked.connect(self.eventBotonSuma)
         self.botonresta = QtWidgets.QPushButton(Form)
         self.botonresta.setGeometry(QtCore.QRect(110, 400, 75, 35))
         self.botonresta.setStyleSheet("background-color: rgb(0, 170, 127);\n"
                                       "font: 87 14pt \"Arial Black\";")
         self.botonresta.setObjectName("botonresta")
+        self.botonresta.clicked.connect(self.eventBotonResta)
         self.botonmultiplicar = QtWidgets.QPushButton(Form)
         self.botonmultiplicar.setGeometry(QtCore.QRect(200, 400, 75, 35))
         self.botonmultiplicar.setStyleSheet("background-color: rgb(0, 170, 127);\n"
                                             "font: 87 14pt \"Arial Black\";")
         self.botonmultiplicar.setObjectName("botonmultiplicar")
+        self.botonmultiplicar.clicked.connect(self.eventBotonMulti)
         self.botonalfa = QtWidgets.QPushButton(Form)
-        self.botonalfa.setGeometry(QtCore.QRect(290, 400, 75, 35))
+        self.botonalfa.setGeometry(QtCore.QRect(290, 400, 120, 35))
         self.botonalfa.setStyleSheet("background-color: rgb(0, 170, 127);\n"
-                                     "font: 87 14pt \"Arial Black\";")
+                                     "font: 9 14pt \"Arial \";")
         self.botonalfa.setObjectName("botonalfa")
+        self.botonalfa.clicked.connect(self.calcularDeterminante)
         self.botonTranspuesta = QtWidgets.QPushButton(Form)
-        self.botonTranspuesta.setGeometry(QtCore.QRect(380, 400, 75, 35))
+        self.botonTranspuesta.setGeometry(QtCore.QRect(425, 400, 120, 35))
         self.botonTranspuesta.setStyleSheet("background-color: rgb(0, 170, 127);\n"
-                                            "font: 87 14pt \"Arial Black\";")
+                                            "font: 10 14pt \"Arial\";")
         self.botonTranspuesta.setObjectName("botonTranspuesta")
+        self.botonTranspuesta.clicked.connect(self.calcularTranspuesta)
         self.botoninversa = QtWidgets.QPushButton(Form)
-        self.botoninversa.setGeometry(QtCore.QRect(470, 400, 75, 35))
+        self.botoninversa.setGeometry(QtCore.QRect(550, 400, 120, 35))
         self.botoninversa.setStyleSheet("background-color: rgb(0, 170, 127);\n"
-                                        "font: 87 14pt \"Arial Black\";")
+                                        "font: 10 14pt \"Arial \";")
         self.botoninversa.setObjectName("botoninversa")
-        self.Resultado = QtWidgets.QTextEdit(Form)
+        self.botoninversa.clicked.connect(self.calcularInversa)
+        self.Resultado = QtWidgets.QLabel(Form)
         self.Resultado.setGeometry(QtCore.QRect(10, 690, 181, 31))
         self.Resultado.setStyleSheet("font: 12pt \"Arial\";\n"
                                      "background-color: rgb(170, 170, 255);")
@@ -118,14 +149,11 @@ class Ui_Form(object):
         self.labelresultado.setGeometry(QtCore.QRect(200, 690, 331, 121))
         self.labelresultado.setText("")
         self.labelresultado.setObjectName("labelresultado")
-        self.pushButton_11 = QtWidgets.QPushButton(Form)
-        self.pushButton_11.setGeometry(QtCore.QRect(560, 400, 91, 41))
-        self.pushButton_11.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                         "font: 87 12pt \"Arial Black\";")
-        self.pushButton_11.setObjectName("pushButton_11")
+
         self.widget = QtWidgets.QWidget(Form)
         self.widget.setGeometry(QtCore.QRect(10, 460, 648, 205))
         self.widget.setObjectName("widget")
+        self.widget.setStyleSheet("background-color: rgb(170, 170, 255);")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.widget)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")
@@ -202,7 +230,6 @@ class Ui_Form(object):
         self.botonUno.setObjectName("botonUno")
         self.gridLayout.addWidget(self.botonUno, 0, 0, 1, 1)
         self.botonUno.clicked.connect(self.eventBoton1)
-
 
         self.botonTres = QtWidgets.QPushButton(self.widget)
         self.botonTres.setStyleSheet("background-color: rgb(0, 170, 255);\n"
@@ -415,262 +442,427 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-
-    def eventResultado(self):
-        listado = self.objeto.get_data()#IngresarMatriz.get_data(self)#IngresarMatriz.get_data(self)#ventana.get_data()
-        copia = listado.copy()
-        ecuacion ="A+B+C" #self.label.text()
-        i =0
-        msj =""
-        acum = []
-        while i<len(ecuacion):
-            if ecuacion[i] == "+":
-                letra1=ecuacion[i-1]
-                letra2=ecuacion[i+1]
-                pos1=calcMatrices.returnarPosArregloPorletra(copia,letra1)
-                dos= calcMatrices.eliminarLetra(copia)
-                pos2=calcMatrices.returnarPosArregloPorletra(copia,letra2)
-                acum+=listado[pos1]
-                acum+=listado[pos2]
-                #terner en cuenta el .shape de un arreglo ############################################################################33
-                i+=3
-            elif ecuacion[i] == "-":
-                msj += ecuacion[i - 1] +"-"+ ecuacion[i + 1] + "\n"
-                i += 3
+    def encontrarPos(self,letra):
+        abecedario = 'abcdefghijklmnopqrstuvwxyz'.upper()
+        letra= letra.upper()
+        pos = abecedario.find(letra[0])
+        return pos
+    def calcularInversa(self):
+        try:
+            funcion = self.label.text()
+            funcion= funcion[0]
+            if len(funcion)==1:
+                pos = self.encontrarPos(funcion)
+                arreglo = self.arregloUtilizar[pos]
+                salida = calcMatrices.inversa(arreglo)
+                msj = ""
+                for i in range(0,len(salida)):
+                    msj+=str(salida[i])+" \n"
+                self.visor2Resultado.setText(msj)
             else:
-                i+=1
-        self.actualizarResultado(acum)
-    import sys
-    def actualizarResultado(self,arreglo):
-        tama = len(arreglo)
-        aux = ""
-        for i in range(0, tama):  # len(arreglo[i])):
-            aux +=str(arreglo[i])+"\n"
-        self.visor2Resultado.setText(aux)
+                msg = QMessageBox()
+                # msg.setIcon(QMessageBox.o)
+                msg.setText("Recuerda que solo puedes calcular la inversa a 1 matriz a la vez ")
+                msg.setWindowTitle("Error")
+                # msg.setStandardButtons(QMessageBox.ok)
+                retval = msg.exec_()
+        except:
+            msg = QMessageBox()
+            # msg.setIcon(QMessageBox.o)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            # msg.setStandardButtons(QMessageBox.ok)
+            retval = msg.exec_()
+    def calcularDeterminante(self):
+        try:
+            funcion = self.label.text()
+            funcion = funcion[0]
 
+            if len(funcion) == 1:
+                pos = self.encontrarPos(funcion)
+                arreglo = self.arregloUtilizar[pos]
+                salida = calcMatrices.determinante(arreglo)
+
+                msj = str(salida) + " \n"
+                self.visor2Resultado.setText(msj)
+            else:
+                msg = QMessageBox()
+                # msg.setIcon(QMessageBox.o)
+                msg.setText("Recuerda que solo puedes calcular el determinante a 1 matriz a la vez ")
+                msg.setWindowTitle("Error")
+                # msg.setStandardButtons(QMessageBox.ok)
+                retval = msg.exec_()
+        except:
+            msg = QMessageBox()
+            # msg.setIcon(QMessageBox.o)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            # msg.setStandardButtons(QMessageBox.ok)
+            retval = msg.exec_()
+    def calcularTranspuesta(self):
+        try:
+            funcion = self.label.text()
+            funcion = funcion[0]
+            if len(funcion) == 1:
+                pos = self.encontrarPos(funcion)
+                arreglo = self.arregloUtilizar[pos]
+                salida = calcMatrices.transpuesta(arreglo)
+                msj = ""
+                for i in range(0, len(salida)):
+                    msj += str(salida[i]) + " \n"
+                print('msj:\n' + msj)
+                self.visor2Resultado.setText(msj)
+            else:
+                msg = QMessageBox()
+                # msg.setIcon(QMessageBox.o)
+                msg.setText("Recuerda que solo puedes calcular la Trasnpuesta a 1 matriz a la vez ")
+                msg.setWindowTitle("Error")
+                # msg.setStandardButtons(QMessageBox.ok)
+                retval = msg.exec_()
+        except:
+            msg = QMessageBox()
+            # msg.setIcon(QMessageBox.o)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            # msg.setStandardButtons(QMessageBox.ok)
+            retval = msg.exec_()
+    def eventResultado(self):
+        try:
+            funcion = self.label.text()
+            funcion = funcion.replace(" ","")
+            tamañolimite = len(funcion)-1
+            i = 1
+
+            while i <tamañolimite:
+                letra1 = funcion[i-1]
+                pos1 = self.encontrarPos(letra1)
+                letra2= funcion[i+1]
+                pos2 = self.encontrarPos(letra2)
+                acum = self.arregloUtilizar[pos1]
+                siguiente = self.arregloUtilizar[pos2]
+                if funcion[i]=="+":
+                    acum=calcMatrices.suma(acum,siguiente)
+                elif funcion[i]=="-":
+                    acum=calcMatrices.resta(acum,siguiente)
+                elif funcion[i]=="*":
+                    acum = calcMatrices.producto(acum, siguiente)
+                i+=1
+            msj = ""
+            for i in range(0, len(acum)):
+                msj += str(acum[i]) + " \n"
+            print('msj:\n' + msj)
+            self.visor2Resultado.setText(msj)
+        except:
+            msg = QMessageBox()
+            # msg.setIcon(QMessageBox.o)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            # msg.setStandardButtons(QMessageBox.ok)
+            retval = msg.exec_()
+    import sys
+    def actualizarResultado(self, arreglo):
+        try:
+            tama = len(arreglo)
+            aux = ""
+            for i in range(0, tama):  # len(arreglo[i])):
+                aux += str(arreglo[i]) + "\n"
+            self.visor2Resultado.setText(aux)
+        except:
+            msg = QMessageBox()
+            # msg.setIcon(QMessageBox.o)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            # msg.setStandardButtons(QMessageBox.ok)
+            retval = msg.exec_()
     def agregarMatriz(self):
         try:
-                filas = int(self.numerdefilasedit.text())
-                columnas = int(self.columnasedit.text())
-                self.interfaz = QtWidgets.QWidget()
-                arr=[]
-                self.objeto = IngresarMatriz(interfazm=self.interfaz,tamaFilas=filas,tamaColum=columnas,arregloMatriz=arr)
-                self.ui = self.objeto#IngresarMatriz()#__init__(self,tamaFilas=filas,tamaColum=columnas)#initUI(self,numFilas=filas,numColum=columnas)
-                self.ui.initUI(self.interfaz,numColum=columnas,numFilas=filas)
-                self.interfaz.show()
+            filas = int(self.numerdefilasedit.text())
+            columnas = int(self.columnasedit.text())
+
+            self.interfaz2 = QtWidgets.QWidget()
+            arr = []
+            objeto = IngresarMatriz(interfazm=self.interfaz2, tamaFilas=filas, tamaColum=columnas, arregloMatriz=arr)
+
+            self.ui = objeto  # IngresarMatriz()#__init__(self,tamaFilas=filas,tamaColum=columnas)#initUI(self,numFilas=filas,numColum=columnas)
+            self.nuevo = self.ui.initUI(self.interfaz2, numColum=columnas, numFilas=filas)
+            self.interfaz2.show()
+            arr = objeto.get_data()
+            self.arregloUtilizar.append(arr)
 
         except:
-                print('revisa')
+             msg = QMessageBox()
+             # msg.setIcon(QMessageBox.o)
+             msg.setText("Revisa los datos ingresados")
+             msg.setWindowTitle("Error")
+             # msg.setStandardButtons(QMessageBox.ok)
+             retval = msg.exec_()
+    def eliminarVacias(self):
+        for i in range(0,len(self.arregloUtilizar)):
+            if len(self.arregloUtilizar[i])==0:
+                self.arregloUtilizar.pop(i)
     def eventbotonActualizar(self):
-        arregloAux = self.objeto.get_data()
-        for m in range(0,len(arregloAux)):
-            self.arregloUtilizar.append(arregloAux[m])
-        arreglo = self.arregloUtilizar
-        tama = len(arreglo)
-        abecedario = "abcdefghijklmnopqrstuvwxyz".upper()
-        aux = ""
-        for j in range(0, tama):  # len(arreglo[i])):
-            matriz = arreglo[j]
-            filas = len(matriz)
-            aux += "Matriz: " + abecedario[j] + "\n"
-            for i in range(0, filas):
-                aux += "["
-                aux += ",".join(matriz[i])+"]\n"
-            aux += "\n"
+        self.eliminarVacias()
+        try:
+            msj = ""
+            abecedario = "abcdefghijklmnopqrstuvwxyz"
 
-        self.visor.setText(aux)
+            for i in range(0, len(self.arregloUtilizar)):
+                msj += "NOMBRE: " + abecedario[i].upper() + "\n"
+                for j in range(0, len(self.arregloUtilizar[i])):
+                    msj += str(self.arregloUtilizar[i][j]) + "\n"
+                msj += "\n"
+            self.visor.setText(msj)
+        except:
+            msg = QMessageBox()
+            # msg.setIcon(QMessageBox.o)
+            msg.setText("Revisa los datos ingresados")
+            msg.setWindowTitle("Error")
+            # msg.setStandardButtons(QMessageBox.ok)
+            retval = msg.exec_()
 
-
+    def eventBotonMulti(self):
+        print('*')
+        self.entrada = self.label.text()
+        self.entrada += "*"
+        self.label.setText(self.entrada)
+    def eventBotonResta(self):
+        print('-')
+        self.entrada = self.label.text()
+        self.entrada += "-"
+        self.label.setText(self.entrada)
+    def eventBotonSuma(self):
+        print('+')
+        self.entrada = self.label.text()
+        self.entrada += "+"
+        self.label.setText(self.entrada)
     def eventBotonParentesis(self):
         print('(')
         self.entrada = self.label.text()
         self.entrada += "("
         self.label.setText(self.entrada)
+
     def eventBotonParentesis2(self):
         print(')')
         self.entrada = self.label.text()
         self.entrada += ")"
         self.label.setText(self.entrada)
+
     def eventBoton0(self):
         print('0')
         self.entrada = self.label.text()
         self.entrada += "0"
         self.label.setText(self.entrada)
+
     def eventBoton1(self):
         print('1')
         self.entrada = self.label.text()
         self.entrada += "1"
         self.label.setText(self.entrada)
+
     def eventBoton2(self):
         print('2')
         self.entrada = self.label.text()
         self.entrada += "2"
         self.label.setText(self.entrada)
+
     def eventBoton3(self):
         print('3')
         self.entrada = self.label.text()
         self.entrada += "3"
         self.label.setText(self.entrada)
+
     def eventBoton4(self):
         print('4')
         self.entrada = self.label.text()
         self.entrada += "4"
         self.label.setText(self.entrada)
+
     def eventBoton5(self):
         print('5')
         self.entrada = self.label.text()
         self.entrada += "5"
         self.label.setText(self.entrada)
+
     def eventBoton6(self):
         print('6')
         self.entrada = self.label.text()
         self.entrada += "6"
         self.label.setText(self.entrada)
+
     def eventBoton7(self):
         print('7')
         self.entrada = self.label.text()
         self.entrada += "7"
         self.label.setText(self.entrada)
+
     def eventBoton8(self):
         print('8')
         self.entrada = self.label.text()
         self.entrada += "8"
         self.label.setText(self.entrada)
+
     def eventBoton9(self):
         print('9')
         self.entrada = self.label.text()
         self.entrada += "9"
         self.label.setText(self.entrada)
+
     def eventBotonA(self):
         print('A')
         self.entrada = self.label.text()
         self.entrada += "A"
         self.label.setText(self.entrada)
+
     def eventBotonB(self):
         print('B')
         self.entrada = self.label.text()
         self.entrada += "B"
         self.label.setText(self.entrada)
+
     def eventBotonC(self):
         print('C')
         self.entrada = self.label.text()
         self.entrada += "C"
         self.label.setText(self.entrada)
+
     def eventBotonD(self):
         print('D')
         self.entrada = self.label.text()
         self.entrada += "D"
         self.label.setText(self.entrada)
+
     def eventBotonE(self):
         print('E')
         self.entrada = self.label.text()
         self.entrada += "E"
         self.label.setText(self.entrada)
+
     def eventBotonF(self):
         print('F')
         self.entrada = self.label.text()
         self.entrada += "F"
         self.label.setText(self.entrada)
+
     def eventBotonG(self):
         print('G')
         self.entrada = self.label.text()
         self.entrada += "G"
         self.label.setText(self.entrada)
+
     def eventBotonH(self):
         print('H')
         self.entrada = self.label.text()
         self.entrada += "H"
         self.label.setText(self.entrada)
+
     def eventBotonI(self):
         print('I')
         self.entrada = self.label.text()
         self.entrada += "I"
         self.label.setText(self.entrada)
+
     def eventBotonJ(self):
         print('J')
         self.entrada = self.label.text()
         self.entrada += "J"
         self.label.setText(self.entrada)
+
     def eventBotonK(self):
         print('K')
         self.entrada = self.label.text()
         self.entrada += "K"
         self.label.setText(self.entrada)
+
     def eventBotonL(self):
         print('L')
         self.entrada = self.label.text()
         self.entrada += "L"
         self.label.setText(self.entrada)
+
     def eventBotonM(self):
         print('M')
         self.entrada = self.label.text()
         self.entrada += "M"
         self.label.setText(self.entrada)
+
     def eventBotonN(self):
         print('N')
         self.entrada = self.label.text()
         self.entrada += "N"
         self.label.setText(self.entrada)
+
     def eventBotonÑ(self):
         print('Ñ')
         self.entrada = self.label.text()
         self.entrada += "Ñ"
         self.label.setText(self.entrada)
+
     def eventBotonO(self):
         print('O')
         self.entrada = self.label.text()
         self.entrada += "O"
         self.label.setText(self.entrada)
+
     def eventBotonP(self):
         print('P')
         self.entrada = self.label.text()
         self.entrada += "P"
         self.label.setText(self.entrada)
+
     def eventBotonQ(self):
         print('Q')
         self.entrada = self.label.text()
         self.entrada += "Q"
         self.label.setText(self.entrada)
+
     def eventBotonR(self):
         print('R')
         self.entrada = self.label.text()
         self.entrada += "R"
         self.label.setText(self.entrada)
+
     def eventBotonS(self):
         print('S')
         self.entrada = self.label.text()
         self.entrada += "S"
         self.label.setText(self.entrada)
+
     def eventBotonT(self):
         print('T')
         self.entrada = self.label.text()
         self.entrada += "T"
         self.label.setText(self.entrada)
+
     def eventBotonU(self):
         print('U')
         self.entrada = self.label.text()
         self.entrada += "U"
         self.label.setText(self.entrada)
+
     def eventBotonV(self):
         print('V')
         self.entrada = self.label.text()
         self.entrada += "V"
         self.label.setText(self.entrada)
+
     def eventBotonW(self):
         print('W')
         self.entrada = self.label.text()
         self.entrada += "W"
         self.label.setText(self.entrada)
+
     def eventBotonX(self):
         print('X')
         self.entrada = self.label.text()
         self.entrada += "X"
         self.label.setText(self.entrada)
+
     def eventBotonY(self):
         print('Y')
         self.entrada = self.label.text()
         self.entrada += "Y"
         self.label.setText(self.entrada)
+
     def eventBotonZ(self):
         print('Z')
         self.entrada = self.label.text()
@@ -680,22 +872,25 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Calculadora de Matrices"))
-        self.numerodefilas.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                                      "p, li { white-space: pre-wrap; }\n"
-                                                      "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-                                                      "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Numero de filas:</p></body></html>"))
-        self.numcolumnas.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                                    "p, li { white-space: pre-wrap; }\n"
-                                                    "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-                                                    "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Numero de Columnas:</p></body></html>"))
+        self.numerodefilas.setText(_translate("Form",
+                                              "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                              "p, li { white-space: pre-wrap; }\n"
+                                              "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+                                              "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Numero de filas:</p></body></html>"))
+        self.numcolumnas.setText(_translate("Form",
+                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                            "p, li { white-space: pre-wrap; }\n"
+                                            "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Numero de Columnas:</p></body></html>"))
         self.botonagregarvalores.setText(_translate("Form", "Agregar Matriz"))
-        self.Operaciones.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                                    "p, li { white-space: pre-wrap; }\n"
-                                                    "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-                                                    "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Operaciones:</p></body></html>"))
+        self.Operaciones.setText(_translate("Form",
+                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                            "p, li { white-space: pre-wrap; }\n"
+                                            "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Operaciones:</p></body></html>"))
         self.label.setText(_translate("Form", " "))
         self.botonresultado.setText(_translate("Form", "Resultado"))
         self.botonsuma.setText(_translate("Form", "+"))
@@ -704,18 +899,18 @@ class Ui_Form(object):
         self.botonresta.setShortcut(_translate("Form", "Esc"))
         self.botonmultiplicar.setText(_translate("Form", "*"))
         self.botonmultiplicar.setShortcut(_translate("Form", "Esc"))
-        self.botonalfa.setText(_translate("Form", "α"))
+        self.botonalfa.setText(_translate("Form", "Determinante"))
         self.botonalfa.setShortcut(_translate("Form", "Esc"))
-        self.botonTranspuesta.setText(_translate("Form", "A^T"))
+        self.botonTranspuesta.setText(_translate("Form", "Transpuesta"))
         self.botonTranspuesta.setShortcut(_translate("Form", "Esc"))
-        self.botoninversa.setText(_translate("Form", "A^-1"))
+        self.botoninversa.setText(_translate("Form", "Inversa"))
         self.botoninversa.setShortcut(_translate("Form", "Esc"))
-        self.Resultado.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                                  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                                  "p, li { white-space: pre-wrap; }\n"
-                                                  "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-                                                  "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Resultado:</p></body></html>"))
-        self.pushButton_11.setText(_translate("Form", "Calcular"))
+        self.Resultado.setText(_translate("Form",
+                                          "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                          "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                          "p, li { white-space: pre-wrap; }\n"
+                                          "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+                                          "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Resultado:</p></body></html>"))
         self.botonC.setText(_translate("Form", "C"))
         self.botonC.setShortcut(_translate("Form", "C"))
         self.botonP.setText(_translate("Form", "P"))
@@ -791,147 +986,183 @@ class Ui_Form(object):
         self.botonT.setText(_translate("Form", "T"))
         self.botoneliminartodo.setText(_translate("Form", "AC"))
 
+
 # ====================================================================
 
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout, \
-    QPushButton, QLabel
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget,QTableWidgetItem,QVBoxLayout
-from PyQt5.QtGui import QIcon
+    QPushButton, QLabel, QInputDialog, QLineEdit
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import pyqtSlot
 
-from PyQt5.QtWidgets import ( QPushButton, QTableWidget,
+from PyQt5.QtWidgets import (QPushButton, QTableWidget,
                              QTableWidgetItem, QAbstractItemView, QHeaderView, QMenu,
                              QActionGroup, QAction, QMessageBox)
 
+
 class IngresarMatriz(object):
-    def __init__(self,interfazm,tamaFilas=0,tamaColum=0,arregloMatriz=[]):
-        self.arregloAdevolver=arregloMatriz
-        self.initUI(interfazm,numFilas=tamaFilas,numColum=tamaColum)
+    arregloClase = []
+    tamaFilas = 0
+    tamaColumnas = 0
+    limiteFilas = 0
+    limiteColumnas = 0
 
+    def __init__(self, interfazm, tamaFilas=1, tamaColum=2, arregloMatriz=[]):
+        self.arregloAdevolver = arregloMatriz
+        self.tamaColumnas = tamaColum
+        self.limiteFilas = tamaFilas
+        self.limiteColumnas = tamaColum
+        self.initUI(interfazm, numFilas=tamaFilas, numColum=tamaColum)
 
-
-    def initUI(self,interfaz,numFilas,numColum):
+    def initUI(self, interfaz, numFilas, numColum):
         interfaz.setObjectName("Tabla Matriz")
-        interfaz.resize(800,400)
-        self.createTable(filas=numFilas,columnas=numColum)
+        interfaz.resize(800, 400)
         # Añadir diseño de caja(Box Layout), agregue la tabla al diseño de la caja y agregue el diseño de la caja al widget
-        self.layout = QtWidgets.QHBoxLayout(interfaz)#QHBoxLayout(interfaz)
-        self.corchete1 = QLabel()
-        self.corchete1.setGeometry(0, 0, 91, 41)
-        self.corchete1.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                        "font:  120pt \"Arial\";")
-        self.corchete1.setObjectName("corchete1")
-        self.corchete1.setText("[")
-        self.corchete2 = QLabel()
-        self.corchete2.setGeometry(0, 0, 91, 41)
-        self.corchete2.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-                                        "font:  120pt \"Arial\";")
-        self.corchete2.setObjectName("corchete1")
-        self.corchete2.setText("]")
-        self.layout.addWidget(self.corchete1)
-        self.layout.addWidget(self.tableWidget)
-        self.layout.addWidget(self.corchete2)
-        self.BotonGuardar = QPushButton()
-        self.BotonGuardar.setGeometry(10, 10, 91, 41)
-        self.BotonGuardar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+        self.visorMatriz = ScrollLabel.ScrollLabel(interfaz)
+        self.visorMatriz.setGeometry(10, 10, 400, 380)
+        self.visorMatriz.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                       "font:  15pt \"Arial\";")
+        self.visorMatriz.setObjectName("visorMatriz")
+
+        self.Agregar_Fila = QPushButton(interfaz)
+        self.Agregar_Fila.setGeometry(QtCore.QRect(490, 50, 250, 40))
+        self.Agregar_Fila.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                         "font: 87 14pt \"Arial Black\";")
-        self.BotonGuardar.setObjectName("pushButton_10")
-        self.BotonGuardar.setText("Guardar")
-        self.BotonGuardar.clicked.connect(self.agregarNuevaMatriz)
-        self.layout.addWidget(self.BotonGuardar)
+        self.Agregar_Fila.setObjectName("pushButton_10")
+        self.Agregar_Fila.setText("Agregar Fila")
 
-        interfaz.setLayout(self.layout)
+        self.Agregar_Fila.clicked.connect(self.agregarFilaMatriz)
+        self.eliminarr_Fila = QPushButton(interfaz)
+        self.eliminarr_Fila.setGeometry(QtCore.QRect(490, 150, 250, 40))
+        self.eliminarr_Fila.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                          "font: 87 14pt \"Arial Black\";")
+        self.eliminarr_Fila.setObjectName("pushButton_10")
+        self.eliminarr_Fila.setText("Eliminar Fila")
+        self.eliminarr_Fila.clicked.connect(self.eliminar)
 
-        #self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
+        self.BotonActMAtriz = QPushButton(interfaz)
+        self.BotonActMAtriz.setGeometry(QtCore.QRect(490, 100, 250, 40))
+        self.BotonActMAtriz.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                          "font: 87 14pt \"Arial Black\";")
+        self.BotonActMAtriz.setObjectName("BotonActMAtriz")
+        self.BotonActMAtriz.setText("Actualizar Matriz")
+        self.BotonActMAtriz.clicked.connect(self.actualizar)
 
+        self.BotonSalir = QPushButton(interfaz)
+        self.BotonSalir.setGeometry(QtCore.QRect(490, 200, 250, 40))
+        self.BotonSalir.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                      "font: 87 14pt \"Arial Black\";")
+        self.BotonSalir.setObjectName("BotonSalir")
+        self.BotonSalir.setText("Guardar")
+        self.BotonSalir.clicked.connect(interfaz.close)
 
+        return self.arregloAdevolver
+        # self.layoutVertical.addWidget(self.Agregar_Fila)
+        # self.layoutVertical.addWidget(self.BotonActMAtriz)
 
-    def createTable(self,filas,columnas):
-        # Crea Tabla
-        self.tableWidget = QTableWidget()
-        self.tableWidget.setColumnCount(columnas)
-        self.tableWidget.setRowCount(filas)
-        #self.rellenarMatriz(filas,columnas)
-        self.tableWidget.verticalHeader().setVisible(False)
-        self.tableWidget.horizontalHeader().setVisible(False)
-        self.tableWidget.doubleClicked.connect(self.on_click)
-        self.tableWidget.move(0, 0)
+        # self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
 
-        #self.tableWidget.doubleClicked.connect(self.on_click)
-
-        #elf.tableWidget.item()
-        #self.tableWidget.setItem(0, 0, QTableWidgetItem("1"))
-        #self.tableWidget.setItem(0, 1, QTableWidgetItem("2"))
-        #self.tableWidget.setItem(1, 0, QTableWidgetItem("3"))
-        #self.tableWidget.setItem(1, 1, QTableWidgetItem("4"))
-        #self.tableWidget.setItem(2, 0, QTableWidgetItem("5"))
-        #self.tableWidget.setItem(2, 1, QTableWidgetItem("6"))
-        #self.tableWidget.setItem(3, 0, QTableWidgetItem("7"))
-        #self.tableWidget.setItem(3, 1, QTableWidgetItem("8"))
-        #self.tableWidget.adjustSize(True)
-
-        # cambio de selección de tabla
-        #self.tableWidget.doubleClicked.connect(self.on_click)
-
-    def agregarNuevaMatriz(self):
-        columna = self.tableWidget.columnCount()
-        self.tableWidget.update()
-
-        fila=self.tableWidget.rowCount()
-        item = []
-        for n in range(0,fila):
-            fila = []
-            for column in range(0,columna):
-                itemUsar =  self.tableWidget.item(n, column)
-                try:
-                    #>viewport()->update())
-                    print('fila: ', n, ' columna: ', column, ' : ',itemUsar," tipo: ",itemUsar.text())
-                    #fila.append(self.tableWidget.item(n, column).text())
-                except:
-                    print('no')
-                    fila.append('0')
-
-
-            item.append(fila)
-        arregloSalida=[]
-        for n in range(0,len(item)):
-            arregloAux=[]
-            linea=",".join(item[n])
-            fila=linea.split(',')
-            for i in range(0,len(fila)):
-                arregloAux.append(fila[i])
-            arregloSalida.append(arregloAux)
-            #print(linea)
-        #print(' *  * * ** ',arregloSalida)
+    def actualizar(self):
+        self.eliminarNoneArray()
+        self.rellenarMatriz()
         msj = ""
+        for i in range(0, len(self.arregloAdevolver)):
+            msj += str(i) + "|  " + str(self.arregloAdevolver[i]) + "\n"
+        self.visorMatriz.setText(msj)
 
-        self.arregloAdevolver.append(arregloSalida)
-        msg = QMessageBox()
-        #msg.setIcon(QMessageBox.Accepted)
-        msg.setText("La matriz fue agregada ")
-        msg.setWindowTitle("Clompleto")
-        msg.setStandardButtons(QMessageBox.Ok)
-        retval = msg.exec_()
+    def agregarFilaMatriz(self):
+        interfaz = QtWidgets.QWidget()
+        text, pressed = QInputDialog.getText(interfaz, "Valores Filas",
+                                             "Ingresa los valores de la fila separados por comas (,): ",
+                                             QLineEdit.Normal, "")
+        text2 = text.replace(",", "")
+        if pressed:
+            if self.tamaFilas < self.limiteFilas:
+                if (len(text2)) <= self.limiteColumnas:
+                    self.arregloAdevolver.append(self.ArregloFila(text))
+                    self.tamaFilas += 1
+                else:
+                    msg = QMessageBox()
+                    # msg.setIcon(QMessageBox.o)
+                    msg.setText("Revisa la entrada de datos ")
+                    msg.setWindowTitle("Error")
+                    # msg.setStandardButtons(QMessageBox.ok)
+                    retval = msg.exec_()
+            else:
+                msg = QMessageBox()
+                # msg.setIcon(QMessageBox.o)
+                msg.setText("No puedes agregar mas filas ")
+                msg.setWindowTitle("Error")
+                # msg.setStandardButtons(QMessageBox.ok)
+                retval = msg.exec_()
+
+    def eliminar(self):
+        interfaz = QtWidgets.QWidget()
+        text, pressed = QInputDialog.getInt(interfaz, "Fila a borrar",
+                                            "Ingresa la fila a borrar: ",
+                                            QLineEdit.Normal, 0)
+        if pressed:
+            self.arregloAdevolver.pop(text)
+
+    def guardar(self):
+        self.rellenarMatriz()
+        return self.arregloAdevolver
+
+    def eliminarNoneArray(self):
+        i = 0
+        tama = len(self.arregloAdevolver)
+        while i < tama:
+            if len(self.arregloAdevolver[i]) == 0:
+                self.arregloAdevolver.pop(i)
+                tama -= 1
+            i += 1
+
+    def ArregloFila(self, texto):
+        texto = str(texto).split(',')
+        numColumnas = self.tamaColumnas
+        abecedario = "abcdefghijklmnopqrstuvwxyz"
+        arreglo = []
+        if len(texto) <= numColumnas:
+            for i in range(0, len(texto)):
+                valor = texto[i]
+                if valor in abecedario or valor in abecedario.upper():
+                    msg = QMessageBox()
+                    # msg.setIcon(QMessageBox.o)
+                    msg.setText("La matriz tiene alguna letra ")
+                    msg.setWindowTitle("Error")
+                    # msg.setStandardButtons(QMessageBox.ok)
+                    retval = msg.exec_()
+                else:
+                    if "-" in valor:
+                        aux = valor.replace("-", "")
+                        dato_entrar = float(aux) * -1
+                        arreglo.append(dato_entrar)
+                    else:
+                        arreglo.append(float(valor))
+            return arreglo
+        else:
+            return []
 
     def get_data(self):
-        return self.arregloAdevolver#arregloAdevolver
+        self.rellenarMatriz()
+        return self.arregloAdevolver  # arregloAdevolver
 
-    def rellenarMatriz(self,fila,columnas):
-        for i in range(0,fila):
-            for j in range(0,columnas):
-                print('')
-                self.tableWidget.setItem(i, j, QTableWidgetItem("0"))
-    def on_click(self):
-        print("?\n")
-        for currentQTableWidgetItem in self.tableWidget.selectedItems():
-            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
+    def rellenarMatriz(self):
 
-    # ref: https://pythonlcpa.blogspot.com/p/blog-page_1.html
+        for i in range(0, len(self.arregloAdevolver)):
+            for j in range(0, self.limiteColumnas):
+                try:
+                    print(self.arregloAdevolver[i][j])
+                except:
+                    self.arregloAdevolver[i].append(0)
+
+
 # ====================================================================
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
     ui = Ui_Form()
@@ -939,3 +1170,4 @@ if __name__ == "__main__":
     Form.show()
     sys.exit(app.exec_())
 
+# remplazar la form por una nueva interfaz

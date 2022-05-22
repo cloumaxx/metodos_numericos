@@ -8,10 +8,16 @@
 #from funciones import biseccion as bss
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtGui import QPixmap, QFont
+from PyQt5.QtWidgets import QMessageBox, QApplication
 
 from funciones import falsaposicion as bss
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
+
 class Ui_Form(object):
         funcionLabel1 = []
         funcionLabel2 = []
@@ -23,52 +29,50 @@ class Ui_Form(object):
                                    "background-color: rgb(250, 250, 250);\n"
                                    "font: 75 14pt \"Arial\";\n"
                                    "")
+                  # pero le cambias el inicio segun corresponda
                 Form.setWindowIcon(
-                        QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
-                # pero le cambias el inicio segun corresponda
-                Form.setWindowIcon(
-                        QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+                        QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
                 self.imagenFondo = QtWidgets.QLabel(Form)
-                pixmap = QPixmap('imagenes/fondo1.png')
+                pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
                 self.imagenFondo.setPixmap(pixmap)
                 self.imagenFondo.setGeometry(0, 0, 270, 120)
                 self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
-                self.BotonFunc = QtWidgets.QTextEdit(Form)
+                self.BotonFunc = QtWidgets.QLabel(Form)
                 self.BotonFunc.setGeometry(QtCore.QRect(10, 20, 111, 31))
                 self.BotonFunc.setStyleSheet("font: 12pt \"Arial\";\n"
                                              "background-color: rgb(170, 170, 255);")
                 self.BotonFunc.setObjectName("BotonFunc")
-                self.BotonInterv = QtWidgets.QTextEdit(Form)
+                self.BotonInterv = QtWidgets.QLabel(Form)
                 self.BotonInterv.setGeometry(QtCore.QRect(10, 60, 111, 31))
                 self.BotonInterv.setStyleSheet("font: 12pt \"Arial\";")
                 self.BotonInterv.setObjectName("BotonInterv")
-                self.BotonLim = QtWidgets.QTextEdit(Form)
+                self.BotonLim = QtWidgets.QLabel(Form)
                 self.BotonLim.setGeometry(QtCore.QRect(10, 100, 131, 31))
                 self.BotonLim.setStyleSheet("font: 12pt \"Arial\";\n"
                                             "background-color: rgb(170, 170, 255);")
                 self.BotonLim.setObjectName("BotonLim")
-                self.BotonLimSup = QtWidgets.QTextEdit(Form)
+                self.BotonLimSup = QtWidgets.QLabel(Form)
                 self.BotonLimSup.setGeometry(QtCore.QRect(10, 140, 131, 31))
                 self.BotonLimSup.setStyleSheet("font: 12pt \"Arial\";\n"
                                                "background-color: rgb(170, 170, 255);")
                 self.BotonLimSup.setObjectName("BotonLimSup")
-                self.BotonError = QtWidgets.QTextEdit(Form)
+                self.BotonError = QtWidgets.QLabel(Form)
                 self.BotonError.setGeometry(QtCore.QRect(10, 180, 181, 31))
                 self.BotonError.setStyleSheet("font: 12pt \"Arial\";\n"
                                               "background-color: rgb(170, 170, 255);")
                 self.BotonError.setObjectName("BotonError")
-                self.BotonRaiz = QtWidgets.QTextEdit(Form)
+                self.BotonRaiz = QtWidgets.QLabel(Form)
                 self.BotonRaiz.setGeometry(QtCore.QRect(10, 250, 121, 31))
                 self.BotonRaiz.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
                                              "background-color: rgb(170, 170, 255);")
                 self.BotonRaiz.setObjectName("BotonRaiz")
-                self.BotonErrorR = QtWidgets.QTextEdit(Form)
+                self.BotonErrorR = QtWidgets.QLabel(Form)
                 self.BotonErrorR.setGeometry(QtCore.QRect(10, 290, 91, 31))
                 self.BotonErrorR.setStyleSheet("font: 14pt \"Arial\";\n"
                                                "background-color: rgb(170, 170, 255);")
                 self.BotonErrorR.setObjectName("BotonErrorR")
-                self.BotonNum = QtWidgets.QTextEdit(Form)
+                self.BotonNum = QtWidgets.QLabel(Form)
                 self.BotonNum.setGeometry(QtCore.QRect(10, 330, 131, 31))
                 self.BotonNum.setStyleSheet("font: 14pt \"Arial\";\n"
                                             "background-color: rgb(170, 170, 255);")
@@ -84,10 +88,13 @@ class Ui_Form(object):
                 self.pushButton_10.setGeometry(QtCore.QRect(480, 260, 91, 41))
                 self.pushButton_10.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                                  "font: 87 14pt \"Arial Black\";")
+                self.pushButton_10.clicked.connect(self.eventTabla)
 
                 self.layoutWidget = QtWidgets.QWidget(Form)
                 self.layoutWidget.setGeometry(QtCore.QRect(10, 390, 565, 203))
                 self.layoutWidget.setObjectName("layoutWidget")
+                self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
                 self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
                 self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
                 self.gridLayout_2.setObjectName("gridLayout_2")
@@ -443,6 +450,42 @@ class Ui_Form(object):
                         msg.setIcon(QMessageBox.Critical)
 
                         msg.setText("Hay algun error\nfuncion: "+str(salida))
+                        msg.setWindowTitle("Error")
+                        msg.setStandardButtons(QMessageBox.Ok)
+                        retval = msg.exec_()
+
+        def eventTabla(self):
+                try:
+                        # se inicializan los labels para poder cambiarlos
+                        self.entrada2 = self.label_2.text()
+                        self.entrada3 = self.label_3.text()
+                        self.entrada4 = self.label_4.text()
+                        # se obtiene cada dato que se digito en la interfaz
+                        self.funcion = self.label_5.text()
+                        self.limite1 = self.TextLimIn.text()
+                        self.limite2 = self.TextLim.text()
+                        self.errorTole = self.TextErrorT.text()
+                        # se hace los calculos respectivos con las variables anteriores
+                        # print(self.funcion)
+                        tabla = bss.returnTabla(self.funcion, self.limite1, self.limite2, self.errorTole)
+
+                        import sys
+
+                        self.aplicacion = QApplication(sys.argv)
+
+                        self.fuente = QFont()
+                        self.fuente.setPointSize(10)
+                        self.aplicacion.setFont(self.fuente)
+
+                        self.ventana = tableWidget(arreglo=tabla)
+                        self.ventana.show()
+
+                except:
+                        salida = str(self.label_5.text())
+                        salida = salida.replace('f', 'x')
+                        msg = QMessageBox()
+                        msg.setIcon(QMessageBox.Critical)
+                        msg.setText("Hay algun error\nfuncion: " + str(salida))
                         msg.setWindowTitle("Error")
                         msg.setStandardButtons(QMessageBox.Ok)
                         retval = msg.exec_()
@@ -874,49 +917,49 @@ class Ui_Form(object):
         def retranslateUi(self, Form):
                 _translate = QtCore.QCoreApplication.translate
                 Form.setWindowTitle(_translate("Form", "Metodo de Regla Falsa"))
-                self.BotonFunc.setHtml(_translate("Form",
+                self.BotonFunc.setText(_translate("Form",
                                                   "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                   "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                   "p, li { white-space: pre-wrap; }\n"
                                                   "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; color:#000000;\">Función </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#000000;\">F(x):</span></p></body></html>"))
-                self.BotonInterv.setHtml(_translate("Form",
+                self.BotonInterv.setText(_translate("Form",
                                                     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                     "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                     "p, li { white-space: pre-wrap; }\n"
                                                     "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                     "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">Intervalos</span></p></body></html>"))
-                self.BotonLim.setHtml(_translate("Form",
+                self.BotonLim.setText(_translate("Form",
                                                  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                  "p, li { white-space: pre-wrap; }\n"
                                                  "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                  "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">limite inferior </span><span style=\" font-style:italic; color:#000000;\"> a:</span></p></body></html>"))
-                self.BotonLimSup.setHtml(_translate("Form",
+                self.BotonLimSup.setText(_translate("Form",
                                                     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                     "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                     "p, li { white-space: pre-wrap; }\n"
                                                     "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                     "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">limite superior </span><span style=\" font-style:italic; color:#000000;\"> b:</span></p></body></html>"))
-                self.BotonError.setHtml(_translate("Form",
+                self.BotonError.setText(_translate("Form",
                                                    "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                    "p, li { white-space: pre-wrap; }\n"
                                                    "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                    "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error de Tolerancia  Et</span><span style=\" font-style:italic; color:#ffffff;\">:</span></p></body></html>"))
-                self.BotonRaiz.setHtml(_translate("Form",
+                self.BotonRaiz.setText(_translate("Form",
                                                   "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                   "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                   "p, li { white-space: pre-wrap; }\n"
                                                   "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                   "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">La raiz es  r:</span></p></body></html>"))
-                self.BotonErrorR.setHtml(_translate("Form",
+                self.BotonErrorR.setText(_translate("Form",
                                                     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                     "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                     "p, li { white-space: pre-wrap; }\n"
                                                     "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                     "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error   Er:</span></p></body></html>"))
-                self.BotonNum.setHtml(_translate("Form",
+                self.BotonNum.setText(_translate("Form",
                                                  "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                  "p, li { white-space: pre-wrap; }\n"
@@ -982,6 +1025,217 @@ class Ui_Form(object):
                 self.label_4.setText(_translate("Form", ""))  # Numero iteracion
                 self.label_5.setText(_translate("Form", ""))  # ingresoFuncion
 
+
+from PyQt5.QtGui import QFont, QIcon, QColor, QPixmap
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (QApplication, QDialog, QPushButton, QTableWidget,
+                             QTableWidgetItem, QAbstractItemView, QHeaderView, QMenu,
+                             QActionGroup, QAction, QMessageBox)
+
+from funciones import biseccion as bss
+# ======================= CLASE tableWidget ========================
+
+class tableWidget(QDialog):
+    def __init__(self, parent=None,arreglo=[]):
+        super(tableWidget, self).__init__(parent)
+        self.setWindowTitle("Tabla Datos")
+        self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint |
+                            Qt.MSWindowsFixedSizeDialogHint)
+        self.setFixedSize(950, 348)
+
+        self.initUI(listadoUsar=arreglo)
+
+    def initUI(self,listadoUsar):
+
+        # ================== WIDGET  QTableWidget ==================
+
+        self.tabla = QTableWidget(self)
+
+        # Deshabilitar edición
+        self.tabla.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+        # Deshabilitar el comportamiento de arrastrar y soltar
+        self.tabla.setDragDropOverwriteMode(False)
+
+        # Seleccionar toda la fila
+        self.tabla.setSelectionBehavior(QAbstractItemView.SelectRows)
+
+        # Seleccionar una fila a la vez
+        self.tabla.setSelectionMode(QAbstractItemView.SingleSelection)
+
+        # Especifica dónde deben aparecer los puntos suspensivos "..." cuando se muestran
+        # textos que no encajan
+        self.tabla.setTextElideMode(Qt.ElideRight)  # Qt.ElideNone
+
+        # Establecer el ajuste de palabras del texto
+        self.tabla.setWordWrap(False)
+
+        # Deshabilitar clasificación
+        self.tabla.setSortingEnabled(False)
+
+        # Establecer el número de columnas
+        self.tabla.setColumnCount(8)
+
+        # Establecer el número de filas
+        self.tabla.setRowCount(0)
+
+        # Alineación del texto del encabezado
+        self.tabla.horizontalHeader().setDefaultAlignment(Qt.AlignHCenter | Qt.AlignVCenter |
+                                                          Qt.AlignCenter)
+
+        # Deshabilitar resaltado del texto del encabezado al seleccionar una fila
+        self.tabla.horizontalHeader().setHighlightSections(False)
+
+        # Hacer que la última sección visible del encabezado ocupa todo el espacio disponible
+        self.tabla.horizontalHeader().setStretchLastSection(True)
+
+        # Ocultar encabezado vertical
+        self.tabla.verticalHeader().setVisible(False)
+
+        # Dibujar el fondo usando colores alternados
+        self.tabla.setAlternatingRowColors(True)
+
+        # Establecer altura de las filas
+        self.tabla.verticalHeader().setDefaultSectionSize(20)
+
+        # self.tabla.verticalHeader().setHighlightSections(True)
+
+        nombreColumnas = ("Iteracion", "Funcion", "Intervalo A", "Intervalo B", "F(ri)", "E_r","E_t","Raiz")
+
+        # Establecer las etiquetas de encabezado horizontal usando etiquetas
+        self.tabla.setHorizontalHeaderLabels(nombreColumnas)
+
+        # Menú contextual
+        self.tabla.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.tabla.customContextMenuRequested.connect(self.menuContextual)
+
+        # Establecer ancho de las columnas
+        for indice, ancho in enumerate((80, 120, 120, 110, 150), start=0):
+            self.tabla.setColumnWidth(indice, ancho)
+
+        self.tabla.resize(900, 240)
+        self.tabla.move(20, 56)
+
+        # =================== WIDGETS QPUSHBUTTON ==================
+
+        botonMostrarDatos = QPushButton("Mostrar datos", self)
+        botonMostrarDatos.setFixedWidth(140)
+        botonMostrarDatos.move(20, 20)
+
+        menu = QMenu()
+        for indice, columna in enumerate(nombreColumnas, start=0):
+            accion = QAction(columna, menu)
+            accion.setCheckable(True)
+            accion.setChecked(True)
+            accion.setData(indice)
+
+            menu.addAction(accion)
+
+        botonMostrarOcultar = QPushButton("Motrar/ocultar columnas", self)
+        botonMostrarOcultar.setFixedWidth(180)
+        botonMostrarOcultar.setMenu(menu)
+        botonMostrarOcultar.move(170, 20)
+
+
+
+
+        # ======================== EVENTOS =========================
+
+        botonMostrarDatos.clicked.connect(lambda :self.datosTabla(listadoUsar))
+
+
+        menu.triggered.connect(self.mostrarOcultar)
+
+    # ======================= FUNCIONES ============================
+
+
+    def datosTabla(self,listar=[]):
+        datos = [("1", "Andres", "Niño", "Masculino", "06/12/2019", "Colombia"," "," s"),
+                 ("2", "Donald", "Trump", "Masculino", "06/12/1950", "Estados Unidos"),
+                 ("3", "María Fernanda", "Espinosa", "Femenino", "06/10/1980", "Ecuador"),
+                 ("4", "Alberto", "Canosa", "Masculino", "04/05/1876", "España"),
+                 ("5", "Virtud", "Pontes", "Femenino", "23/18/1965", "España"),
+                 ("6", "Elon", "Musk", "Masculino", "06/12/1960", "Estados Unidos"),
+                 ("7", "Richard", "Branson", "Masculino", "14/12/1956", "Reino Unido"),
+                 ("8", "Gabriel", "Garcia Marquez", "Masculino", "19/11/1948", "Colombia"),
+                 ("9", "Valentina", "Tereshkova", "Femenino", "06/03/1937", "Rusia"),
+                 ("10", "Artur", "Fischer", "Masculino", "31/12/1919", "Alemania"),
+                 ("11", "Grace", "Murray Hopper", "Femenino", "09/12/1906", "Estados Unidos"),
+                 ("12", "Guido van", "Rossum", "Masculino", "31/01/1956", "Países Bajos")]
+        self.tabla.clearContents()
+        row = 0
+        tamaño = len(listar[0])
+        contador=0
+
+        for i in range(0,tamaño):
+            numIteraciones=listar[0]
+            numFuncion=listar[1]
+            numA=listar[2]
+            numB = listar[3]
+            numFri=listar[4]
+            numEr=listar[5]
+            numEt=listar[6]
+            numRaiz=listar[7]
+            self.tabla.setRowCount(row + 1)
+
+            # idDato = QTableWidgetItem(i[0])
+            #idDato.setTextAlignment(4)
+
+            self.tabla.setItem(row, 0, QTableWidgetItem(str(numIteraciones[contador])))
+            self.tabla.setItem(row, 1, QTableWidgetItem(str(numFuncion[contador])))
+            self.tabla.setItem(row, 2, QTableWidgetItem(str(numA[contador])))
+            self.tabla.setItem(row, 3, QTableWidgetItem(str(numB[contador])))
+            self.tabla.setItem(row, 4, QTableWidgetItem(str(numFri[contador])))
+            self.tabla.setItem(row, 5, QTableWidgetItem(str(numEr[contador])))
+            self.tabla.setItem(row, 6, QTableWidgetItem(str(numEt[contador])))
+            self.tabla.setItem(row, 7, QTableWidgetItem(str(numRaiz[contador])))
+            row += 1
+            contador+=1
+    def mostrarOcultar(self, accion):
+        columna = accion.data()
+
+        if accion.isChecked():
+            self.tabla.setColumnHidden(columna, False)
+        else:
+            self.tabla.setColumnHidden(columna, True)
+
+
+
+    def menuContextual(self, posicion):
+        indices = self.tabla.selectedIndexes()
+
+        if indices:
+            menu = QMenu()
+
+            itemsGrupo = QActionGroup(self)
+            itemsGrupo.setExclusive(True)
+
+            menu.addAction(QAction("Copiar todo", itemsGrupo))
+
+            columnas = [self.tabla.horizontalHeaderItem(columna).text()
+                        for columna in range(self.tabla.columnCount())
+                        if not self.tabla.isColumnHidden(columna)]
+
+            for indice, item in enumerate(columnas, start=0):
+                accion = QAction(item, itemsGrupo)
+                accion.setData(indice)
+
+
+            itemsGrupo.triggered.connect(self.copiarTableWidgetItem)
+
+            menu.exec_(self.tabla.viewport().mapToGlobal(posicion))
+
+    def copiarTableWidgetItem(self, accion):
+        filaSeleccionada = [dato.text() for dato in self.tabla.selectedItems()]
+
+        if accion.text() == "Copiar todo":
+            filaSeleccionada = tuple(filaSeleccionada)
+        else:
+            filaSeleccionada = filaSeleccionada[accion.data()]
+
+        print(filaSeleccionada)
+
+        return
 
 if __name__ == "__main__":
     import sys

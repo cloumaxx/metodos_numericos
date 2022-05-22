@@ -12,19 +12,26 @@ from interfazcalculadoras import ScrollLabel
 from PyQt5 import QtCore, QtGui, QtWidgets
 import  sys
 from funciones import calcDerivadas as calD
+
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
+
 class Ui_Form(object):
     funcionLabel1 = []
     funcionLabel2 = []
     def setupUi(self, Derivadas):
         Derivadas.setObjectName("Derivadas")
         Derivadas.resize(745, 611)
-        Derivadas.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Derivadas.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun correspond
 
         Derivadas.setStyleSheet("background-color: rgb(250, 250, 250);")
-        Derivadas.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Derivadas.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Derivadas)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -91,7 +98,7 @@ class Ui_Form(object):
         self.pushButton_11.setStyleSheet("background-color: rgb(225, 225, 225);\n"
                                          "font: 87 12pt \"Arial Black\";")
         self.pushButton_11.setObjectName("pushButton_11")"""
-        self.textEdit_7 = QtWidgets.QLineEdit(Derivadas)
+        self.textEdit_7 = QtWidgets.QLabel(Derivadas)
         self.textEdit_7.setGeometry(QtCore.QRect(30, 230, 71, 31))
         self.textEdit_7.setStyleSheet("font: 12pt \"Arial\";\n"
                                       "background-color: rgb(170, 170, 255);")
@@ -119,6 +126,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(Derivadas)
         self.layoutWidget.setGeometry(QtCore.QRect(30, 350, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")

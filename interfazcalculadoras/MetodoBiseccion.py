@@ -18,6 +18,11 @@ from interfazcalculadoras import TablaBiseccion as tablaInter
 import tabulate
 import numpy as np
 import matplotlib.pyplot as plt
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 
 class Ui_Form(object):
@@ -30,50 +35,49 @@ class Ui_Form(object):
                            "background-color: rgb(250, 250, 250);\n"
                            "font: 75 14pt \"Arial\";\n"
                            "")
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Form)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
-        self.BotonFunc = QtWidgets.QTextEdit(Form)
+        self.BotonFunc = QtWidgets.QLabel(Form)
         self.BotonFunc.setGeometry(QtCore.QRect(10, 20, 111, 31))
         self.BotonFunc.setStyleSheet("font: 12pt \"Arial\";\n"
                                      "background-color: rgb(170, 170, 255);")
         self.BotonFunc.setObjectName("BotonFunc")
-        self.BotonInterv = QtWidgets.QTextEdit(Form)
+        self.BotonInterv = QtWidgets.QLabel(Form)
         self.BotonInterv.setGeometry(QtCore.QRect(10, 60, 111, 31))
         self.BotonInterv.setStyleSheet("font: 12pt \"Arial\";")
         self.BotonInterv.setObjectName("BotonInterv")
-        self.BotonLim = QtWidgets.QTextEdit(Form)
+        self.BotonLim = QtWidgets.QLabel(Form)
         self.BotonLim.setGeometry(QtCore.QRect(10, 100, 131, 31))
         self.BotonLim.setStyleSheet("font: 12pt \"Arial\";\n"
                                     "background-color: rgb(170, 170, 255);")
         self.BotonLim.setObjectName("BotonLim")
-        self.BotonLimSup = QtWidgets.QTextEdit(Form)
+        self.BotonLimSup = QtWidgets.QLabel(Form)
         self.BotonLimSup.setGeometry(QtCore.QRect(10, 140, 131, 31))
         self.BotonLimSup.setStyleSheet("font: 12pt \"Arial\";\n"
                                        "background-color: rgb(170, 170, 255);")
         self.BotonLimSup.setObjectName("BotonLimSup")
-        self.BotonError = QtWidgets.QTextEdit(Form)
+        self.BotonError = QtWidgets.QLabel(Form)
         self.BotonError.setGeometry(QtCore.QRect(10, 180, 181, 31))
         self.BotonError.setStyleSheet("font: 12pt \"Arial\";\n"
                                       "background-color: rgb(170, 170, 255);")
         self.BotonError.setObjectName("BotonError")
-        self.BotonRaiz = QtWidgets.QTextEdit(Form)
+        self.BotonRaiz = QtWidgets.QLabel(Form)
         self.BotonRaiz.setGeometry(QtCore.QRect(10, 250, 121, 31))
         self.BotonRaiz.setStyleSheet("font: 87 14pt \"Arial Black\";\n"
                                      "background-color: rgb(170, 170, 255);")
         self.BotonRaiz.setObjectName("BotonRaiz")
-        self.BotonErrorR = QtWidgets.QTextEdit(Form)
+        self.BotonErrorR = QtWidgets.QLabel(Form)
         self.BotonErrorR.setGeometry(QtCore.QRect(10, 290, 91, 31))
         self.BotonErrorR.setStyleSheet("font: 14pt \"Arial\";\n"
                                        "background-color: rgb(170, 170, 255);")
         self.BotonErrorR.setObjectName("BotonErrorR")
-        self.BotonNum = QtWidgets.QTextEdit(Form)
+        self.BotonNum = QtWidgets.QLabel(Form)
         self.BotonNum.setGeometry(QtCore.QRect(10, 330, 131, 31))
         self.BotonNum.setStyleSheet("font: 14pt \"Arial\";\n"
                                     "background-color: rgb(170, 170, 255);")
@@ -95,6 +99,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(Form)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 390, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -385,16 +391,16 @@ class Ui_Form(object):
         self.TextLimIn = QtWidgets.QLineEdit(Form)
         self.TextLimIn.setGeometry(QtCore.QRect(160, 100, 281, 31))#limite1
         self.TextLimIn.setObjectName("TextLimIn")
-        self.TextLimIn.setText("0")#$$$
+        self.TextLimIn.setText("")#$$$
 
         self.TextLim = QtWidgets.QLineEdit(Form) # ingreso de datos por teclado
         self.TextLim.setGeometry(QtCore.QRect(160, 140, 281, 31))
         self.TextLim.setObjectName("TextLim")
-        self.TextLim.setText("5")#$$$
+        self.TextLim.setText("")#$$$
         self.TextErrorT = QtWidgets.QLineEdit(Form)
         self.TextErrorT.setGeometry(QtCore.QRect(200, 180, 271, 31))
         self.TextErrorT.setObjectName("TextErrorT")
-        self.TextErrorT.setText("0.001")#$$$
+        self.TextErrorT.setText("")#$$$
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
     #
@@ -917,49 +923,49 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Metodo de Bisección"))
-        self.BotonFunc.setHtml(_translate("Form",
+        self.BotonFunc.setText(_translate("Form",
                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                           "p, li { white-space: pre-wrap; }\n"
                                           "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; color:#000000;\">Función </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#000000;\">F(x):</span></p></body></html>"))
-        self.BotonInterv.setHtml(_translate("Form",
+        self.BotonInterv.setText(_translate("Form",
                                             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                             "p, li { white-space: pre-wrap; }\n"
                                             "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                             "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">Intervalos</span></p></body></html>"))
-        self.BotonLim.setHtml(_translate("Form",
+        self.BotonLim.setText(_translate("Form",
                                          "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                          "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                          "p, li { white-space: pre-wrap; }\n"
                                          "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                          "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">limite inferior </span><span style=\" font-style:italic; color:#000000;\"> a:</span></p></body></html>"))
-        self.BotonLimSup.setHtml(_translate("Form",
+        self.BotonLimSup.setText(_translate("Form",
                                             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                             "p, li { white-space: pre-wrap; }\n"
                                             "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                             "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">limite superior </span><span style=\" font-style:italic; color:#000000;\"> b:</span></p></body></html>"))
-        self.BotonError.setHtml(_translate("Form",
+        self.BotonError.setText(_translate("Form",
                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                            "p, li { white-space: pre-wrap; }\n"
                                            "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error de Tolerancia  Et</span><span style=\" font-style:italic; color:#ffffff;\">:</span></p></body></html>"))
-        self.BotonRaiz.setHtml(_translate("Form",
+        self.BotonRaiz.setText(_translate("Form",
                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                           "p, li { white-space: pre-wrap; }\n"
                                           "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                           "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">La raiz es  r:</span></p></body></html>"))
-        self.BotonErrorR.setHtml(_translate("Form",
+        self.BotonErrorR.setText(_translate("Form",
                                             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                             "p, li { white-space: pre-wrap; }\n"
                                             "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                             "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error   Er:</span></p></body></html>"))
-        self.BotonNum.setHtml(_translate("Form",
+        self.BotonNum.setText(_translate("Form",
                                          "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                          "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                          "p, li { white-space: pre-wrap; }\n"
@@ -1023,7 +1029,7 @@ class Ui_Form(object):
         self.label_2.setText(_translate("Form", "0"))  # Ráiz
         self.label_3.setText(_translate("Form", "0"))  # Error Er
         self.label_4.setText(_translate("Form", "0"))  # Numero iteracion
-        self.label_5.setText(_translate("Form", "x*x-2"))  # ingresoFuncion
+        self.label_5.setText(_translate("Form", ""))  # ingresoFuncion
 
 
 from PyQt5.QtGui import QFont, QIcon, QColor, QPixmap

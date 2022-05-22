@@ -1,111 +1,29 @@
-"""arreglo1=[1,2,3,4,5]
-arreglo2=[6,7,8,9,10]
-arreglo3=[[11,12,13,14,15],[15,15,15,15,15,15]]
-solucion=[]
-solucion.append(arreglo1)
-solucion.append(arreglo2)
-print(solucion[1])
-print(solucion[1][2])
-for i in range(len(arreglo3)):
-    for j in range(len[arreglo3[i]]):
-        print()
-print(arreglo3)"""
 import numpy as np
 
 
-def suma(m):
-    cantidad = len(m)
-    suma = None
-    iguales = True
-    for i in range(cantidad - 1):
-        if iguales == False:
-            break
-        else:
-            if len(m[i]) == len(m[i + 1]) and len(m[i][0]) == len(m[i + 1][0]):
-                iguales = True
-            else:
-                iguales = False
-
-    if iguales == True:
-        for i in range(cantidad):
-            if i == 0:
-                suma = m[i]
-            else:
-                suma = np.add(suma, m[i])
-
-    return suma
+def suma(m,n):
+    salida = np.array(m)+np.array(n)
+    return salida
 
 
-def resta(m):
-    cantidad = len(m)
-    resta = None
-    iguales = True
-    for i in range(cantidad - 1):
-        if iguales == False:
-            break
-        else:
-            if len(m[i]) == len(m[i + 1]) and len(m[i][0]) == len(m[i + 1][0]):
-                iguales = True
-            else:
-                iguales = False
-
-    if iguales == True:
-        for i in range(cantidad):
-            if i == 0:
-                resta = m[i]
-            else:
-                resta = np.subtract(resta, m[i])
-
-    return resta
+def resta(m,n):
+    salida = np.array(m)-np.array(n)
+    return salida
 
 
-"""
-def producto():
+def producto(m,n):
+    salida= np.dot(m,n)
+    return salida
 
 
-def determinante():
-
-def inversa():
-
-
-def transpuesta():
+def determinante(m):
+    return np.linalg.det(m)
 
 
-def gauss():
-"""
-
-a = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],[[1, 2, 3], [4, 5, 6]],[[1, 2, 3], [4, 5, 6]]]
-b = [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
-c = [[1, 5, 2], [5, 5, 5], [3, 3, 6]]
-d = [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
-
-m = [b, c, d]
-
-def nombrarMatrices(arregloNombre):
-    abecedario="abcdefghijklmnopqrstuvwxyz".upper()
-    for i in range(0,len(arregloNombre)):
-        for j in range(0,len(arregloNombre[i])):
-            arregloNombre[i][j].append(abecedario[j])
-    return arregloNombre
-def eliminarLetra(arregloNombre2):
-    abecedario = "abcdefghijklmnopqrstuvwxyz".upper()
-    for i in range(0,len(arregloNombre2)):
-        for j in range(0,len(arregloNombre2[i])):
-            for x in range(0,len(arregloNombre2[i][j])):
-                if str(arregloNombre2[i][j][x]) in abecedario:
-                    pos = abecedario.find(str(arregloNombre2[i][j][x]))
-                    arregloNombre2[i][j].remove(abecedario[pos])
+def inversa(m):
+    return np.linalg.inv(m)
 
 
-    return arregloNombre2
-def returnarPosArregloPorletra(arreglo,letra):
-    lugar = 0
-    arreglo = nombrarMatrices(arreglo)
-    for x in range(0, len(arreglo[0])):
-        if arreglo[0][x][len(arreglo[0][x])-1]==letra:
-            lugar=x
-    eliminarLetra(arreglo)
-
-    return lugar
-#print(returnarPosArregloPorletra(a,'B')," ** ")
-#nombrarMatrices(a)
+def transpuesta(m):
+    return np.transpose(m)
+a=np.array([[3,4,-1],[2,0,1],[1,3,-2]])

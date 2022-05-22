@@ -11,6 +11,12 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import newthon as nw
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
+
 class Ui_Form(object):
     funcionLabel1 = []
     funcionLabel2 = []
@@ -19,43 +25,37 @@ class Ui_Form(object):
         MetodonewtonRaphson.resize(641, 526)
         MetodonewtonRaphson.setStyleSheet("background-color: rgb(250, 250, 250);\n"
 "")
-        MetodonewtonRaphson.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        MetodonewtonRaphson.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        MetodonewtonRaphson.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(MetodonewtonRaphson)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
-        self.BotonFun = QtWidgets.QTextEdit(MetodonewtonRaphson)
+        self.BotonFun = QtWidgets.QLabel(MetodonewtonRaphson)
         self.BotonFun.setGeometry(QtCore.QRect(20, 20, 111, 31))
         self.BotonFun.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonFun.setObjectName("BotonFun")
 
-        self.BotonErro_2 = QtWidgets.QTextEdit(MetodonewtonRaphson)
+        self.BotonErro_2 = QtWidgets.QLabel(MetodonewtonRaphson)
         self.BotonErro_2.setGeometry(QtCore.QRect(20, 230, 91, 31))
         self.BotonErro_2.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonErro_2.setObjectName("BotonErro_2")
-        self.BotonRaiz = QtWidgets.QTextEdit(MetodonewtonRaphson)
+        self.BotonRaiz = QtWidgets.QLabel(MetodonewtonRaphson)
         self.BotonRaiz.setGeometry(QtCore.QRect(20, 190, 121, 31))
         self.BotonRaiz.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonRaiz.setObjectName("BotonRaiz")
 
-        self.BotonErro = QtWidgets.QTextEdit(MetodonewtonRaphson)
+        self.BotonErro = QtWidgets.QLabel(MetodonewtonRaphson)
         self.BotonErro.setGeometry(QtCore.QRect(20, 140, 181, 31))
         self.BotonErro.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonErro.setObjectName("BotonErro")
-        #tabla
-        self.pushButton_10 = QtWidgets.QPushButton(MetodonewtonRaphson)
-        self.pushButton_10.setGeometry(QtCore.QRect(510, 160, 91, 41))
-        self.pushButton_10.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-"font: 87 12pt \"Arial Black\";")
-        self.pushButton_10.setObjectName("pushButton_10")
+
         #grafica
         self.pushButton_8 = QtWidgets.QPushButton(MetodonewtonRaphson)
         self.pushButton_8.setGeometry(QtCore.QRect(510, 100, 91, 41))
@@ -65,7 +65,7 @@ class Ui_Form(object):
         self.pushButton_8.clicked.connect(self.eventGrafica)
 
         #punto ini
-        self.BotonPun = QtWidgets.QTextEdit(MetodonewtonRaphson)
+        self.BotonPun = QtWidgets.QLabel(MetodonewtonRaphson)
         self.BotonPun.setGeometry(QtCore.QRect(20, 100, 131, 31))
         self.BotonPun.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
@@ -73,6 +73,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(MetodonewtonRaphson)
         self.layoutWidget.setGeometry(QtCore.QRect(17, 280, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -841,29 +843,28 @@ class Ui_Form(object):
     def retranslateUi(self, MetodonewtonRaphson):
         _translate = QtCore.QCoreApplication.translate
         MetodonewtonRaphson.setWindowTitle(_translate("MetodonewtonRaphson", "Metodo Newton Raphson"))
-        self.BotonFun.setHtml(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonFun.setText(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; color:#000000;\">Función </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#000000;\">F(x):</span></p></body></html>"))
-        self.BotonErro_2.setHtml(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonErro_2.setText(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error   Er:</span></p></body></html>"))
-        self.BotonRaiz.setHtml(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonRaiz.setText(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">La raiz es  r:</span></p></body></html>"))
-        self.BotonErro.setHtml(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonErro.setText(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic; color:#000000;\">Error de Tolerancia  Et</span><span style=\" font-style:italic; color:#ffffff;\">:</span></p></body></html>"))
-        self.pushButton_10.setText(_translate("MetodonewtonRaphson", "Tabla"))
         self.pushButton_8.setText(_translate("MetodonewtonRaphson", "Grafica"))
-        self.BotonPun.setHtml(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonPun.setText(_translate("MetodonewtonRaphson", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"

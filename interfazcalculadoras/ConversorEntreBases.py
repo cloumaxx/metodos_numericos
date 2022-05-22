@@ -13,7 +13,11 @@ import sys
 from PyQt5.QtWidgets import *
 
 from interfazcalculadoras import menuPrincipal
-
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_ConversorEntreBases(object):
     estadoNum="Decimal"
@@ -23,9 +27,9 @@ class Ui_ConversorEntreBases(object):
         ConversorEntreBases.setStyleSheet("\n"
                                           "background-color: rgb(250, 250, 250);")
         # pero le cambias el inicio segun corresponda
-        ConversorEntreBases.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        ConversorEntreBases.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(ConversorEntreBases)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -109,6 +113,8 @@ class Ui_ConversorEntreBases(object):
 
         self.layoutWidget = QtWidgets.QWidget(ConversorEntreBases)
         self.layoutWidget.setGeometry(QtCore.QRect(17, 440, 320, 160))
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)

@@ -11,15 +11,21 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 
 from funciones import calcTrapecio as cTr
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
+
 class Ui_Form(object):
     funcionLabel1 = []
     funcionLabel2 = []
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1150, 600)
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Form)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
@@ -111,7 +117,12 @@ class Ui_Form(object):
         self.particiones.setWordWrap(False)
         self.particiones.setOpenExternalLinks(True)
         self.particiones.setObjectName("particiones")
-
+        self.labelintegral = QtWidgets.QLabel(Form)
+        self.labelintegral.setGeometry(QtCore.QRect(20, 410, 2000, 50))
+        self.labelintegral.setAcceptDrops(True)
+        self.labelintegral.setStyleSheet("background-color: rgb(31, 195, 153);\n"
+                                         "font: 11pt \"Arial\";\n"
+                                         "")
         self.labelParticiones = QtWidgets.QLineEdit(Form)# -> ingreso de las particiones
         self.labelParticiones.setGeometry(QtCore.QRect(170, 270, 251, 31))
         self.labelParticiones.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -132,7 +143,7 @@ class Ui_Form(object):
         self.botongrafica.setObjectName("botongrafica")
         self.botongrafica.clicked.connect(self.mostrarGrafica)
         self.labelsalida = QtWidgets.QLabel(Form)
-        self.labelsalida.setGeometry(QtCore.QRect(20, 390, 111, 31))
+        self.labelsalida.setGeometry(QtCore.QRect(20, 375, 111, 31))
         self.labelsalida.setAcceptDrops(True)
         self.labelsalida.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.labelsalida.setAutoFillBackground(False)
@@ -148,7 +159,7 @@ class Ui_Form(object):
         self.labelintegral.setAcceptDrops(True)
         self.labelintegral.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.labelintegral.setAutoFillBackground(False)
-        self.labelintegral.setStyleSheet("background-color: rgb(250, 250, 250);\n"
+        self.labelintegral.setStyleSheet("background-color: rgb(31, 195, 153);\n"
 "font: 11pt \"Arial\";\n"
 "")
         self.labelintegral.setAlignment(QtCore.Qt.AlignCenter)
@@ -192,20 +203,22 @@ class Ui_Form(object):
         self.labelintegral_2.setObjectName("labelintegral_2")
 
         self.simbolointegral = QtWidgets.QLabel(Form)
-        self.simbolointegral.setGeometry(QtCore.QRect(123, 410, 20, 50))
-        self.simbolointegral.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 87 27pt \"Arial Black\";")
+        self.simbolointegral.setGeometry(QtCore.QRect(150, 410, 20, 50))
+        self.simbolointegral.setStyleSheet("background-color: rgb(31, 195, 153);;\n""font: 87 27pt \"Arial Black\";")
         self.simbolointegral.setText('∫')
         self.simbolointegral.setObjectName("simbolointegral")
 
+
+
         self.limiteIntegral_1 = QtWidgets.QLabel(Form)
-        self.limiteIntegral_1.setGeometry(QtCore.QRect(140, 410, 20, 10))
-        self.limiteIntegral_1.setStyleSheet("font: 87 9pt \"Arial\";")
+        self.limiteIntegral_1.setGeometry(QtCore.QRect(164, 410, 20, 10))
+        self.limiteIntegral_1.setStyleSheet("background-color: rgb(31, 195, 153);font: 87 9pt \"Arial\";")
         self.limiteIntegral_1.setText('a')
         self.limiteIntegral_1.setObjectName("limiteIntegral_1")
 
         self.limiteIntegral_2 = QtWidgets.QLabel(Form)
-        self.limiteIntegral_2.setGeometry(QtCore.QRect(140, 443, 20, 10))
-        self.limiteIntegral_2.setStyleSheet("font: 87 9pt \"Arial\";")
+        self.limiteIntegral_2.setGeometry(QtCore.QRect(164, 443, 20, 10))
+        self.limiteIntegral_2.setStyleSheet("background-color: rgb(31, 195, 153);font: 87 9pt \"Arial\";")
         self.limiteIntegral_2.setText('b')
         self.limiteIntegral_2.setObjectName("limiteIntegral_2")
 
@@ -213,6 +226,8 @@ class Ui_Form(object):
         self.layoutWidget = QtWidgets.QWidget(Form)
         self.layoutWidget.setGeometry(QtCore.QRect(500, 10, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_3 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")

@@ -13,60 +13,68 @@ from PyQt5.QtWidgets import QMessageBox
 from funciones import calcPolinomiosRaices as calP
 from interfazcalculadoras import ScrollLabel
 
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(744, 590)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
-        Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
+        Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         self.imagenFondo = QtWidgets.QLabel(Form)
-        pixmap = QPixmap('imagenes/fondo1.png')
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
-        self.BotonValor = QtWidgets.QTextEdit(Form)
+        self.BotonValor = QtWidgets.QLabel(Form)
         self.BotonValor.setGeometry(QtCore.QRect(20, 20, 181, 31))
         self.BotonValor.setStyleSheet("font: 12pt \"Arial\";\n"
                                       "background-color: rgb(170, 170, 255);")
         self.BotonValor.setObjectName("BotonValor")
-        self.BotonValorCu = QtWidgets.QTextEdit(Form)
+        self.BotonValorCu = QtWidgets.QLabel(Form)
         self.BotonValorCu.setGeometry(QtCore.QRect(20, 70, 181, 31))
         self.BotonValorCu.setStyleSheet("font: 12pt \"Arial\";\n"
                                         "background-color: rgb(170, 170, 255);")
         self.BotonValorCu.setObjectName("BotonValorCu")
-        self.BotonValorLi = QtWidgets.QTextEdit(Form)
+        self.BotonValorLi = QtWidgets.QLabel(Form)
         self.BotonValorLi.setGeometry(QtCore.QRect(20, 120, 181, 31))
         self.BotonValorLi.setStyleSheet("font: 12pt \"Arial\";\n"
                                         "background-color: rgb(170, 170, 255);")
         self.BotonValorLi.setObjectName("BotonValorLi")
-        self.BotonValorIn = QtWidgets.QTextEdit(Form)
+        self.BotonValorIn = QtWidgets.QLabel(Form)
         self.BotonValorIn.setGeometry(QtCore.QRect(20, 170, 181, 31))
         self.BotonValorIn.setStyleSheet("font: 12pt \"Arial\";\n"
                                         "background-color: rgb(170, 170, 255);")
         self.BotonValorIn.setObjectName("BotonValorIn")
-        self.x3 = QtWidgets.QTextEdit(Form)
+        self.x3 = QtWidgets.QLabel(Form)
         self.x3.setGeometry(QtCore.QRect(490, 20, 61, 31))
         self.x3.setStyleSheet("font: 12pt \"Arial\";\n"
                               "\n"
                               "background-color: rgb(101, 255, 175);")
         self.x3.setObjectName("x3")
-        self.x2 = QtWidgets.QTextEdit(Form)
+        self.x2 = QtWidgets.QLabel(Form)
         self.x2.setGeometry(QtCore.QRect(490, 70, 61, 31))
         self.x2.setStyleSheet("font: 12pt \"Arial\";\n"
                               "\n"
                               "background-color: rgb(101, 255, 175);")
         self.x2.setObjectName("x2")
-        self.x = QtWidgets.QTextEdit(Form)
+        self.x = QtWidgets.QLabel(Form)
         self.x.setGeometry(QtCore.QRect(490, 120, 61, 31))
         self.x.setStyleSheet("font: 12pt \"Arial\";\n"
                              "\n"
                              "background-color: rgb(101, 255, 175);")
         self.x.setObjectName("x")
+
         self.layoutWidget = QtWidgets.QWidget(Form)
+        self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.layoutWidget.setGeometry(QtCore.QRect(20, 220, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
@@ -251,7 +259,7 @@ class Ui_Form(object):
                                    "background-color: rgb(0, 170, 127);")
         self.botonAC.setObjectName("botonAC")
         self.gridLayout_2.addWidget(self.botonAC, 4, 4, 1, 1)
-        self.Raices = QtWidgets.QTextEdit(Form)
+        self.Raices = QtWidgets.QLabel(Form)
         self.Raices.setGeometry(QtCore.QRect(20, 450, 181, 31))
         self.Raices.setStyleSheet("font: 12pt \"Arial\";\n"
                                   "background-color: rgb(170, 170, 255);")
@@ -326,37 +334,37 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "polinomios"))
-        self.BotonValor.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonValor.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                    "p, li { white-space: pre-wrap; }\n"
                                                    "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                    "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ingresa el valor de X:</p></body></html>"))
-        self.BotonValorCu.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonValorCu.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                      "p, li { white-space: pre-wrap; }\n"
                                                      "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                      "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Valor cuadratico:</p></body></html>"))
-        self.BotonValorLi.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonValorLi.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                      "p, li { white-space: pre-wrap; }\n"
                                                      "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                      "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Valor lineal:</p></body></html>"))
-        self.BotonValorIn.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.BotonValorIn.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                      "p, li { white-space: pre-wrap; }\n"
                                                      "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                                      "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Valor independiente:</p></body></html>"))
-        self.x3.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.x3.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                            "p, li { white-space: pre-wrap; }\n"
                                            "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">X<span style=\" vertical-align:super;\">3</span></p></body></html>"))
-        self.x2.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.x2.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                            "p, li { white-space: pre-wrap; }\n"
                                            "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">X<span style=\" vertical-align:super;\">2</span></p></body></html>"))
-        self.x.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.x.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                           "p, li { white-space: pre-wrap; }\n"
                                           "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
@@ -430,7 +438,7 @@ class Ui_Form(object):
         self.BotonBorrar.setText(_translate("Form", "C"))
         self.BotonBorrar.setShortcut(_translate("Form", "Esc"))
         self.botonAC.setText(_translate("Form", "AC"))
-        self.Raices.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Raices.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                "p, li { white-space: pre-wrap; }\n"
                                                "</style></head><body style=\" font-family:\'Arial\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
