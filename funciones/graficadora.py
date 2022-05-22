@@ -170,6 +170,15 @@ def graficaParaGraficador(ecuacionUsar, color, ele):
     plt.grid()
 
     return plt
+def graficaCurvas(arreglo1,arreglo2):
+    ecuacionEje = 'x*0'
+    arregloEje = (-200, 200, 0.01)
 
+    plt.plot(arregloEje, [ecuacion(ecuacionEje, i) for i in arregloEje], color='black', label='eje x')
+    plt.plot([ecuacion(ecuacionEje, i) for i in arregloEje], arregloEje, color='black', label='eje y')
+    for i in range(0,len(arreglo1)):
+        graficarPunto(arreglo1[i],arreglo2[i],"red")
+    plt.grid()
+    plt.show()
 # graficaParaGraficador
 # ('((x/2)-(1/3))*(math.exp(1)**(-1/2*(x**2)))+math.sin(math.pi/2*x)','red')#

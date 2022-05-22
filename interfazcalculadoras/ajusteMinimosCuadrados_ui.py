@@ -7,82 +7,160 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from  interfazcalculadoras import ScrollLabel
+import os, sys
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 class Ui_Form(object):
+    coordenadaX = []
+    coordenadaY = []
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(783, 900)
+        Form.resize(1500, 900)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
+        Form.setWindowIcon(
+            QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
+        self.imagenFondo = QtWidgets.QLabel(Form)
+        pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
+        self.imagenFondo.setPixmap(pixmap)
+        self.imagenFondo.setGeometry(0, 0, 270, 120)
+        self.imagenFondo.resize(pixmap.width(), pixmap.height())
         self.label = QtWidgets.QLineEdit(Form)
         self.label.setGeometry(QtCore.QRect(200, 20, 290, 31))
         self.label.setObjectName("label")
-        self.botonagregar = QtWidgets.QPushButton(Form)
-        self.botonagregar.setGeometry(QtCore.QRect(500, 20, 111, 31))
-        self.botonagregar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
-"font: 87 12pt \"Arial Black\";")
-        self.botonagregar.setObjectName("botonagregar")
-        self.botonagregar.clicked.connect(self.abrirTabla)
+        self.labelTexto = QtWidgets.QLabel(Form)
+        self.labelTexto.setGeometry(QtCore.QRect(15, 69, 170, 31))
+        self.labelTexto.setObjectName("labelTexto")
+        self.labelTexto.setText("  Ingresa la coordenada a grafica: ")
+        self.labelTexto.setStyleSheet("background-color: rgb(170, 170, 255)")
+        self.labelTextoParentesis = QtWidgets.QLabel(Form)
+        self.labelTextoParentesis.setGeometry(QtCore.QRect(190, 69, 10, 31))
+        self.labelTextoParentesis.setObjectName("labelTextoParentesis")
+        self.labelTextoParentesis.setStyleSheet("background-color: rgb(31, 195, 153);\n")
+        self.labelTextoParentesis.setText(" ( ")
+
+        self.textinput1 = QtWidgets.QLineEdit(Form)
+        self.textinput1.setGeometry(QtCore.QRect(205, 69, 51, 31))
+        self.textinput1.setObjectName("textinput")
+        self.textinput1.setText('0')
+
+        self.labelTextoComa = QtWidgets.QLabel(Form)
+        self.labelTextoComa.setGeometry(QtCore.QRect(260, 69, 10, 31))
+        self.labelTextoComa.setObjectName("labelTextoComa")
+        self.labelTextoComa.setStyleSheet("background-color: rgb(31, 195, 153);\n")
+        self.labelTextoComa.setText(" , ")
+
+        self.labelTextoParentesis2 = QtWidgets.QLabel(Form)
+        self.labelTextoParentesis2.setGeometry(QtCore.QRect(335, 69, 10, 31))
+        self.labelTextoParentesis2.setObjectName("labelTextoParentesis")
+        self.labelTextoParentesis2.setStyleSheet("background-color: rgb(31, 195, 153);\n")
+        self.labelTextoParentesis2.setText(" ) ")
+
+        self.textinput2 = QtWidgets.QLineEdit(Form)
+        self.textinput2.setGeometry(QtCore.QRect(275, 69, 51, 31))
+        self.textinput2.setObjectName("textinput")
+        self.textinput2.setText('0')
+
+        self.botonAgregarCoordenada = QtWidgets.QPushButton(Form)
+        self.botonAgregarCoordenada.setGeometry(QtCore.QRect(350, 69, 100, 31))
+        self.botonAgregarCoordenada.setObjectName("botonAgregarCoordenada")
+        self.botonAgregarCoordenada.setText("Agregar")
+        self.botonAgregarCoordenada.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                         "font: 87 12pt \"Arial Black\";")
+        self.botonAgregarCoordenada.clicked.connect(self.agregarPunto)
+
+        self.botonGrafica = QtWidgets.QPushButton(Form)
+        self.botonGrafica.setGeometry(QtCore.QRect(370, 265, 100, 31))
+        self.botonGrafica.setObjectName("botonAgregarCoordenada")
+        self.botonGrafica.setText("Grafica")
+        self.botonGrafica.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                                  "font: 87 12pt \"Arial Black\";")
+        self.botonGrafica.clicked.connect(self.grafica)
+
+        self.mostrarPosPuntos = ScrollLabel.ScrollLabel(Form)
+        self.mostrarPosPuntos.setGeometry(QtCore.QRect(15, 110, 400, 45))
+        self.mostrarPosPuntos.setObjectName("textinputPos")
+        self.mostrarPosPuntos.setStyleSheet("font: 35 12pt \"Arial Black\";")
+        self.mostrarPosPuntos.setText("Pos|")
+
+        self.mostrarPuntosX = ScrollLabel.ScrollLabel(Form)
+        self.mostrarPuntosX.setGeometry(QtCore.QRect(15, 150, 400, 50))
+        self.mostrarPuntosX.setObjectName("textinputX")
+        self.mostrarPuntosX.setStyleSheet("font: 40 12pt \"Arial Black\";")
+        self.mostrarPuntosX.setText(" X   |")
+        self.mostrarPuntosY = ScrollLabel.ScrollLabel(Form)
+        self.mostrarPuntosY.setGeometry(QtCore.QRect(15, 200, 400, 50))
+        self.mostrarPuntosY.setObjectName("textinputY")
+        self.mostrarPuntosY.setStyleSheet("font: 40 12pt \"Arial Black\";")
+        self.mostrarPuntosY.setText(" Y  |")
+
         self.botoncalcular = QtWidgets.QPushButton(Form)
-        self.botoncalcular.setGeometry(QtCore.QRect(60, 80, 111, 31))
+        self.botoncalcular.setGeometry(QtCore.QRect(60, 265, 111, 31))
         self.botoncalcular.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
         self.botoncalcular.setObjectName("botoncalcular")
-        self.botonborrar = QtWidgets.QPushButton(Form)
-        self.botonborrar.setGeometry(QtCore.QRect(200, 80, 111, 31))
-        self.botonborrar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+        self.botonActualizar = QtWidgets.QPushButton(Form)
+        self.botonActualizar.setGeometry(QtCore.QRect(200, 265, 150, 31))
+        self.botonActualizar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
-        self.botonborrar.setObjectName("botonborrar")
-        self.textejemplo = QtWidgets.QTextEdit(Form)
-        self.textejemplo.setGeometry(QtCore.QRect(20, 140, 481, 41))
+        self.botonActualizar.setObjectName("botonActualizar")
+
+
+        self.textejemplo = QtWidgets.QLabel(Form)
+        self.textejemplo.setGeometry(QtCore.QRect(20, 300, 481, 41))
         self.textejemplo.setObjectName("textejemplo")
+        self.textejemplo.setStyleSheet("background-color: rgb(31, 195, 153);\n")
         self.gradounoedit = QtWidgets.QLineEdit(Form)
-        self.gradounoedit.setGeometry(QtCore.QRect(130, 210, 261, 31))
+        self.gradounoedit.setGeometry(QtCore.QRect(130, 350, 261, 31))
         self.gradounoedit.setObjectName("gradounoedit")
         self.gradodosedit = QtWidgets.QLineEdit(Form)
-        self.gradodosedit.setGeometry(QtCore.QRect(130, 260, 261, 31))
+        self.gradodosedit.setGeometry(QtCore.QRect(130, 400, 261, 31))
         self.gradodosedit.setObjectName("gradodosedit")
         self.gradotresedit = QtWidgets.QLineEdit(Form)
-        self.gradotresedit.setGeometry(QtCore.QRect(130, 310, 261, 31))
+        self.gradotresedit.setGeometry(QtCore.QRect(130, 450, 261, 31))
         self.gradotresedit.setObjectName("gradotresedit")
         self.gradocuatroedit = QtWidgets.QLineEdit(Form)
-        self.gradocuatroedit.setGeometry(QtCore.QRect(130, 360, 261, 31))
+        self.gradocuatroedit.setGeometry(QtCore.QRect(130, 500, 261, 31))
         self.gradocuatroedit.setObjectName("gradocuatroedit")
         self.gradocincoedit = QtWidgets.QLineEdit(Form)
-        self.gradocincoedit.setGeometry(QtCore.QRect(130, 410, 261, 31))
+        self.gradocincoedit.setGeometry(QtCore.QRect(130, 550, 261, 31))
         self.gradocincoedit.setObjectName("gradocincoedit")
         self.gradoseisedit = QtWidgets.QLineEdit(Form)
-        self.gradoseisedit.setGeometry(QtCore.QRect(130, 460, 261, 31))
+        self.gradoseisedit.setGeometry(QtCore.QRect(130, 600, 261, 31))
         self.gradoseisedit.setObjectName("gradoseisedit")
         self.CCunoedit = QtWidgets.QLineEdit(Form)
-        self.CCunoedit.setGeometry(QtCore.QRect(480, 210, 151, 31))
+        self.CCunoedit.setGeometry(QtCore.QRect(480, 350, 151, 31))
         self.CCunoedit.setObjectName("CCunoedit")
         self.gradouno = QtWidgets.QLabel(Form)
-        self.gradouno.setGeometry(QtCore.QRect(20, 210, 101, 31))
+        self.gradouno.setGeometry(QtCore.QRect(20, 350, 101, 31))
         self.gradouno.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.gradouno.setObjectName("gradouno")
         self.gradodos = QtWidgets.QLabel(Form)
-        self.gradodos.setGeometry(QtCore.QRect(20, 260, 101, 31))
+        self.gradodos.setGeometry(QtCore.QRect(20, 400, 101, 31))
         self.gradodos.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.gradodos.setObjectName("gradodos")
         self.gradotres = QtWidgets.QLabel(Form)
-        self.gradotres.setGeometry(QtCore.QRect(20, 310, 101, 31))
+        self.gradotres.setGeometry(QtCore.QRect(20, 450, 101, 31))
         self.gradotres.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.gradotres.setObjectName("gradotres")
         self.gradocuatro = QtWidgets.QLabel(Form)
-        self.gradocuatro.setGeometry(QtCore.QRect(20, 360, 101, 31))
+        self.gradocuatro.setGeometry(QtCore.QRect(20, 500, 101, 31))
         self.gradocuatro.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.gradocuatro.setObjectName("gradocuatro")
         self.gradocinco = QtWidgets.QLabel(Form)
-        self.gradocinco.setGeometry(QtCore.QRect(20, 410, 101, 31))
+        self.gradocinco.setGeometry(QtCore.QRect(20, 550, 101, 31))
         self.gradocinco.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.gradocinco.setObjectName("gradocinco")
         self.gradoseis = QtWidgets.QLabel(Form)
-        self.gradoseis.setGeometry(QtCore.QRect(20, 460, 101, 31))
+        self.gradoseis.setGeometry(QtCore.QRect(20, 600, 101, 31))
         self.gradoseis.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.gradoseis.setObjectName("gradoseis")
@@ -92,53 +170,55 @@ class Ui_Form(object):
 "background-color: rgb(170, 170, 255);")
         self.numpuntos.setObjectName("numpuntos")
         self.CCuno = QtWidgets.QLabel(Form)
-        self.CCuno.setGeometry(QtCore.QRect(420, 210, 51, 31))
+        self.CCuno.setGeometry(QtCore.QRect(420, 350, 51, 31))
         self.CCuno.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.CCuno.setObjectName("CCuno")
         self.CCdos = QtWidgets.QLabel(Form)
-        self.CCdos.setGeometry(QtCore.QRect(420, 260, 51, 31))
+        self.CCdos.setGeometry(QtCore.QRect(420, 400, 51, 31))
         self.CCdos.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.CCdos.setObjectName("CCdos")
         self.CCtres = QtWidgets.QLabel(Form)
-        self.CCtres.setGeometry(QtCore.QRect(420, 310, 51, 31))
+        self.CCtres.setGeometry(QtCore.QRect(420, 450, 51, 31))
         self.CCtres.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.CCtres.setObjectName("CCtres")
         self.CCcinco = QtWidgets.QLabel(Form)
-        self.CCcinco.setGeometry(QtCore.QRect(420, 410, 51, 31))
+        self.CCcinco.setGeometry(QtCore.QRect(420, 550, 51, 31))
         self.CCcinco.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.CCcinco.setObjectName("CCcinco")
         self.CCcuatro = QtWidgets.QLabel(Form)
-        self.CCcuatro.setGeometry(QtCore.QRect(420, 360, 51, 31))
+        self.CCcuatro.setGeometry(QtCore.QRect(420, 500, 51, 31))
         self.CCcuatro.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.CCcuatro.setObjectName("CCcuatro")
         self.CCseis = QtWidgets.QLabel(Form)
-        self.CCseis.setGeometry(QtCore.QRect(420, 460, 51, 31))
+        self.CCseis.setGeometry(QtCore.QRect(420, 600, 51, 31))
         self.CCseis.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.CCseis.setObjectName("CCseis")
         self.CCdosedit = QtWidgets.QLineEdit(Form)
-        self.CCdosedit.setGeometry(QtCore.QRect(480, 260, 151, 31))
+        self.CCdosedit.setGeometry(QtCore.QRect(480, 400, 151, 31))
         self.CCdosedit.setObjectName("CCdosedit")
         self.CCtresedit = QtWidgets.QLineEdit(Form)
-        self.CCtresedit.setGeometry(QtCore.QRect(480, 310, 151, 31))
+        self.CCtresedit.setGeometry(QtCore.QRect(480, 450, 151, 31))
         self.CCtresedit.setObjectName("CCtresedit")
         self.CCcuatroedit = QtWidgets.QLineEdit(Form)
-        self.CCcuatroedit.setGeometry(QtCore.QRect(480, 360, 151, 31))
+        self.CCcuatroedit.setGeometry(QtCore.QRect(480, 500, 151, 31))
         self.CCcuatroedit.setObjectName("CCcuatroedit")
         self.CCcincoedit = QtWidgets.QLineEdit(Form)
-        self.CCcincoedit.setGeometry(QtCore.QRect(480, 410, 151, 31))
+        self.CCcincoedit.setGeometry(QtCore.QRect(480, 550, 151, 31))
         self.CCcincoedit.setObjectName("CCcincoedit")
         self.CCseisedit = QtWidgets.QLineEdit(Form)
-        self.CCseisedit.setGeometry(QtCore.QRect(480, 460, 151, 31))
+        self.CCseisedit.setGeometry(QtCore.QRect(480, 600, 151, 31))
         self.CCseisedit.setObjectName("CCseisedit")
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(20, 510, 731, 207))
+        self.widget.setGeometry(QtCore.QRect(600, 10, 731, 207))
         self.widget.setObjectName("widget")
+        self.widget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
         self.gridLayout_4 = QtWidgets.QGridLayout(self.widget)
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
@@ -450,6 +530,31 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def agregarPunto(self):
+        x = int(self.textinput1.text())
+        y = int(self.textinput2.text())
+        self.coordenadaX.append(x)
+        self.coordenadaY.append(y)
+        msj = "Pos| "
+        for i in range(0,len(self.coordenadaX)):
+            msj += str(i)+" | "
+        self.mostrarPosPuntos.setText(msj)
+        msj1 = " X   | "
+        for i in range(0,len(self.coordenadaX)):
+            if (len(str(self.coordenadaX[i])))==1:
+                msj1 +=str(self.coordenadaX[i])+" | "
+            else:
+                msj1 += str(self.coordenadaX[i])+" | "
+        msj2 = " Y   | "
+        for i in range(0,len(self.coordenadaY)):
+            if (len(str(self.coordenadaY[i]))) == 1:
+                msj2 += str(self.coordenadaY[i]) + " | "
+            else:
+                msj2 += str(self.coordenadaY[i]) + " | "
+        self.mostrarPuntosY.setText(msj2)
+        self.mostrarPuntosX.setText(msj1)
+
     def abrirTabla(self):
         try:
             filas = 2
@@ -460,6 +565,9 @@ class Ui_Form(object):
             sys.exit(self.interfaz.exec_())
         except:
             print('revisa')
+    def grafica(self):
+        from funciones import graficadora
+        graficadora.graficaCurvas(self.coordenadaX,self.coordenadaY)
     def eventBotonElevado(self):
         print('^')
         self.entrada = self.label.text()
@@ -674,10 +782,9 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Ajuste por mínimos cuadrados"))
-        self.botonagregar.setText(_translate("Form", "Agregar "))
         self.botoncalcular.setText(_translate("Form", "Calcular"))
-        self.botonborrar.setText(_translate("Form", "Borrar"))
-        self.textejemplo.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.botonActualizar.setText(_translate("Form", "Actualizar Tabla"))
+        self.textejemplo.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
@@ -781,7 +888,7 @@ class Ui_Form(object):
 
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import pyqtSlot
 
 

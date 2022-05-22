@@ -10,7 +10,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon, QPixmap
 
 from interfazcalculadoras import ConversorEntreBases as cEb, Derivadas as der, IEEE as ieee, MetodoBiseccion as mBee, \
-    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra,  Simpson1_3 as simp13,Simpson3_8 as simp38, Grafica  as grafica,Metodo_Montecarlo as Met_Mon,Matrices
+    MetodoNewon, MetodoReglaFalsa, metodoSecante, polinomios as mPoli,integracionporRectangulos as intRec,integracionporTrapecios as intTra, \
+    Simpson1_3 as simp13,Simpson3_8 as simp38, Grafica  as grafica,Metodo_Montecarlo as Met_Mon,Matrices, \
+    ajusteMinimosCuadrados_ui as ajuste
 import os, sys
 def resolver_ruta(ruta_relativa):
     if hasattr(sys, '_MEIPASS'):
@@ -151,6 +153,14 @@ class Ui_interfaz(object):
         self.botonMatriz.setObjectName("botonMatriz")
         self.botonMatriz.clicked.connect(self.cambioMatrices)
 
+        self.botonCurvas = QtWidgets.QPushButton(interfaz)
+        self.botonCurvas.setGeometry(QtCore.QRect(550, 380, 141, 71))
+        self.botonCurvas.setStyleSheet("background-color: rgb(225, 225, 225);\n"
+                                       "font: 75 italic 12pt \"Arial Narrow\";")
+        self.botonCurvas.setText("Ajuste Curvas")
+        self.botonCurvas.setObjectName("botonMatriz")
+        self.botonCurvas.clicked.connect(self.cambioCurvas)
+
         self.retranslateUi(interfaz)
         QtCore.QMetaObject.connectSlotsByName(interfaz)
 
@@ -178,6 +188,11 @@ class Ui_interfaz(object):
     def cambioMatrices(self):
         self.interfaz = QtWidgets.QWidget()
         self.ui =Matrices.Ui_Form()
+        self.ui.setupUi(self.interfaz)
+        self.interfaz.show()
+    def cambioCurvas(self):
+        self.interfaz = QtWidgets.QWidget()
+        self.ui =ajuste.Ui_Form()
         self.ui.setupUi(self.interfaz)
         self.interfaz.show()
 
