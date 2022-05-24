@@ -37,6 +37,7 @@ def funcionPrincipal(funcion, intervaloA, intervaloB,raiz ):
     funcion=traductor(funcion)
     intervaloA=int(intervaloA)
     intervaloB=int(intervaloB)
+
     plt = graficadora.graficarFuncion(funcion)
     plt.plot(intervaloA, 0, marker="o", color="red", label="Coordenada A")
     plt.plot(intervaloB, 0, marker="o", color="orange", label="Coordenada B")
@@ -48,7 +49,26 @@ def funcionPrincipal(funcion, intervaloA, intervaloB,raiz ):
 
 
 def secante(funcion1, inferior, superior, tolerancia, repeticiones):
-    funcion1=traductor(funcion1)
+        fx=funcion1
+        x = sp.symbols('x')  # Crea variable x
+        fx = sp.lambdify(x, fx)  # Creamos simbolicamente a f
+
+        xa = inferior
+        xb = superior
+        tolera = tolerancia
+        tramo = repeticiones
+
+        while (tramo >= tolera):
+            fa = fx(xa)
+            fb = fx(xb)
+            xc = xa - fa * (xb - xa) / (fb - fa)
+            tramo = abs(xc - xa)
+            xb = xa
+            xa = xc
+
+        return xc
+print(secante('exp(-2*x**2)+sin(x)-0.1*x',-2,-4,0.01,10))
+"""funcion1=traductor(funcion1)
     x = sp.symbols('x')  # Crea variable x
     funcion = sp.lambdify(x, funcion1)
     error = abs(superior - inferior)
@@ -66,7 +86,7 @@ def secante(funcion1, inferior, superior, tolerancia, repeticiones):
         inferior = superior
         superior = aux
         i += 1
-    return None
+    return None"""
 
 
 def funcion2(x):

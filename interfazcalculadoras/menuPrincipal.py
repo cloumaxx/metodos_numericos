@@ -39,7 +39,7 @@ class Ui_interfaz(object):
         #self.label.setPixmap(pixi)
         self.imagenUsar.setPixmap(pixmap2)
         self.imagenUsar.setStyleSheet("border-image : url(magenes/escudoEmpr.png);")
-        self.imagenUsar.setGeometry(430, 12, 100, 120)
+        self.imagenUsar.setGeometry(0, 0, 0, 0)
         # Opcional, redimensionar la ventana al tamaño de la imagen
         self.pushButton = QtWidgets.QPushButton(interfaz)
         self.pushButton.setGeometry(QtCore.QRect(50, 90, 141, 71))

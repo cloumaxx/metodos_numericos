@@ -374,11 +374,10 @@ class Ui_Form(object):
     def mostrarGrafica(self):
 
         try:
-
                 self.entrada2 = self.label_5.text()
                 self.limite1 = self.TextLimIn.text()
                 self.limite2 = self.TextLim.text()
-                raiz = sc.secante(self.funcion, float(self.limite1), float(self.limite2), float(self.errorTole), 50)
+                raiz = sc.secante(self.entrada2, float(self.limite1), float(self.limite2), float(self.errorTole), 50)
                 if raiz==None:
                         raiz= 0
                 sc.funcionPrincipal(self.entrada2,self.limite1,self.limite2,raiz)
@@ -400,14 +399,13 @@ class Ui_Form(object):
             self.errorTole = self.TextErro.text()
             # se obtiene cada dato que se digito en la interfaz
             self.funcion = self.label.text()
-
             #self.errorTole = self.TextErrorT.text()
             # se hace los calculos respectivos con las variables anteriores
-            raiz = sc.secante(self.funcion, float(self.limite1), float(self.limite2), float(self.errorTole),50)
+            self.entrada2 =self.entrada2.replace("e","exp")
+            raiz = sc.secante(self.entrada2, int(self.limite1), int(self.limite2), float(self.errorTole),50)
             self.entrada2 = str(raiz)
 
 
-            print(self.entrada2)
             self.label_2.setText(self.entrada2)
         except:
                 print('--no se puede borrar mas')

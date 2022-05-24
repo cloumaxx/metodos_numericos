@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from tabulate import tabulate
 import numpy as np
 import scipy.optimize as rs
 import math
