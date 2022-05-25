@@ -107,11 +107,11 @@ class Ui_Form(object):
         self.botoncalcular.setObjectName("botoncalcular")
         self.botoncalcular.clicked.connect(self.calcular)
         self.botonActualizar = QtWidgets.QPushButton(Form)
-        self.botonActualizar.setGeometry(QtCore.QRect(200, 265, 150, 31))
+        self.botonActualizar.setGeometry(QtCore.QRect(190, 265, 170, 31))
         self.botonActualizar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
         self.botonActualizar.setObjectName("botonActualizar")
-
+        self.botonActualizar.clicked.connect(self.borrarPounto)
 
         self.textejemplo = QtWidgets.QLabel(Form)
         self.textejemplo.setGeometry(QtCore.QRect(20, 300, 481, 41))
@@ -138,6 +138,7 @@ class Ui_Form(object):
         self.CCunoedit = QtWidgets.QLineEdit(Form)
         self.CCunoedit.setGeometry(QtCore.QRect(480, 350, 151, 31))
         self.CCunoedit.setObjectName("CCunoedit")
+        self.CCunoedit.setText("")
         self.gradouno = QtWidgets.QLabel(Form)
         self.gradouno.setGeometry(QtCore.QRect(20, 350, 101, 31))
         self.gradouno.setStyleSheet("font: 12pt \"Arial\";\n"
@@ -535,6 +536,41 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+    def borrarPounto(self):
+        interfaz = QtWidgets.QWidget()
+        text, pressed = QInputDialog.getText(interfaz, "Valores a borrar",
+                                             "Ingresa la posicion del arreglo: ",
+                                             QLineEdit.Normal, "")
+        if pressed:
+            try:
+                valor = int(text)
+                self.coordenadaY.pop(valor)
+                self.coordenadaX.pop(valor)
+                self.contador-=1
+                msj = "Pos| "
+                for i in range(0, len(self.coordenadaX)):
+                    msj += str(i) + " | "
+                self.mostrarPosPuntos.setText(msj)
+                msj1 = " X   | "
+                for i in range(0, len(self.coordenadaX)):
+                    if (len(str(self.coordenadaX[i]))) == 1:
+                        msj1 += str(self.coordenadaX[i]) + " | "
+                    else:
+                        msj1 += str(self.coordenadaX[i]) + " | "
+                msj2 = " Y   | "
+                for i in range(0, len(self.coordenadaY)):
+                    if (len(str(self.coordenadaY[i]))) == 1:
+                        msj2 += str(self.coordenadaY[i]) + " | "
+                    else:
+                        msj2 += str(self.coordenadaY[i]) + " | "
+                self.mostrarPuntosY.setText(msj2)
+                self.mostrarPuntosX.setText(msj1)
+            except:
+                msg = QMessageBox()
+                msg.setText("Elemento Borrado Correctamente")
+                msg.setWindowTitle("Exito")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
     def agregarPunto(self):
 
         try:
@@ -573,44 +609,53 @@ class Ui_Form(object):
                 retval = msg.exec_()
 
         except:
-            print("")
-    def abrirTabla(self):
-        try:
-            filas = 2
-            columnas = 10#int(self.label.text())
-            self.interfaz = QApplication(sys.argv)
-            arr = []
-            self.objeto = IngresarMatriz()
-            sys.exit(self.interfaz.exec_())
-        except:
-            print('revisa')
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa la matriz ingresada")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
+
     def grafica(self):
         from funciones import graficadora
         graficadora.graficaCurvas(self.coordenadaX,self.coordenadaY)
     def calcular(self):
-        arregloX= self.coordenadaX
-        arregloY= self.coordenadaY
-        grado1 = curvas.ajusteCurvasGrado1(arregloX,arregloY,int(self.label.text()))
-        grado2 = curvas.ajusteCurvasGrado2(arregloX, arregloY, int(self.label.text()))
-        grado3 = curvas.ajusteCurvasGrado3(arregloX, arregloY, int(self.label.text()))
-        grado4 = curvas.ajusteCurvasGrado4(arregloX, arregloY, int(self.label.text()))
-        grado5 = curvas.ajusteCurvasGrado5(arregloX, arregloY, int(self.label.text()))
-        grado6 = curvas.ajusteCurvasGrado6(arregloX, arregloY, int(self.label.text()))
-        gradoCC1 = curvas.ajusteCurvasGrado1CC(arregloX,arregloY,int(self.label.text()))
-        gradoCC2 = curvas.ajusteCurvasGrado2CC(arregloX, arregloY, int(self.label.text()))
-        gradoCC3 = curvas.ajusteCurvasGrado3CC(arregloX, arregloY, int(self.label.text()))
-        gradoCC4 = curvas.ajusteCurvasGrado4CC(arregloX, arregloY, int(self.label.text()))
-        gradoCC5 = curvas.ajusteCurvasGrado5CC(arregloX, arregloY, int(self.label.text()))
-        gradoCC6 = curvas.ajusteCurvasGrado6CC(arregloX, arregloY, int(self.label.text()))
+        try:
+            arregloX= self.coordenadaX
+            arregloY= self.coordenadaY
+            grado1 = curvas.ajusteCurvasGrado1(arregloX,arregloY,int(self.label.text()))
+            grado2 = curvas.ajusteCurvasGrado2(arregloX, arregloY, int(self.label.text()))
+            grado3 = curvas.ajusteCurvasGrado3(arregloX, arregloY, int(self.label.text()))
+            grado4 = curvas.ajusteCurvasGrado4(arregloX, arregloY, int(self.label.text()))
+            grado5 = curvas.ajusteCurvasGrado5(arregloX, arregloY, int(self.label.text()))
+            grado6 = curvas.ajusteCurvasGrado6(arregloX, arregloY, int(self.label.text()))
+            gradoCC1 = curvas.ajusteCurvasGrado1CC(arregloX,arregloY,int(self.label.text()))
+            gradoCC2 = curvas.ajusteCurvasGrado2CC(arregloX, arregloY, int(self.label.text()))
+            gradoCC3 = curvas.ajusteCurvasGrado3CC(arregloX, arregloY, int(self.label.text()))
+            gradoCC4 = curvas.ajusteCurvasGrado4CC(arregloX, arregloY, int(self.label.text()))
+            gradoCC5 = curvas.ajusteCurvasGrado5CC(arregloX, arregloY, int(self.label.text()))
+            gradoCC6 = curvas.ajusteCurvasGrado6CC(arregloX, arregloY, int(self.label.text()))
+            self.gradounoedit.setText(str(grado1))
+            self.gradodosedit.setText(str(grado2))
+            self.gradotresedit.setText(str(grado3))
+            self.gradocuatroedit.setText(str(grado4))
+            self.gradocincoedit.setText(str(grado5))
+            self.gradoseisedit.setText(str(grado6))
 
-        self.gradounoedit.setText(str(grado1))
-        self.gradodosedit.setText(str(grado2))
-        self.gradotresedit.setText(str(grado3))
-        self.gradocuatroedit.setText(str(grado4))
-        self.gradocincoedit.setText(str(grado5))
-        self.gradoseisedit.setText(str(grado6))
+            self.CCunoedit.setText(str(gradoCC1))
+            self.CCdosedit.setText(str(gradoCC2))
+            self.CCtresedit.setText(str(gradoCC3))
+            self.CCcuatroedit.setText(str(gradoCC4))
+            self.CCcincoedit.setText(str(gradoCC5))
+            self.CCseisedit.setText(str(gradoCC6))
+        except:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Revisa la matriz ingresada")
+            msg.setWindowTitle("Error")
+            msg.setStandardButtons(QMessageBox.Ok)
+            retval = msg.exec_()
 
-        #self.CCunoedit.setText(str(gradoCC1))
     def eventBotonElevado(self):
         print('^')
         self.entrada = self.label.text()
@@ -826,7 +871,7 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Ajuste por mínimos cuadrados"))
         self.botoncalcular.setText(_translate("Form", "Calcular"))
-        self.botonActualizar.setText(_translate("Form", "Actualizar Tabla"))
+        self.botonActualizar.setText(_translate("Form", "Borrar coordenada"))
         self.textejemplo.setText(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -931,7 +976,7 @@ class Ui_Form(object):
 
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout, \
-    QMessageBox
+    QMessageBox, QInputDialog, QLineEdit
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import pyqtSlot
 

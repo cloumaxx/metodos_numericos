@@ -37,8 +37,9 @@ def ajusteCurvasGrado1CC(xi, yi, n):
     r2 = r ** 2
 
     # SALIDA
-    return r
-
+    print('Grado 1 = ', f)
+    print('C.C = ', r)
+    return str(r)
 
 def ajusteCurvasGrado1(xi, yi, n):
     # PROCEDIMIENTO
@@ -122,7 +123,7 @@ def ajusteCurvasGrado2CC(xi, yi, n):
     r = (st - sr) / st
 
     # SALIDA
-    return r
+    return str(r)
 
 
 def ajusteCurvasGrado2(xi, yi, n):
@@ -264,7 +265,7 @@ def ajusteCurvasGrado3CC(xi, yi, n):
 
     # SALIDA
 
-    return r
+    return str(r)
 
 
 def ajusteCurvasGrado4(xi, yi, n):
@@ -359,7 +360,7 @@ def ajusteCurvasGrado4CC(xi, yi, n):
 
     # SALIDA
 
-    return r
+    return str(r)
 
 
 def ajusteCurvasGrado5(xi, yi, n):
@@ -454,7 +455,7 @@ def ajusteCurvasGrado5CC(xi, yi, n):
     r = (st - sr) / st
 
     # SALIDA
-    return r
+    return str(r)
 
 
 def ajusteCurvasGrado6(xi, yi, n):
@@ -549,7 +550,7 @@ def ajusteCurvasGrado6CC(xi, yi, n):
     r = (st - sr) / st
 
     # SALIDA
-    return r
+    return str(r)
 
 
 def ajusteCurvas(n):
