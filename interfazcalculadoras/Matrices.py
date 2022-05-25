@@ -24,7 +24,7 @@ class Ui_Form(object):
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(732, 1045)
+        Form.resize(1000, 1045)
         Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
 
         Form.setStyleSheet("background-color: rgb(250, 250, 250);\n"
@@ -44,6 +44,16 @@ class Ui_Form(object):
         self.visor = ScrollLabel.ScrollLabel(Form)
         self.visor.setGeometry(QtCore.QRect(10, 40, 300, 180))
 
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 250, 350, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar el numero \n"
+                                "de filas y de columnas que desees, tambien te \n"
+                                "permitira agregar una matriz y calcularla con\n"
+                                "la operacion que desees")
         self.matrizLabel2 = QtWidgets.QLabel(Form)
         self.matrizLabel2.setGeometry(QtCore.QRect(470, 10, 150, 20))
         self.matrizLabel2.setText('Matriz Resultante:')

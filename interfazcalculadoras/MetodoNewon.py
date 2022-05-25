@@ -22,7 +22,7 @@ class Ui_Form(object):
     funcionLabel2 = []
     def setupUi(self, MetodonewtonRaphson):
         MetodonewtonRaphson.setObjectName("MetodonewtonRaphson")
-        MetodonewtonRaphson.resize(641, 526)
+        MetodonewtonRaphson.resize(1000, 526)
         MetodonewtonRaphson.setStyleSheet("background-color: rgb(250, 250, 250);\n"
 "")
         # pero le cambias el inicio segun corresponda
@@ -38,6 +38,16 @@ class Ui_Form(object):
         self.BotonFun.setStyleSheet("font: 12pt \"Arial\";\n"
 "background-color: rgb(170, 170, 255);")
         self.BotonFun.setObjectName("BotonFun")
+        self.textEdit_1 = QtWidgets.QLabel(MetodonewtonRaphson)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 280, 350, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la funcion que\n"
+                                "desees, deberas ingresa los datos que te piden \n"
+                                "para asi poder calcular la funcion, tambien te \n"
+                                "permitira ver la grafica ")
 
         self.BotonErro_2 = QtWidgets.QLabel(MetodonewtonRaphson)
         self.BotonErro_2.setGeometry(QtCore.QRect(20, 230, 91, 31))

@@ -22,7 +22,7 @@ class Ui_Form(object):
     funcionLabel2 = []
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(593, 686)
+        Form.resize(800, 686)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
         Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
@@ -45,6 +45,16 @@ class Ui_Form(object):
                                         "background-color: rgb(170, 170, 255);")
         self.labelfuncion.setObjectName("labelfuncion")
 
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(400, 280, 350, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la funcion que\n"
+                                "desees, deberas ingresa los datos que te piden \n"
+                                "para asi poder calcular la integral de la funcion\n"
+                                "que ingresaste, tambien te permitira ver la grafica")
         self.label_5 = QtWidgets.QLineEdit(Form)
         self.label_5.setGeometry(QtCore.QRect(130, 20, 251, 31))
         self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")

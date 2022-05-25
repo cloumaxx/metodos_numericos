@@ -29,7 +29,16 @@ class Ui_Form(object):
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
-
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 230, 300, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la \n"
+                                "funcion que desees en donde te permitira\n"
+                                "llenar los extremos que tiene la funcion\n"
+                                "aqui tambien podras graficar la funcion")
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
         self.labelIngreso = QtWidgets.QLabel(Form)
         self.labelIngreso.setGeometry(QtCore.QRect(20, 20, 111, 31))

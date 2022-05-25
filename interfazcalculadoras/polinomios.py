@@ -22,7 +22,7 @@ def resolver_ruta(ruta_relativa):
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(744, 590)
+        Form.resize(1000, 590)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
         Form.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
@@ -32,6 +32,15 @@ class Ui_Form(object):
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(580, 80, 400, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar el valor de x que \n"
+                                "desees, deberas ingresa los otros valores que te piden \n"
+                                "para asi poder calcular el valor independiente y las raices\n")
 
         self.BotonValor = QtWidgets.QLabel(Form)
         self.BotonValor.setGeometry(QtCore.QRect(20, 20, 181, 31))

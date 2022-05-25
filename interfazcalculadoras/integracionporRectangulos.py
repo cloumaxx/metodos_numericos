@@ -35,6 +35,7 @@ class Ui_Form(object):
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
+
         self.Funcion = QtWidgets.QLabel(Form)
         self.Funcion.setGeometry(QtCore.QRect(20, 60, 111, 31))
         self.Funcion.setAcceptDrops(True)
@@ -45,7 +46,16 @@ class Ui_Form(object):
         self.Funcion.setWordWrap(False)
         self.Funcion.setOpenExternalLinks(True)
         self.Funcion.setObjectName("Funcion")
-
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 270, 300, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la \n"
+                                "funcion que desees en donde te permitira\n"
+                                "llenar los extremos que tiene la funcion\n"
+                                "aqui tambien podras graficar la funcion")
         self.labelIngreso = QtWidgets.QLabel(Form)
         self.labelIngreso.setGeometry(QtCore.QRect(20, 10, 111, 31))
         self.labelIngreso.setAcceptDrops(True)

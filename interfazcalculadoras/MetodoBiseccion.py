@@ -30,7 +30,7 @@ class Ui_Form(object):
     funcionLabel2 =[]
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(616, 655)
+        Form.resize(1000, 655)
         Form.setStyleSheet("\n"
                            "background-color: rgb(250, 250, 250);\n"
                            "font: 75 14pt \"Arial\";\n"
@@ -42,7 +42,16 @@ class Ui_Form(object):
         self.imagenFondo.setPixmap(pixmap)
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
-
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 280, 380, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la funcion que\n"
+                                "desees, deberas ingresa los datos que te piden \n"
+                                "para asi poder calcular funcion, tambien te permitira\n"
+                                "ver la grafica y crear la tabla")
         self.BotonFunc = QtWidgets.QLabel(Form)
         self.BotonFunc.setGeometry(QtCore.QRect(10, 20, 111, 31))
         self.BotonFunc.setStyleSheet("font: 12pt \"Arial\";\n"

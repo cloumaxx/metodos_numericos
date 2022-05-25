@@ -22,7 +22,7 @@ class Ui_Form(object):
     estadoNum="Decimal"
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(742, 855)
+        Form.resize(1000, 855)
         Form.setStyleSheet("background-color: rgb(250, 250, 250);")
         Form.setWindowIcon(QtGui.QIcon('imagenes/icono.png'))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
@@ -33,6 +33,16 @@ class Ui_Form(object):
         self.imagenFondo.setGeometry(0, 0, 270, 120)
         self.imagenFondo.resize(pixmap.width(), pixmap.height())
 
+        self.textEdit_1 = QtWidgets.QLabel(Form)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 500, 300, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora funciona ingresando la\n"
+                                "el numero que deses convertir\n"
+                                "seleccionando que opcion de las que \n"
+                                "estan ahi deseas")
 
         self.BotonNum = QtWidgets.QLabel(Form)
         self.BotonNum.setGeometry(QtCore.QRect(20, 30, 161, 31))

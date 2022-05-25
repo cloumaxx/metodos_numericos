@@ -27,6 +27,8 @@ class Ui_Form(object):
         calculadora.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
         # pero le cambias el inicio segun corresponda
         calculadora.setWindowIcon(QtGui.QIcon(resolver_ruta('imagenes/icono.png')))  # se copia y pega esta linea en todas  las interfaces
+
+
         self.imagenFondo = QtWidgets.QLabel(calculadora)
         pixmap = QPixmap(resolver_ruta('imagenes/fondo1.png'))
         self.imagenFondo.setPixmap(pixmap)
@@ -37,6 +39,17 @@ class Ui_Form(object):
         self.layoutWidget.setGeometry(QtCore.QRect(20, 390, 565, 203))
         self.layoutWidget.setObjectName("layoutWidget")
         self.layoutWidget.setStyleSheet("background-color: rgb(170, 170, 255)")
+
+        self.textEdit_1 = QtWidgets.QLabel(calculadora)
+        self.textEdit_1.setGeometry(QtCore.QRect(420, 250, 350, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la funcion que\n"
+                                "desees, deberas ingresa los datos que te piden \n"
+                                "para asi poder calcular la integral de la funcion\n"
+                                "que ingresaste, tambien te permitira ver la grafica\n")
 
         self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)

@@ -40,7 +40,16 @@ class Ui_Form(object):
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label.setText("")
         self.label.setObjectName("label")
-
+        self.textEdit_1 = QtWidgets.QLabel(simpson38)
+        self.textEdit_1.setGeometry(QtCore.QRect(600, 280, 350, 120))  # (ancho,largo del cajon)
+        self.textEdit_1.setStyleSheet("font: 12pt \"Arial\";\n"
+                                      "background-color: rgb(35, 223, 166 );")
+        self.textEdit_1.setAlignment(QtCore.Qt.AlignCenter)
+        self.textEdit_1.setText("En esta opcion de nuestra \n"
+                                "calculadora podras ingresar la funcion que\n"
+                                "desees, deberas ingresa los datos que te piden \n"
+                                "para asi poder calcular la integral de la funcion\n"
+                                "que ingresaste")
 
         self.labelintegral = QtWidgets.QLabel(simpson38)
         self.labelintegral.setGeometry(QtCore.QRect(20, 410, 2000, 50))

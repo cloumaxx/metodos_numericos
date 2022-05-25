@@ -23,7 +23,7 @@ class Ui_ConversorEntreBases(object):
     estadoNum="Decimal"
     def setupUi(self, ConversorEntreBases):
         ConversorEntreBases.setObjectName("ConversorEntreBases")
-        ConversorEntreBases.resize(800, 800)
+        ConversorEntreBases.resize(1000, 855)
         ConversorEntreBases.setStyleSheet("\n"
                                           "background-color: rgb(250, 250, 250);")
         # pero le cambias el inicio segun corresponda
