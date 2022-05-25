@@ -576,8 +576,8 @@ class Ui_Form(object):
         try:
             limite = int(self.label.text())
             print("limte:",limite)
-            x = int(self.textinput1.text())
-            y = int(self.textinput2.text())
+            x = float(self.textinput1.text())
+            y = float(self.textinput2.text())
             if self.contador <= limite:
                 self.coordenadaX.append(x)
                 self.coordenadaY.append(y)
