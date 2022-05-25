@@ -8,8 +8,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from  interfazcalculadoras import ScrollLabel
+from funciones import calcArregloCurvas as curvas
 import os, sys
 def resolver_ruta(ruta_relativa):
+
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, ruta_relativa)
     return os.path.join(os.path.abspath('.'), ruta_relativa)
@@ -17,6 +19,7 @@ def resolver_ruta(ruta_relativa):
 class Ui_Form(object):
     coordenadaX = []
     coordenadaY = []
+    contador = 0
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1500, 900)
@@ -102,6 +105,7 @@ class Ui_Form(object):
         self.botoncalcular.setStyleSheet("background-color: rgb(225, 225, 225);\n"
 "font: 87 12pt \"Arial Black\";")
         self.botoncalcular.setObjectName("botoncalcular")
+        self.botoncalcular.clicked.connect(self.calcular)
         self.botonActualizar = QtWidgets.QPushButton(Form)
         self.botonActualizar.setGeometry(QtCore.QRect(200, 265, 150, 31))
         self.botonActualizar.setStyleSheet("background-color: rgb(225, 225, 225);\n"
@@ -532,29 +536,44 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def agregarPunto(self):
-        x = int(self.textinput1.text())
-        y = int(self.textinput2.text())
-        self.coordenadaX.append(x)
-        self.coordenadaY.append(y)
-        msj = "Pos| "
-        for i in range(0,len(self.coordenadaX)):
-            msj += str(i)+" | "
-        self.mostrarPosPuntos.setText(msj)
-        msj1 = " X   | "
-        for i in range(0,len(self.coordenadaX)):
-            if (len(str(self.coordenadaX[i])))==1:
-                msj1 +=str(self.coordenadaX[i])+" | "
-            else:
-                msj1 += str(self.coordenadaX[i])+" | "
-        msj2 = " Y   | "
-        for i in range(0,len(self.coordenadaY)):
-            if (len(str(self.coordenadaY[i]))) == 1:
-                msj2 += str(self.coordenadaY[i]) + " | "
-            else:
-                msj2 += str(self.coordenadaY[i]) + " | "
-        self.mostrarPuntosY.setText(msj2)
-        self.mostrarPuntosX.setText(msj1)
 
+        try:
+            limite = int(self.label.text())
+            print("limte:",limite)
+            x = int(self.textinput1.text())
+            y = int(self.textinput2.text())
+            if self.contador <= limite:
+                self.coordenadaX.append(x)
+                self.coordenadaY.append(y)
+                msj = "Pos| "
+                for i in range(0,len(self.coordenadaX)):
+                    msj += str(i)+" | "
+                self.mostrarPosPuntos.setText(msj)
+                msj1 = " X   | "
+                for i in range(0,len(self.coordenadaX)):
+                    if (len(str(self.coordenadaX[i])))==1:
+                        msj1 +=str(self.coordenadaX[i])+" | "
+                    else:
+                        msj1 += str(self.coordenadaX[i])+" | "
+                msj2 = " Y   | "
+                for i in range(0,len(self.coordenadaY)):
+                    if (len(str(self.coordenadaY[i]))) == 1:
+                        msj2 += str(self.coordenadaY[i]) + " | "
+                    else:
+                        msj2 += str(self.coordenadaY[i]) + " | "
+                self.mostrarPuntosY.setText(msj2)
+                self.mostrarPuntosX.setText(msj1)
+                self.contador += 1
+            else:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText(" Cambia el limite de puntos")
+                msg.setWindowTitle("Error")
+                msg.setStandardButtons(QMessageBox.Ok)
+                retval = msg.exec_()
+
+        except:
+            print("")
     def abrirTabla(self):
         try:
             filas = 2
@@ -568,6 +587,30 @@ class Ui_Form(object):
     def grafica(self):
         from funciones import graficadora
         graficadora.graficaCurvas(self.coordenadaX,self.coordenadaY)
+    def calcular(self):
+        arregloX= self.coordenadaX
+        arregloY= self.coordenadaY
+        grado1 = curvas.ajusteCurvasGrado1(arregloX,arregloY,int(self.label.text()))
+        grado2 = curvas.ajusteCurvasGrado2(arregloX, arregloY, int(self.label.text()))
+        grado3 = curvas.ajusteCurvasGrado3(arregloX, arregloY, int(self.label.text()))
+        grado4 = curvas.ajusteCurvasGrado4(arregloX, arregloY, int(self.label.text()))
+        grado5 = curvas.ajusteCurvasGrado5(arregloX, arregloY, int(self.label.text()))
+        grado6 = curvas.ajusteCurvasGrado6(arregloX, arregloY, int(self.label.text()))
+        gradoCC1 = curvas.ajusteCurvasGrado1CC(arregloX,arregloY,int(self.label.text()))
+        gradoCC2 = curvas.ajusteCurvasGrado2CC(arregloX, arregloY, int(self.label.text()))
+        gradoCC3 = curvas.ajusteCurvasGrado3CC(arregloX, arregloY, int(self.label.text()))
+        gradoCC4 = curvas.ajusteCurvasGrado4CC(arregloX, arregloY, int(self.label.text()))
+        gradoCC5 = curvas.ajusteCurvasGrado5CC(arregloX, arregloY, int(self.label.text()))
+        gradoCC6 = curvas.ajusteCurvasGrado6CC(arregloX, arregloY, int(self.label.text()))
+
+        self.gradounoedit.setText(str(grado1))
+        self.gradodosedit.setText(str(grado2))
+        self.gradotresedit.setText(str(grado3))
+        self.gradocuatroedit.setText(str(grado4))
+        self.gradocincoedit.setText(str(grado5))
+        self.gradoseisedit.setText(str(grado6))
+
+        #self.CCunoedit.setText(str(gradoCC1))
     def eventBotonElevado(self):
         print('^')
         self.entrada = self.label.text()
@@ -887,7 +930,8 @@ class Ui_Form(object):
 
 
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget, QTableWidgetItem, QVBoxLayout, \
+    QMessageBox
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import pyqtSlot
 
